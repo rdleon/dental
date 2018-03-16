@@ -19,16 +19,20 @@ CREATE TABLE schools(
 	address INTEGER REFERENCES addresses (id)
 )
 
+CREATE TABLE cat_marital_status(
+	id 		SERIAL PRIMARY KEY,
+	marital_status	VARCHAR(32)
+)
+
 CREATE TABLE parents(
 	id 		SERIAL PRIMARY KEY,
-	spouse		*
-	fullname	VARCHAR(64)
-	ocupation	VARCHAR(64)
-	marital_status	*
+	fullname	VARCHAR(64),
+	ocupation	VARCHAR(64),
+	marital_status	INTEGER REFERENCES cat_marital_status (id),
 	address		INTEGER REFERENCES addresses (id)
 )
 
-CREATE TABLE parentschildren(
+CREATE TABLE parents_children(
 	children_id	INTEGER REFERENCES patient_id (id),
 	parent_id	INTEGER REFERENCES parents (id)
 )
@@ -60,7 +64,7 @@ CREATE TABLE cat_birth_type(
 	type	VARCHAR(24)
 )
 
-CREATE TABLE medicalhistories(
+CREATE TABLE medical_histories(
     patient_id 		INTEGER,
     creation 		DATE,
     doctor 		VARCHAR(56),
@@ -75,13 +79,13 @@ CREATE TABLE medicalhistories(
     treatments 		(relation: Notes)
 )
 
-CREATE TABLE patientchronics(
+CREATE TABLE patient_chronics(
     patient_id 	INTEGER REFERENCES patients (id),
     disease_id 	(relation: Chronics),*
     notes 	(relation: Notes)
 )
 
-CREATE TABLE prevdentalhistory
+CREATE TABLE prev_dental_history
     patient_id			INTEGER REFERENCES patients (id),
     first_visit 		BOOLEAN,
     visit_notes 		(relation: Notes)*,
@@ -107,7 +111,7 @@ CREATE TABLE vaccines(
 	name 	VARCHAR(40)
 )
 
-CREATE TABLE patientvaccines(
+CREATE TABLE patient_vaccines(
 	patient_id 	INTEGER REFERENCES patients (id),
    	vaccine_id 	INTEGER REFERENCES vaccines (id)
 )
