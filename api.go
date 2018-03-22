@@ -9,18 +9,25 @@ import (
 
 const (
     DB_USER     = "minux"
-    DB_PASSWORD = "minux13"
+    DB_PASSWORD = "minux23"
     DB_NAME     = "minux"
 )
 
-func main() {
+var db *sql.DB
+
+func init() {
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
-	db, err := sql.Open("postgres", dbinfo)
+	tmpDB, err := sql.Open("postgres", dbinfo)
 	checkErr(err)
-	defer db.Close()
+	db = tmpDB
+	//defer db.Close()
+}
+
+func PostAddPatient(w http.ResponseWriter, r *http.Request){
 
 	var patientId int
 
+	//Fields of patient table
 	patientCreated := time.Now()
 	patientUpdated := time.Now()
 	var patientFullName int
@@ -32,10 +39,12 @@ func main() {
 	var patientAddressId int
 	var patientSchoolId int
 
+	//Fields of address table
 	var patientStreetAndNumber string
 	var patientNeighberhood string
 	var patientTelephone string
 
+	//Fields of school table
 	var patientSchoolName string
 	var patientSchoolAddress string
 
@@ -47,7 +56,7 @@ func main() {
 	err = db.QueryRow("INSERT INTO schools (name,address) VALUES($1,$2) returning id;", patientSchoolName, patientSchoolAddress ).Scan(&patientSchoolId)
 	checkErr(err)
 
-	//Insert school
+	//Insert patient
 	err = db.QueryRow("INSERT INTO schools (created, updated, fullname, nickname, gender, birthdate, siblings, lives_with, address_id, school_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8) returning id;", patientFullName, patientNickName, patientGender, patientBirthDate, patientSibilings, patientLivesWith, patientAddressId, patientSchoolId ).Scan(&patientId)
 	checkErr(err)
 
@@ -66,8 +75,26 @@ func main() {
 
 }
 
+func main() {
+	r := mux.NewRouter().StrictSlash(false)
+	r.HandleFunc("/PostAddPatient", PostAddPatient).Methods("POST")
+
+	server := &http.Server{
+			Addr		: ":8080",
+			Handler		: r,
+			ReadTimeout	: 10 * time.Second,
+			WriteTimeout	: 10 * time.Second,
+			MaxHeaderBytes	: 1 << 20,
+	}
+
+	//r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
+
+	server.ListenAndServe()
+
+}
+
 func checkErr(err error) {
     if err != nil {
-         panic(err)
+         log.Fatal(err)
     }
 }
