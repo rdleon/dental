@@ -1,16 +1,13 @@
 package main
 
 import (
-	//"database/sql"
-	//"fmt"
+	"fmt"
 	_ "github.com/lib/pq"
 	"time"
 	"html/template"
 	"net/http"
 	//"strings"
 	"strconv"
-	//"github.com/gorilla/mux"
-	//"reflect"
 )
 
 type Patient struct {
@@ -41,17 +38,47 @@ type School struct{
 	AddressId	string	//Cuando cacha el id cuando se hace insert es un string
 }
 
+type Parent struct{
+	Id		int
+	FullName	string
+	Ocupation	string
+	MaritalStatusId	string	//Cuando cacha el id cuando se hace insert es un string
+	AddressId	string	//Cuando cacha el id cuando se hace insert es un string
+}
+
+type MedicalHistory struct{
+	PatientId		string //Cuando cacha el id cuando se hace insert es un string
+	Creation		time.Time
+	Doctor			string
+	DoctorTelephone		string
+	GestationWeeks		int
+	BirthType		int
+	BirthHeight		int
+	BirthWeight		int
+	CurrentWeight		int
+	Surgeries		string //Cuando cacha el id cuando se hace insert es un string
+	BloodTransfusions	string //Cuando cacha el id cuando se hace insert es un string
+	Treatments		string //Cuando cacha el id cuando se hace insert es un string
+}
+
+/*type Template struct{
+	Title string
+	Marital []
+}*/
+
 func AddPatient(w http.ResponseWriter, r *http.Request){
 
 	if r.Method == "GET" {
-		t, _ := template.ParseFiles("public/login.html")
-		t.Execute(w, nil)
+		t := template.New("historialformulario") // Create a template.
+		t, _ = t.ParseFiles("public/login.html")
+		t.Execute(w, "historialformulario")
 	} else {
 
-		var patient Patient
-		var school  School
-		var addressPatient Address
-		var addressSchool  Address
+		var patient		Patient
+		var school		School
+		var addressPatient	Address
+		var addressSchool	Address
+		var parent		Parent
 
 		r.ParseForm()
 		patient.Created		= time.Now()
@@ -59,9 +86,11 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		patient.FullName	= r.Form["fullname"][0]
 		patient.NickName	= r.Form["nickname"][0]
 		patient.Gender, _	= strconv.Atoi(r.Form["gender"][0])
-		patient.BirthDate, _	= time.Parse("2006-01-02T15:04:05.000Z",r.Form["birthday"][0]);
+		patient.BirthDate, _	= time.Parse("02/01/2006",r.Form["birthday"][0])
 		patient.Sibilings, _	= strconv.Atoi(r.Form["sibilings"][0])
 		patient.LivesWith	= r.Form["liveswith"][0]
+
+		fmt.Println(r.Form["birthday"][0])
 
 		addressPatient.StreetAndNumber	= r.Form["streetandnumber"][0]
 		addressPatient.Neighberhood	= r.Form["neighberhood"][0]
@@ -71,6 +100,10 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 
 		addressSchool.StreetAndNumber	= r.Form["schooladdress"][0]
 
+		parent.FullName		= r.Form["parentfullname"][0]
+		parent.Ocupation	= r.Form["parentocupation"][0]
+		parent.MaritalStatusId	= r.Form["parentmarital"][0]
+		//parent.AddressId	= r.Form["parentaddress"][0]
 
 		//Insert address patient
 		err := db.QueryRow("INSERT INTO addresses (street_and_number,neighberhood,telephone) VALUES($1,$2,$3) returning id;", addressPatient.StreetAndNumber, addressPatient.Neighberhood, addressPatient.Telephone ).Scan(&patient.AddressId)
@@ -88,7 +121,58 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		err = db.QueryRow("INSERT INTO patients (created, updated, fullname, nickname, gender, birthdate, siblings, lives_with, address_id, school_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning id;", patient.Created, patient.Updated, patient.FullName, patient.NickName, patient.Gender, patient.BirthDate, patient.Sibilings, patient.LivesWith, patient.AddressId, patient.SchoolId ).Scan(&patient.Id)
 		checkErr(err)
 
+
+		//Insert parent
+		err = db.QueryRow("INSERT INTO parents (fullname, ocupation, marital_status, address) VALUES($1,$2,$3,$4) returning id;", parent.FullName, parent.Ocupation, parent.MaritalStatusId, patient.AddressId ).Scan(&parent.Id)
+		checkErr(err)
+
+		//Insert relation patient-parent
+		db.QueryRow("INSERT INTO parents_children (patient_id, parent_id) VALUES($1,$2);", patient.Id, parent.Id )
+		//checkErr(err)
+
+
+		var mh MedicalHistory
+
+		mh.Creation, _		= time.Parse("02/01/2006", r.Form["mhcreation"][0])
+		mh.Doctor		= r.Form["mhdoctor"][0]
+		mh.DoctorTelephone	= r.Form["mhdoctortelephone"][0]
+		mh.GestationWeeks, _	= strconv.Atoi(r.Form["gestationweeks"][0])
+		mh.BirthType, _		= strconv.Atoi(r.Form["birthtype"][0])
+		mh.BirthHeight, _	= strconv.Atoi(r.Form["birthheight"][0])
+		mh.BirthWeight, _	= strconv.Atoi(r.Form["birthweight"][0])
+		mh.CurrentWeight, _	= strconv.Atoi(r.Form["currentweight"][0])
+
+		surgeries		:= r.Form["surgeries"][0]
+		bloodTransfusions	:= r.Form["bloodtransfusions"][0]
+		treatments		:= r.Form["treatments"][0]
+
+		//Insert note sugeries
+		err = db.QueryRow("INSERT INTO notes (title, body, type) VALUES($1,$2,$3) returning id;", "Surgeries", surgeries, "surgeries").Scan(&mh.Surgeries)
+		checkErr(err)
+
+		//Insert note blood transfusions
+		err = db.QueryRow("INSERT INTO notes (title, body, type) VALUES($1,$2,$3) returning id;", "Blood Transfusions", bloodTransfusions, "transfusions").Scan(&mh.BloodTransfusions)
+		checkErr(err)
+
+		//Insert note treatments
+		err = db.QueryRow("INSERT INTO notes (title, body, type) VALUES($1,$2,$3) returning id;", "Treatments", treatments, "treatments").Scan(&mh.Treatments)
+		checkErr(err)
+
+		//Insert note medical_histories
+		db.QueryRow("INSERT INTO medical_histories (patient_id, creation, doctor, doctor_telephone, gestation_weeks, birth_type, birth_height, birth_weight, current_weight, surgeries, blood_transfusions, treatments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)", patient.Id, mh.Creation, mh.Doctor, mh.DoctorTelephone, mh.GestationWeeks, mh.BirthType, mh.BirthHeight, mh.BirthWeight, mh.CurrentWeight, mh.Surgeries, mh.BloodTransfusions, mh.Treatments)
+		checkErr(err)
+
+
 	}
 }
 
 
+
+
+
+
+
+//Cuantos padres? y su insert otro padre y su relacion con el paciente
+//Marital satatus OTHER, address(Id), marital(id) en la base de datos
+//En historial medico las ultimas tres con id a notas
+//Cuando se crea se copia desde papel?

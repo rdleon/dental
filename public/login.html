@@ -1,21 +1,47 @@
+{{define "historialformulario"}}
 <html>
     <head>
     <title></title>
     </head>
     <body>
-        <form action="/AddPatient" method="POST">
-            FullName:<input type="text" name="fullname">
-            Nickname:<input type="text" name="nickname">
-            Gender:<input type="text" name="gender">
-            BD:<input type="text" name="birthday">
-            Sibilings:<input type="text" name="sibilings">
-            Lives with:<input type="text" name="liveswith">
-            Street and Number:<input type="text" name="streetandnumber">
-            Neighnerhood:<input type="text" name="neighberhood">
-            Telephone:<input type="text" name="telephone">
-            School name:<input type="text" name="schoolname">
-            School address:<input type="text" name="schooladdress">
-            <input type="submit" value="Login">
+        <form action="/AddPatient" method="POST"><br>
+
+            FullName:<input type="text" name="fullname" value="Miriam Reyes"><br>
+            Nickname:<input type="text" name="nickname" value="Mimi"><br>
+            Gender:<input type="text" name="gender" value="1"><br>
+            BD:<input type="text" name="birthday" value="12/11/1988"><br>
+            Sibilings:<input type="text" name="sibilings" value="2"><br>
+            Lives with:<input type="text" name="liveswith" value="madre"><br>
+            Street and Number:<input type="text" name="streetandnumber" value="Bosques 2505"><br>
+            Neighnerhood:<input type="text" name="neighberhood" value="Pastora"><br>
+            Telephone:<input type="text" name="telephone" value="123456"><br>
+            School name:<input type="text" name="schoolname" value="fcfm"><br>
+            School address:<input type="text" name="schooladdress" value="universidad"><br>
+           	    <h2>Padre</h2>
+	    FullName:<input type="text" name="parentfullname" value="Manuel I"><br>
+            Ocupation:<input type="text" name="parentocupation" value="Trabajador"><br>
+            Marital Status:<input type="text" name="parentmarital" value="1"><br>
+            Address: <br>
+	    <h2>Paciente historial medico</h2>
+	    Tipo de nacimiento:<select name="birthtype">
+	    	  <option value="1">Natural</option>
+		  <option value="2">C-section</option>
+		  <option value="3">Other</option>
+		  </select><br>
+            mhcreation:<input type="text" name="mhcreation" value="13/08/2011"><br>
+            mhdoctor:<input type="text" name="mhdoctor" value="Dr. Jimenes"><br>
+            mhdoctortelephone:<input type="text" name="mhdoctortelephone" value="123456"><br>
+            gestationweeks:<input type="text" name="gestationweeks" value="8"><br>
+            birthheight:<input type="text" name="birthheight" value="30"><br>
+            birthweight:<input type="text" name="birthweight" value="5"><br>
+            currentweight:<input type="text" name="currentweight" value="456"><br>
+            surgeries:<input type="text" name="surgeries" value="Algo algo algo sugeries"><br>
+            bloodtransfusions:<input type="text" name="bloodtransfusions" value="Blood transfucion algo algo algo"><br>
+            treatments:<input type="text" name="treatments" value="Treatments algo algo algo algo"><br>
+	    
+	     <input type="submit" value="Login"><br>
+
         </form>
     </body>
 </html>
+{{end}}
