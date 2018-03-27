@@ -2,46 +2,527 @@
 <html>
     <head>
     <title></title>
+
+
+
+    <style>
+	
+	body{
+	  
+	  background-color:#f0f0f0;
+	  font-family:helvetica;
+	}
+	
+	a{
+	  display:block;
+	  color:#ad5482;  
+	  text-decoration:none;
+	  font-weight:bold;
+	  margin-top:40px;
+	  text-align:center;
+	}
+	
+	#bg{
+	  position:relative;
+	  top:20px;
+	  /*overflow: -webkit-paged-y;
+	  /*height:2000px;*/
+	  width: 80%;
+	  background:url('/3eP9Z4O.png') center no-repeat;
+	  background-size:cover;
+	  margin-left:auto;
+	  margin-right:auto; 
+	  border:#fff 15px solid;
+	  padding-top: 50px;
+	  padding-bottom: 50px;
+	  color: #777;
+	}
+	
+	.module{
+	  position:relative;
+	  top:15%;    
+	  width: 70%;
+	  margin-left:auto;
+	  margin-right:auto;
+	  border-radius:5px;
+	  background:RGBA(255,255,255,1);
+	  overflow: -webkit-paged-y;
+	  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
+	  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
+	  
+	}
+	
+	.module ul{
+	  list-style-type:none;
+	  margin:0;
+	  overflow: auto;
+	}
+	
+	.tablinks{
+	  float:left;
+	  height:60px;
+	  width:20%;
+	  padding-top:20px;
+	  box-sizing:border-box;
+	  background:#eeeeee;  
+	  text-align:center;
+	  cursor:pointer;
+	  transition:background .4s;
+	}
+	
+	.tablinks:first-child{  
+	  -webkit-border-radius: 5px 0px 0px 0px;
+	  border-radius: 5px 0px 0px 0px;
+	}
+	
+	.tablinks:last-child{  
+	  -webkit-border-radius: 0px 5px 0px 0px;
+	  border-radius: 0px 5px 0px 0px;
+	}
+	
+	.tablinks:hover{  
+	  background-color:rgba(0,0,0,.1);
+	}
+	
+	.activeTab{
+	  background:#fff;
+	}
+	
+	.activeTab .icon{
+	  opacity:1;
+	}
+	
+	.icon{
+	  height:24px;
+	  width:24px;
+	  opacity:.4;
+	}
+	
+	.form{
+	  float:left;
+	  /*height:86%;*/
+	  width:100%;
+	  box-sizing:border-box;
+	  padding:40px;
+	}
+	
+	.textbox{
+	  height:50px;
+	  width:100%;
+	  border-radius:3px;
+	  border:rgba(0,0,0,.3) 2px solid;
+	  box-sizing:border-box;
+	  padding:10px;
+	  margin-bottom:30px;
+	}
+	
+	.textbox:focus{
+	  outline:none;
+	   border:rgba(24,149,215,1) 2px solid;
+	   color:rgba(24,149,215,1);
+	}
+
+	.selectbox{
+		background-color: #fff;
+   		border-color: #ddf;
+   	 	border-width: 2px;
+   	 	padding: 10px;
+   	 	padding-left: 10px;
+   	 	padding-right: 25px;
+   	 	color: #555;
+   	 	border-radius: 4px;
+   	 	margin: 0 15px 15px 15px;
+    	}
+
+	.textlabel{		
+		color: #777;
+	}
+	
+	.button{
+	  height:50px;
+	  width:49%;
+	  border-radius:3px;
+	  border:rgba(0,0,0,.3) 0px solid;
+	  box-sizing:border-box;
+	  padding:10px;
+	  margin-bottom:30px;
+	  color:#FFF;
+	  font-weight:bold;
+	  font-size: 12pt;
+	  transition:background .4s;
+	  cursor:pointer;
+	}
+
+	#bottomnext{
+		background: #cbcfe2; /*#90c843;*/	
+	}
+	#bottomsave{
+		background: #cb9fb2; /*#4958f0;*/
+
+	}
+
+	
+	.button:hover{
+	  background:#80b438;
+	  
+	}
+	
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0; 
+  top: 0;
+  width: 1.25em; height: 1.25em;
+  border: 1.5px solid #ccf;
+  background: #fff;
+  border-radius: 6px;
+
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '🗸';
+  position: absolute;
+  top: .2em; left: .275em;
+  font-size: 1.4em;
+  line-height: 0.8;
+  color: #094dfe;
+  transition: all .2s;
+  font-family: Helvetica, Arial, sans-serif;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px solid blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 1px solid #4778d9!important;
+}
+
+
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+    </style>
     </head>
     <body>
-        <form action="/AddPatient" method="POST"><br>
 
-            FullName:<input type="text" name="fullname" value="Miriam Reyes"><br>
-            Nickname:<input type="text" name="nickname" value="Mimi"><br>
-            Gender:<input type="text" name="gender" value="1"><br>
-            BD:<input type="text" name="birthday" value="12/11/1988"><br>
-            Sibilings:<input type="text" name="sibilings" value="2"><br>
-            Lives with:<input type="text" name="liveswith" value="madre"><br>
-            Street and Number:<input type="text" name="streetandnumber" value="Bosques 2505"><br>
-            Neighnerhood:<input type="text" name="neighberhood" value="Pastora"><br>
-            Telephone:<input type="text" name="telephone" value="123456"><br>
-            School name:<input type="text" name="schoolname" value="fcfm"><br>
-            School address:<input type="text" name="schooladdress" value="universidad"><br>
-           	    <h2>Padre</h2>
-	    FullName:<input type="text" name="parentfullname" value="Manuel I"><br>
-            Ocupation:<input type="text" name="parentocupation" value="Trabajador"><br>
-            Marital Status:<input type="text" name="parentmarital" value="1"><br>
-            Address: <br>
-	    <h2>Paciente historial medico</h2>
-	    Tipo de nacimiento:<select name="birthtype">
-	    	  <option value="1">Natural</option>
-		  <option value="2">C-section</option>
-		  <option value="3">Other</option>
-		  </select><br>
-            mhcreation:<input type="text" name="mhcreation" value="13/08/2011"><br>
-            mhdoctor:<input type="text" name="mhdoctor" value="Dr. Jimenes"><br>
-            mhdoctortelephone:<input type="text" name="mhdoctortelephone" value="123456"><br>
-            gestationweeks:<input type="text" name="gestationweeks" value="8"><br>
-            birthheight:<input type="text" name="birthheight" value="30"><br>
-            birthweight:<input type="text" name="birthweight" value="5"><br>
-            currentweight:<input type="text" name="currentweight" value="456"><br>
-            surgeries:<input type="text" name="surgeries" value="Algo algo algo sugeries"><br>
-            bloodtransfusions:<input type="text" name="bloodtransfusions" value="Blood transfucion algo algo algo"><br>
-            treatments:<input type="text" name="treatments" value="Treatments algo algo algo algo"><br>
-	    
-	     <input type="submit" value="Login"><br>
+<h2 style="text-align: center;margin-top: 20px; color: #a8a;">Historial Clinico Dental</h2>
 
-        </form>
+<div id="bg">
+  <div class="module">
+    <ul>
+      <li class="tablinks activeTab"	id="uno"	onclick="activetab(event, 'sectionpatient')"><img src="62839.svg" alt="" class="icon"/></li>
+      <li class="tablinks" 		id="dos"	onclick="activetab(event, 'sectionparent')"><img src="family.svg" alt="" class="icon"/></li>
+      <li class="tablinks" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')"><img src="health.svg" alt="" class="icon"/></li>
+      <li class="tablinks" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')"><img src="pastillas.svg" alt="" class="icon"/></li>
+      <li class="tablinks" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')"><img src="maletin.svg" alt="" class="icon"/></li>
+    </ul>
+    
+   <form  class="form" action="/AddPatient" method="POST">
+
+	<div id="sectionpatient" class="tabcontent">
+ 
+		<input type="text" class="textbox" name="fullname" 	  	placeholder="Nombre completo"		><br>
+		<input type="text" class="textbox" name="nickname" 	  	placeholder="Nickname"			><br>
+		<input type="text" class="textbox" name="gender" 	  	placeholder="Genero"			><br>
+		<input type="text" class="textbox" name="birthday" 	  	placeholder="Fecha de nacimiento"	><br>
+		<input type="text" class="textbox" name="sibilings" 	  	placeholder="No. de hermanos"		><br>
+		<input type="text" class="textbox" name="liveswith" 	  	placeholder="Vive con"			><br>
+		<input type="text" class="textbox" name="streetandnumber" 	placeholder="Calle y número"		><br>
+		<input type="text" class="textbox" name="neighberhood" 	  	placeholder="Colonia"			><br>
+		<input type="text" class="textbox" name="telephone" 	  	placeholder="Teléfono"			><br>
+		<input type="text" class="textbox" name="schoolname"  	  	placeholder="Nombre de la escuela"	><br>
+		<input type="text" class="textbox" name="schooladdress"   	placeholder="Dirección de la escuela" 	><br>
+
+	</div>
+
+	<div id="sectionparent" class="tabcontent" style="display:none;">
+
+		<input type="text" class="textbox" name="parentfullname"  placeholder="Nombre completo del padre"	><br>
+		<input type="text" class="textbox" name="parentocupation" placeholder="Ocupation"			><br>
+		<input type="text" class="textbox" name="parentmarital"   placeholder="Estado matrimonial"	><br>
+	</div>
+
+	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">	
+
+		<input type="text" class="textbox" name="mhdoctor" 		placeholder="Nombre del pediatra"				><br>
+		<input type="text" class="textbox" name="mhdoctortelephone" 	placeholder="Telefono"						><br>
+		<input type="text" class="textbox" name="gestationweeks" 	placeholder="Tiempo de gestación"				><br>
+		<span class="textlabel" >Tipo de parto:<select class="selectbox" name="birthtype">
+			<option value="1">Natural</option>
+		      	<option value="2">C-section</option>
+		      	<option value="3">Other</option>
+		</select><br>
+		<input type="text" class="textbox" name="birthheight" 		placeholder="Talla al nacer"					><br>
+		<input type="text" class="textbox" name="birthweight" 		placeholder="Peso al nacer"					><br>
+		<input type="text" class="textbox" name="currentweight" 	placeholder="Peso actual"					><br>
+		<input type="text" class="textbox" name="surgeries" 		placeholder="Ha tenido cirugias el niño"			><br>
+		<input type="text" class="textbox" name="bloodtransfusions" 	placeholder="Ha recibido transfusiones de sangre"		><br>
+		<input type="text" class="textbox" name="treatments" 		placeholder="Recibió o esta recibiendo algún tratamiento"	><br>
+
+	</div>
+   
+	<div id="sectionchronic" class="tabcontent" style="display:none;">	
+
+		<h3>Enfermedades crónicas</h3>
+
+	  <p><input type="checkbox" name="chronics" value="1"  id="cale" class="chbx"><label for="cale">Alergias		</label></p>
+	  <p><input type="checkbox" name="chronics" value="2"  id="cane" class="chbx"><label for="cane">Anemas			</label></p>
+	  <p><input type="checkbox" name="chronics" value="3"  id="cart" class="chbx"><label for="cart">Artitris		</label></p>
+	  <p><input type="checkbox" name="chronics" value="4"  id="casm" class="chbx"><label for="casm">Asma			</label></p>
+	  <p><input type="checkbox" name="chronics" value="5"  id="ccan" class="chbx"><label for="ccan">Cáncer			</label></p>
+	  <p><input type="checkbox" name="chronics" value="6"  id="ccon" class="chbx"><label for="ccon">Convulsiones		</label></p>
+	  <p><input type="checkbox" name="chronics" value="7"  id="cdia" class="chbx"><label for="cdia">Diabetes		</label></p>
+	  <p><input type="checkbox" name="chronics" value="8"  id="cesc" class="chbx"><label for="cesc">Escarlatina		</label></p>
+	  <p><input type="checkbox" name="chronics" value="9"  id="cenc" class="chbx"><label for="cenc">Enfermedades cardiacas	</label></p>
+	  <p><input type="checkbox" name="chronics" value="10" id="cfiq" class="chbx"><label for="cfiq">Fibrosis Quística	</label></p>
+	  <p><input type="checkbox" name="chronics" value="11" id="cfir" class="chbx"><label for="cfir">Fiebre reumática	</label></p>
+	  <p><input type="checkbox" name="chronics" value="12" id="chem" class="chbx"><label for="chem">Hemofilia		</label></p>
+	  <p><input type="checkbox" name="chronics" value="13" id="chep" class="chbx"><label for="chep">Hepatitis		</label></p>
+	  <p><input type="checkbox" name="chronics" value="14" id="chip" class="chbx"><label for="chip">Hiperactividad		</label></p>
+	  <p><input type="checkbox" name="chronics" value="15" id="chiv" class="chbx"><label for="chiv">HIV			</label></p>
+	  <p><input type="checkbox" name="chronics" value="16" id="cleu" class="chbx"><label for="cleu">Leucemia		</label></p>
+	  <p><input type="checkbox" name="chronics" value="17" id="cneu" class="chbx"><label for="cneu">Neumonía		</label></p>
+	  <p><input type="checkbox" name="chronics" value="18" id="cpac" class="chbx"><label for="cpac">Parálisis cerebral	</label></p>
+	  <p><input type="checkbox" name="chronics" value="19" id="cpar" class="chbx"><label for="cpar">Parotiditis		</label></p>
+	  <p><input type="checkbox" name="chronics" value="20" id="cpra" class="chbx"><label for="cpra">Problemas auditibos	</label></p>
+	  <p><input type="checkbox" name="chronics" value="21" id="cpro" class="chbx"><label for="cpro">Problemas ortopédicos	</label></p>
+	  <p><input type="checkbox" name="chronics" value="22" id="cprr" class="chbx"><label for="cprr">Problemas renales	</label></p>
+	  <p><input type="checkbox" name="chronics" value="23" id="cpoj" class="chbx"><label for="cpoj">Problema en los ojos	</label></p>
+	  <p><input type="checkbox" name="chronics" value="24" id="crep" class="chbx"><label for="crep">Retraso psicomotor	</label></p>
+	  <p><input type="checkbox" name="chronics" value="25" id="csar" class="chbx"><label for="csar">Sarampión		</label></p>
+	  <p><input type="checkbox" name="chronics" value="26" id="csin" class="chbx"><label for="csin">Síndrome		</label></p>
+	  <p><input type="checkbox" name="chronics" value="27" id="csoc" class="chbx"><label for="csoc">Soplo cardiaco		</label></p>
+	  <p><input type="checkbox" name="chronics" value="28" id="cvar" class="chbx"><label for="cvar">Varicela		</label></p>
+	  <p><input type="checkbox" name="chronics" value="29" id="cobs" class="chbx"><label for="cobs">Observaciones		</label></p>
+	  <p><input type="checkbox" name="chronics" value="30" id="cpaa" class="chbx"><label for="cpaa">Paciente ASA		</label></p>
+	</div>
+
+	<div id="sectionprevhm" class="tabcontent" style="display:none;">
+			
+			<h3>Historial medico prev</h3>
+
+		<div style="margin-bottom:25px;">
+		Es su primiera visita:
+		<input type="radio" name="firsvisit" value="si" id="yesfisrtvisit"><label for="yesfisrtvisit"> Si </label>
+		<input type="radio" name="firsvisit" value="no"	id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
+		</div>
+
+	     	<input type="text" class="textbox" name="visitnotes" placeholder="Notas de visita"><br>
+		
+		<div style="margin-bottom:25px;">
+		Cooperación:
+		<input type="radio" name="cooperation" value="si" id="yescooperation"><label for="yescooperation"> Si </label>
+		<input type="radio" name="cooperation" value="no" id="nocooperation"><label for="nocooperation"> No </label>   <br>
+		</div>
+
+		<div style="margin-bottom:25px;">
+		Dolor dental:
+		<input type="radio" name="dentalpain" value="si" id="yesdentalpain"><label for="yesdentalpain"> Si </label>
+		<input type="radio" name="dentalpain" value="no" id="nodentalpain"><label for="nodentalpain"> No </label>   <br>
+		</div>
+
+		<input type="text" class="textbox" name="notesdentalpain" placeholder="Notas sobre dolor dental"><br>
+				
+		<div style="margin-bottom:25px;">
+		Dieta alta en carbohidratos:
+		<input type="radio" name="highchdiet" value="si" id="yeshighchdiet"><label for="yeshighchdiet"> Si </label>
+		<input type="radio" name="highchdiet" value="no" id="nohighchdiet"><label for="nohighchdiet"> No </label>   <br>
+		</div>
+
+		<input type="text" class="textbox" name="noteshighchdiet" placeholder="Notas sobre dieta alta en carbohidratos:"><br>
+
+		<div style="margin-bottom:25px;">
+		Biberón:
+		<input type="radio" name="biberon" value="si" id="yesbiberon"><label for="yesbiberon"> Si </label>
+		<input type="radio" name="biberon" value="no" id="nobiberon"><label for="nobiberon"> No </label>   <br>
+		</div>
+
+		<input type="text" class="textbox" name="biberonlastused" placeholder="Ultima vez uso biberon"><br>
+
+		<input type="text" class="textbox" name="biberonliquids" placeholder="Liquidos de biberon"><br>
+		
+		<input type="text" class="textbox" name="pacifierfrecuency" placeholder="Frecuencia chupon"><br>
+
+
+		<div style="margin-bottom:25px;">
+		Floos:
+		<input type="radio" name="floos" value="si" id="yesfloos"><label for="yesfloos"> Si </label>
+		<input type="radio" name="floos" value="no" id="nofloos"><label for="nofloos"> No </label>   <br>
+		</div>
+		
+
+		<input type="text" class="textbox" name="lastflourapp" placeholder="Last flour application"><br>
+
+		<input type="text" class="textbox" name="flourinwater" placeholder="Flour in water"><br>
+		
+		<input type="text" class="textbox" name="badhabits" placeholder="Bad habits"><br>
+
+	</div>
+
+
+      <input type="button" onclick="nexttab(event)" value="Siguiente" class="button" id="bottomnext" />
+      <input type="button" value="Guardar" class="button"  id="bottomsave" />
+
+    </form>
+  </div>
+</div>
+
     </body>
+
+<script>
+	function activetab(evt, idsection) {
+	    // Declare all variables
+	    var i, tabcontent, tablinks;
+	
+	    // Get all elements with class="tabcontent" and hide them
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+	
+	    // Get all elements with class="tablinks" and remove the class "active"
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+		//console.log( tablinks[i].className)
+	        tablinks[i].className = tablinks[i].className.replace(" activeTab", "");
+	    }
+
+	// Show the current tab, and add an "active" class to the button that opened the tab
+    	document.getElementById(idsection).style.display = "block";
+    	evt.currentTarget.className += " activeTab";
+	}
+
+	function nexttab(evt){
+
+	    var tabs = {
+		    	"uno" : "dos",
+			"dos" : "tres",
+			"tres" : "cuatro",
+			"cuatro" : "cinco",
+			"cinco" : "uno"
+		    }
+	    var tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        if (tablinks[i].className.includes("activeTab")){
+			console.log(tabs[tablinks[i].id])
+			document.getElementById(tabs[tablinks[i].id]).click();
+			break;
+		}	    
+	    }	
+	}
+</script>
+
 </html>
+<!--
+value="Miriam Reyes"  
+value="Mimi"		
+value="1"		
+value="12/11/1988"	
+value="2"		
+value="madre"		
+value="Bosques 2505"	
+value="Pastora"	
+value="123456"	
+value="fcfm"		
+value="universidad"	
+
+value="Manuel I"	
+value="Trabajador"	
+value="1"		
+
+-->
+
 {{end}}
+

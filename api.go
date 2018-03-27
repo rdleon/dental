@@ -11,7 +11,7 @@ import (
 
 const (
 	DB_USER     = "minux"
-	DB_PASSWORD = "minux23"
+	DB_PASSWORD = "minux13"
 	DB_NAME     = "minux"
 )
 
@@ -36,7 +36,7 @@ func main() {
 			MaxHeaderBytes	: 1 << 20,
 	}
 
-	//r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/")))
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/images")))
 
 	server.ListenAndServe()
 
