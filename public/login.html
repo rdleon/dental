@@ -46,7 +46,7 @@
 	  margin-right:auto;
 	  border-radius:5px;
 	  background:RGBA(255,255,255,1);
-	  overflow: -webkit-paged-y;
+	  overflow: initial;
 	  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
 	  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
 	  
@@ -54,8 +54,10 @@
 	
 	.module ul{
 	  list-style-type:none;
-	  margin:0;
-	  overflow: auto;
+	  margin:0 25px;
+	  overflow: initial;
+	  height: 60px;
+	  padding: 0 !important;
 	}
 	
 	.tablinks{
@@ -99,7 +101,7 @@
 	}
 	
 	.form{
-	  float:left;
+	  /*float:left;
 	  /*height:86%;*/
 	  width:100%;
 	  box-sizing:border-box;
@@ -186,7 +188,7 @@
 [type="checkbox"]:checked + label:before {
   content: '';
   position: absolute;
-  left: 0; 
+  left: 2px; 
   top: 0;
   width: 1.25em; height: 1.25em;
   border: 1.5px solid #ccf;
@@ -265,7 +267,7 @@ label:hover:before {
     top: 0;
     width: 18px;
     height: 18px;
-    border: 1px solid #ddd;
+    border: 1px solid #aaa;
     border-radius: 100%;
     background: #fff;
 }
@@ -293,63 +295,112 @@ label:hover:before {
     transform: scale(1);
 }
 
+
+.tooltip{
+    display: inline;
+    position: relative;
+}
+.tooltip:hover:after{
+    background: rgba(250,250,250,0.9);
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    top: 65px;
+    color: #777;
+    content: attr(titlee);
+    left: -70px;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 220px;
+}
+/*.tooltip:hover:before{
+    border: solid;
+    border-color: #333 transparent;
+    border-width: 0 6px 6px 6px;
+    bottom: -5px;
+    content: "";
+    left: 50%;
+    position: absolute;
+    z-index: 99;
+}*/
+
     </style>
     </head>
     <body>
 
 <h2 style="text-align: center;margin-top: 20px; color: #a8a;">Historial Clinico Dental</h2>
-
+<!-- <div style="text-align:center;"><img height="70" src="/kdc.png"></div>  -->
 <div id="bg">
   <div class="module">
-    <ul>
-      <li class="tablinks activeTab"	id="uno"	onclick="activetab(event, 'sectionpatient')"><img src="62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks" 		id="dos"	onclick="activetab(event, 'sectionparent')"><img src="family.svg" alt="" class="icon"/></li>
-      <li class="tablinks" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')"><img src="health.svg" alt="" class="icon"/></li>
-      <li class="tablinks" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')"><img src="pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')"><img src="maletin.svg" alt="" class="icon"/></li>
+    <ul class="ulmodule">
+      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información general del paciente"><img src="62839.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de los padres" ><img src="family.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia medica"><img src="health.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="pastillas.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his med" class="tooltip"><img src="maletin.svg" alt="" class="icon"/></li>
     </ul>
     
-   <form  class="form" action="/AddPatient" method="POST">
+   <form  class="form" >
 
 	<div id="sectionpatient" class="tabcontent">
  
-		<input type="text" class="textbox" name="fullname" 	  	placeholder="Nombre completo"		><br>
-		<input type="text" class="textbox" name="nickname" 	  	placeholder="Nickname"			><br>
-		<input type="text" class="textbox" name="gender" 	  	placeholder="Genero"			><br>
-		<input type="text" class="textbox" name="birthday" 	  	placeholder="Fecha de nacimiento"	><br>
-		<input type="text" class="textbox" name="sibilings" 	  	placeholder="No. de hermanos"		><br>
-		<input type="text" class="textbox" name="liveswith" 	  	placeholder="Vive con"			><br>
-		<input type="text" class="textbox" name="streetandnumber" 	placeholder="Calle y número"		><br>
-		<input type="text" class="textbox" name="neighberhood" 	  	placeholder="Colonia"			><br>
-		<input type="text" class="textbox" name="telephone" 	  	placeholder="Teléfono"			><br>
-		<input type="text" class="textbox" name="schoolname"  	  	placeholder="Nombre de la escuela"	><br>
-		<input type="text" class="textbox" name="schooladdress"   	placeholder="Dirección de la escuela" 	><br>
-
+		<input type="text" class="textbox" name="fullname" id="fullname" placeholder="Nombre completo"		><br>
+		<input type="text" class="textbox" name="nickname" id="nickname" placeholder="Nickname"			><br>
+		<input type="text" class="textbox" name="gender"   id="gender"   placeholder="Genero"			><br>
+		<input type="text" class="textbox" name="birthday" id="birthday" placeholder="Fecha de nacimiento"	><br>
+	
 	</div>
 
 	<div id="sectionparent" class="tabcontent" style="display:none;">
+		<div style="color: blue;">Padre</div>
+		<input type="text" class="textbox" name="fatherfullname"  id="fatherfullname" 	placeholder="Nombre completo del padre"	><br>
+		<input type="text" class="textbox" name="fatherocupation" id="fatherocupation"	placeholder="Ocupation"			><br>
+		<div style="color: #d47">Madre</div>
+		<input type="text" class="textbox" name="motherfullname"  id="motherfullname" 	placeholder="Nombre completo de la madre"><br>
+		<input type="text" class="textbox" name="motherocupation" id="motherocupation"	placeholder="Ocupation"			><br>
 
-		<input type="text" class="textbox" name="parentfullname"  placeholder="Nombre completo del padre"	><br>
-		<input type="text" class="textbox" name="parentocupation" placeholder="Ocupation"			><br>
-		<input type="text" class="textbox" name="parentmarital"   placeholder="Estado matrimonial"	><br>
+		<span class="textlabel" >Estado matrimonial:</span>
+		<select class="selectbox" id="parentmarital" name="parentmarital">
+			<option value="1">Casados</option>
+		      	<option value="2">Viudo(a)</option>
+		      	<option value="3">Unión libre</option>
+			<option value="4">Separados</option>
+			<option value="5">Divorciados</option>
+		</select><br>
+
+		<div style="margin-bottom:25px;">
+			El niño vive con: 
+			<input type="radio" name="liveswith" value="ambos" id="viveconambos"><label for="viveconambos"> Ambos </label>
+			<input type="radio" name="liveswith" value="madre" id="viveconmadre"><label for="viveconmadre"> Madre </label>
+			<input type="radio" name="liveswith" value="padre" id="viveconpadre"><label for="viveconpadre"> Padre </label>   <br>
+		</div>
+
+
+		<input type="text" class="textbox" name="sibilings" 	  id="sibilings" 	placeholder="No. de hermanos"		><br>
+		<input type="text" class="textbox" name="streetandnumber" id="streetandnumber"	placeholder="Calle y número"		><br>
+		<input type="text" class="textbox" name="neighberhood" 	  id="neighberhood" 	placeholder="Colonia"			><br>
+		<input type="text" class="textbox" name="telephone" 	  id="telephone" 	placeholder="Teléfono"			><br>
+		<input type="text" class="textbox" name="schoolname"  	  id="schoolname"  	placeholder="Nombre de la escuela"	><br>
+		<input type="text" class="textbox" name="schooladdress"   id="schooladdress"  	placeholder="Dirección de la escuela" 	><br>
+
 	</div>
 
 	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">	
 
-		<input type="text" class="textbox" name="mhdoctor" 		placeholder="Nombre del pediatra"				><br>
-		<input type="text" class="textbox" name="mhdoctortelephone" 	placeholder="Telefono"						><br>
-		<input type="text" class="textbox" name="gestationweeks" 	placeholder="Tiempo de gestación"				><br>
-		<span class="textlabel" >Tipo de parto:<select class="selectbox" name="birthtype">
+		<input type="text" class="textbox" name="mhdoctor" 		id="mhdoctor" placeholder="Nombre del pediatra"			><br>
+		<input type="text" class="textbox" name="mhdoctortelephone" 	id="mhdoctortelephone" placeholder="Telefono"			><br>
+		<input type="text" class="textbox" name="gestationweeks" 	id="gestationweeks" placeholder="Tiempo de gestación"		><br>
+		<span class="textlabel" >Tipo de parto:<select class="selectbox" id="birthtype" name="birthtype">
 			<option value="1">Natural</option>
 		      	<option value="2">C-section</option>
 		      	<option value="3">Other</option>
 		</select><br>
-		<input type="text" class="textbox" name="birthheight" 		placeholder="Talla al nacer"					><br>
-		<input type="text" class="textbox" name="birthweight" 		placeholder="Peso al nacer"					><br>
-		<input type="text" class="textbox" name="currentweight" 	placeholder="Peso actual"					><br>
-		<input type="text" class="textbox" name="surgeries" 		placeholder="Ha tenido cirugias el niño"			><br>
-		<input type="text" class="textbox" name="bloodtransfusions" 	placeholder="Ha recibido transfusiones de sangre"		><br>
-		<input type="text" class="textbox" name="treatments" 		placeholder="Recibió o esta recibiendo algún tratamiento"	><br>
+		<input type="text" class="textbox" name="birthheight" 		id="birthheight" 	placeholder="Talla al nacer"					><br>
+		<input type="text" class="textbox" name="birthweight" 		id="birthweight" 	placeholder="Peso al nacer"					><br>
+		<input type="text" class="textbox" name="currentweight" 	id="currentweight" 	placeholder="Peso actual"					><br>
+		<input type="text" class="textbox" name="surgeries" 		id="surgeries" 		placeholder="Ha tenido cirugias el niño"			><br>
+		<input type="text" class="textbox" name="bloodtransfusions" 	id="bloodtransfusions" 	placeholder="Ha recibido transfusiones de sangre"		><br>
+		<input type="text" class="textbox" name="treatments" 		id="treatments" 	placeholder="Recibió o esta recibiendo algún tratamiento"	><br>
 
 	</div>
    
@@ -399,7 +450,7 @@ label:hover:before {
 		<input type="radio" name="firsvisit" value="no"	id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
 		</div>
 
-	     	<input type="text" class="textbox" name="visitnotes" placeholder="Notas de visita"><br>
+	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" placeholder="Notas de visita"><br>
 		
 		<div style="margin-bottom:25px;">
 		Cooperación:
@@ -413,7 +464,7 @@ label:hover:before {
 		<input type="radio" name="dentalpain" value="no" id="nodentalpain"><label for="nodentalpain"> No </label>   <br>
 		</div>
 
-		<input type="text" class="textbox" name="notesdentalpain" placeholder="Notas sobre dolor dental"><br>
+		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" placeholder="Notas sobre dolor dental"><br>
 				
 		<div style="margin-bottom:25px;">
 		Dieta alta en carbohidratos:
@@ -421,19 +472,19 @@ label:hover:before {
 		<input type="radio" name="highchdiet" value="no" id="nohighchdiet"><label for="nohighchdiet"> No </label>   <br>
 		</div>
 
-		<input type="text" class="textbox" name="noteshighchdiet" placeholder="Notas sobre dieta alta en carbohidratos:"><br>
+		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" placeholder="Notas sobre dieta alta en carbohidratos:"><br>
 
 		<div style="margin-bottom:25px;">
 		Biberón:
 		<input type="radio" name="biberon" value="si" id="yesbiberon"><label for="yesbiberon"> Si </label>
-		<input type="radio" name="biberon" value="no" id="nobiberon"><label for="nobiberon"> No </label>   <br>
+		<input type="radio" name="biberon" value="no" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
 		</div>
 
-		<input type="text" class="textbox" name="biberonlastused" placeholder="Ultima vez uso biberon"><br>
+		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused"   placeholder="Ultima vez uso biberon"> <br>
 
-		<input type="text" class="textbox" name="biberonliquids" placeholder="Liquidos de biberon"><br>
+		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"    placeholder="Liquidos de biberon">	  <br>
 		
-		<input type="text" class="textbox" name="pacifierfrecuency" placeholder="Frecuencia chupon"><br>
+		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" placeholder="Frecuencia chupon">	  <br>
 
 
 		<div style="margin-bottom:25px;">
@@ -443,65 +494,194 @@ label:hover:before {
 		</div>
 		
 
-		<input type="text" class="textbox" name="lastflourapp" placeholder="Last flour application"><br>
-
-		<input type="text" class="textbox" name="flourinwater" placeholder="Flour in water"><br>
-		
-		<input type="text" class="textbox" name="badhabits" placeholder="Bad habits"><br>
+		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" placeholder="Last flour application"><br>
+		<input type="text" class="textbox" name="flourinwater" id="flourinwater" placeholder="Flour in water"><br>
+		<input type="text" class="textbox" name="badhabits"    id="badhabits"    placeholder="Bad habits"><br>
 
 	</div>
 
 
       <input type="button" onclick="nexttab(event)" value="Siguiente" class="button" id="bottomnext" />
-      <input type="button" value="Guardar" class="button"  id="bottomsave" />
+      <input type="button" onclick="guardar(event)" value="Guardar" class="button"  id="bottomsave" />
 
     </form>
   </div>
 </div>
 
+
     </body>
 
 <script>
-	function activetab(evt, idsection) {
-	    // Declare all variables
-	    var i, tabcontent, tablinks;
+function activetab(evt, idsection) {
+	// Declare all variables
+	var i, tabcontent, tablinks;
 	
-	    // Get all elements with class="tabcontent" and hide them
-	    tabcontent = document.getElementsByClassName("tabcontent");
-	    for (i = 0; i < tabcontent.length; i++) {
-	        tabcontent[i].style.display = "none";
-	    }
+	// Get all elements with class="tabcontent" and hide them
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
 	
-	    // Get all elements with class="tablinks" and remove the class "active"
-	    tablinks = document.getElementsByClassName("tablinks");
-	    for (i = 0; i < tablinks.length; i++) {
+	// Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
 		//console.log( tablinks[i].className)
-	        tablinks[i].className = tablinks[i].className.replace(" activeTab", "");
-	    }
+		tablinks[i].className = tablinks[i].className.replace(" activeTab", "");
+	}
 
 	// Show the current tab, and add an "active" class to the button that opened the tab
-    	document.getElementById(idsection).style.display = "block";
-    	evt.currentTarget.className += " activeTab";
+	document.getElementById(idsection).style.display = "block";
+	evt.currentTarget.className += " activeTab";
+}
+
+function nexttab(evt){
+
+	var tabs = {
+		"uno" : "dos",
+	    	"dos" : "tres",
+	    	"tres" : "cuatro",
+	    	"cuatro" : "cinco",
+	    	"cinco" : "uno"
+	        }
+	var tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		if (tablinks[i].className.includes("activeTab")){
+	    		console.log(tabs[tablinks[i].id])
+	    		document.getElementById(tabs[tablinks[i].id]).click();
+	    		break;
+	    	}    
+	}
+}
+
+function valorParaNull(obj){
+	if( obj === null)
+		return 0
+}
+
+function guardar(evt){
+
+	evt.preventDefault();
+
+	var patientfullname		= document.getElementById( "fullname"		).value;
+	var patientnickname		= document.getElementById( "nickname"		).value;
+	var patientgender   		= document.getElementById( "gender"  		).value;
+	var patientbirthday		= document.getElementById( "birthday"		).value;
+
+	var fatherfullname  		= document.getElementById("fatherfullname" 	).value;
+	var fatherocupation 		= document.getElementById("fatherocupation"	).value;
+	var motherfullname  		= document.getElementById("motherfullname" 	).value;
+	var motherocupation 		= document.getElementById("motherocupation"	).value;
+	var parentmarital   		= document.getElementById("parentmarital"	).value;//select
+	var liveswith       		= document.querySelector('input[name="liveswith"]:checked');liveswith = valorParaNull(liveswith)
+	var sibilings       		= document.getElementById("sibilings"		).value;
+	var streetandnumber 		= document.getElementById("streetandnumber"	).value;
+	var neighberhood    		= document.getElementById("neighberhood"	).value;
+	var telephone       		= document.getElementById("telephone"		).value;
+	var schoolname      		= document.getElementById("schoolname"		).value;
+	var schooladdress   		= document.getElementById("schooladdress"	).value;
+
+	var mhdoctor   			= document.getElementById("mhdoctor"		).value;
+	var mhdoctortelephone   	= document.getElementById("mhdoctortelephone"	).value;
+	var gestationweeks   		= document.getElementById("gestationweeks"	).value;
+	var birthtype   		= document.getElementById("birthtype"		).value;//select
+	var birthheight   		= document.getElementById("birthheight" 	).value;
+	var birthweight   		= document.getElementById("birthweight" 	).value;
+	var currentweight   		= document.getElementById("currentweight" 	).value;
+	var surgeries   		= document.getElementById("surgeries" 		).value;
+	var bloodtransfusions  		= document.getElementById("bloodtransfusions" 	).value;
+	var treatments   		= document.getElementById("treatments" 		).value;
+
+	var chronicssel	= document.getElementsByName("chronics");
+	var chronics	= [1];
+	for( var i=0; i<chronicssel.length; i++ ){
+		if( chronicssel[i].checked){
+			chronics.append( chronicssel[i].value )
+		}	
 	}
 
-	function nexttab(evt){
+	var firsvisit   		= document.querySelector('input[name="firsvisit"]:checked'	);firsvisit = valorParaNull(firsvisit);
+	var birthtype   		= document.getElementById("visitnotes"			 	).value;
+	var cooperation 		= document.querySelector('input[name="cooperation"]:checked'	);cooperation = valorParaNull(cooperation);
+	var dentalpain 			= document.querySelector('input[name="dentalpain"]:checked'	);dentalpain = valorParaNull(dentalpain);
+	var notesdentalpain 		= document.getElementById("notesdentalpain"			).value;
+	var highchdiet 			= document.querySelector('input[name="highchdiet"]:checked'	);highchdiet = valorParaNull(highchdiet);
+	var noteshighchdiet 		= document.getElementById("noteshighchdiet"			).value;
+	var biberon 			= document.querySelector('input[name="biberon"]:checked'	);biberon = valorParaNull(biberon);
+	var biberonlastused   		= document.getElementById("biberonlastused"			).value;
+	var biberonliquids   		= document.getElementById("biberonliquids"			).value;
+	var pacifierfrecuency   	= document.getElementById("pacifierfrecuency"			).value;	
+	var floos 			= document.querySelector('input[name="floos"]:checked'		);floos = valorParaNull(floos);
+	var lastflourapp   		= document.getElementById("lastflourapp"			).value;
+	var flourinwater   		= document.getElementById("flourinwater"			).value;
+	var badhabits      		= document.getElementById("badhabits"				).value;
 
-	    var tabs = {
-		    	"uno" : "dos",
-			"dos" : "tres",
-			"tres" : "cuatro",
-			"cuatro" : "cinco",
-			"cinco" : "uno"
-		    }
-	    var tablinks = document.getElementsByClassName("tablinks");
-	    for (i = 0; i < tablinks.length; i++) {
-	        if (tablinks[i].className.includes("activeTab")){
-			console.log(tabs[tablinks[i].id])
-			document.getElementById(tabs[tablinks[i].id]).click();
-			break;
-		}	    
-	    }	
-	}
+	
+	var mimijson = '{'+
+		'"patient" 	 : {'+
+		'	"patientfullname"	: "'+'patientfullname'+'", '+
+                '        "patientnickname"	: "'+'patientnickname'+'", '+
+                '        "patientgender"	: "'+'patientgender'+'", '+
+                '        "patientbirthday"	: "'+'patientbirthday'+'"'+
+		'},'+
+		'"parent"  	 : {'+
+		'	"fatherfullname"	: "'+'fatherfullname'+'", '+
+		'	"fatherocupation" 	: "'+'fatherocupation'+'", '+
+                '        "motherfullname"	: "'+'motherfullname'+'", '+
+                '        "motherocupation" 	: "'+'motherocupation'+'", '+
+                '        "parentmarital"	: "'+'parentmarital'+'", '+
+                '        "liveswith"		: "'+'liveswith'+'", '+
+                '        "sibilings"		: "'+'sibilings'+'", '+
+                '        "streetandnumber"	: "'+'streetandnumber'+'", '+
+                '        "neighberhood"		: "'+'neighberhood'+'", '+
+                '        "telephone"		: "'+'telephone'+'", '+
+                '        "schoolname"		: "'+'schoolname'+'", '+
+                '        "schooladdress"	: "'+'schooladdress '+'"  '+
+		'},'+
+		'"history" 	 : {'+
+		'	"mhdoctor"   		: "'+'mhdoctor'+'", '+
+                '        "mhdoctortelephone"   	: "'+'mhdoctortelephone'+'", '+
+                '        "gestationweeks"   	: "'+'gestationweeks'+'", '+
+                '        "birthtype"   		: "'+'birthtype'+'", '+
+                '        "birthheight"   	: "'+'birthheight'+'", '+
+                '        "birthweight"   	: "'+'birthweight'+'", '+
+                '        "currentweight"   	: "'+'currentweight'+'", '+
+                '        "surgeries"   		: "'+'surgeries'+'", '+
+                '        "bloodtransfusions"  	: "'+'bloodtransfusions'+'", '+
+                '        "treatments"   	: "'+'treatments'+'"  '+		
+		'},'+
+		'"chronics"	 : 	[2,3,4],'+
+		'"previoushistory": {'+
+		'	"firsvisit"		: "'+'firsvisit'+'", '+
+                '        "birthtype"		: "'+'birthtype'+'", '+
+                '        "cooperation"		: "'+'cooperation'+'", '+
+                '        "dentalpain"		: "'+'dentalpain'+'", '+
+                '        "notesdentalpain"	: "'+'notesdentalpain'+'", '+
+                '        "highchdiet"		: "'+'highchdiet'+'", '+
+                '        "noteshighchdiet"	: "'+'noteshighchdiet'+'", '+
+                '        "biberon"		: "'+'biberon'+'", '+
+                '        "biberonlastused"	: "'+'biberonlastused'+'", '+
+                '        "biberonliquids"	: "'+'biberonliquids'+'", '+
+                '        "pacifierfrecuency"	: "'+'pacifierfrecuency'+'", '+
+                '        "floos"		: "'+'floos'+'", '+
+                '        "lastflourapp"		: "'+'lastflourapp'+'", '+
+                '        "flourinwater"		: "'+'flourinwater'+'", '+
+                '        "badhabits"		: "'+'badhabits'+'"'+
+		'}'+
+	'}';
+
+	jsongo = JSON.parse(mimijson);
+
+	var xhr = new XMLHttpRequest();
+	var url = "/AddPatient";
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.send( jsongo );
+	xhr.onloadend = function () {
+    		console.log( jsongo )
+  	};
+
+}
+
 </script>
 
 </html>

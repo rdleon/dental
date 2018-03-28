@@ -7,9 +7,11 @@ import (
 	"html/template"
 	"net/http"
 	//"strings"
-	"strconv"
+	//"strconv"
 	"reflect"
 	"database/sql"
+	"encoding/json"
+	"io/ioutil"
 )
 
 type Patient struct {
@@ -63,10 +65,65 @@ type MedicalHistory struct{
 	Treatments		string //Cuando cacha el id cuando se hace insert es un string
 }
 
-/*type Template struct{
-	Title string
-	Marital []
+type JSONPatient struct {
+	Patientfullname	string `json:"patientfullname"`
+        Patientnickname	string `json:"patientnickname"`
+        Patientgender	string `json:"patientgender"`
+        Patientbirthday	string `json:"patientbirthday"`
+}
+type JSONParent struct {
+	Fatherfullname	string `json:"fatherfullname"`
+        Fatherocupation	string `json:"fatherocupation"`
+        Motherfullname	string `json:"motherfullname"`
+        Motherocupation string `json:"motherocupation"`
+        Parentmarital	string `json:"parentmarital"`
+        Liveswith	string `json:"liveswith"`
+        Sibilings	string `json:"sibilings"`
+        Streetandnumber string `json:"streetandnumber"`
+        Neighberhood	string `json:"neighberhood"`
+        Telephone	string `json:"telephone"`
+        Schoolname	string `json:"schoolname"`
+        Schooladdress	string `json:"schooladdress"`
+}
+/*type JSONChronics struct {
+	Test string
 }*/
+type JSONHistory struct {
+	Mhdoctor		 string `json:"mhdoctor"`
+        Mhdoctortelephone	 string `json:"mhdoctortelephone"`
+        Gestationweeks		 string `json:"gestationweeks"`
+        Birthtype		 string `json:"birthtype"`
+        Birthheight		 string `json:"birthheight"`
+        Birthweight		 string `json:"birthweight"`
+        Currentweight		 string `json:"currentweight"`
+        Surgeries		 string `json:"surgeries"`
+        Bloodtransfusions	 string `json:"bloodtransfusions"`
+        Treatments		 string `json:"treatments"`
+}
+type JSONPreviousHistory struct {
+	Firsvisit		string `json:"firsvisit"`
+        Birthtype		string `json:"birthtype"`
+        Cooperation		string `json:"cooperation"`
+        Dentalpain		string `json:"dentalpain"`
+        Notesdentalpain		string `json:"notesdentalpain"`
+        Highchdiet		string `json:"highchdiet"`
+        Noteshighchdiet		string `json:"noteshighchdiet"`
+        Biberon			string `json:"biberon"`
+        Biberonlastused		string `json:"biberonlastused"`
+        Biberonliquids		string `json:"biberonliquids"`
+        Pacifierfrecuency	string `json:"pacifierfrecuency"`
+        Floos			string `json:"floos"`
+        Lastflourapp		string `json:"lastflourapp"`
+        Flourinwater		string `json:"flourinwater"`
+        Badhabits		string `json:"badhabits"`
+}
+type JSONCompleteHistory struct {
+	Patient		JSONPatient `json:"patient"`
+	Parent		JSONParent `json:"parent"`
+	History		JSONHistory `json:"history"`
+	Chronics	[]int `json:"chronics"`
+	PreviousHistory	JSONPreviousHistory `json:"previoushistory"`
+}
 
 func SqlRowsToSlice( rows *sql.Rows ){
 	//var s string
@@ -96,7 +153,24 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		SqlRowsToSlice(rows)
 	} else {
 
-		var patient		Patient
+		decoder := json.NewDecoder(r.Body)
+		bodyBuffer, _ := ioutil.ReadAll(r.Body)
+		//bodyString := string(bodyBuffer)
+		//bodyBuffer2, _ := ioutil.ReadAll(decoder)
+		fmt.Println("jjjjjjjjjjjjjjjjj")
+		fmt.Println( bodyBuffer )
+		//fmt.Println( bodyString )
+		fmt.Println("jjjjjjjjjjjjjjjjj")
+		var t JSONCompleteHistory
+		err := decoder.Decode(&t)
+		//fmt.Println(err.Error())
+		if err != nil {
+			 panic(err)
+		}
+		fmt.Println("MMM")
+		defer r.Body.Close()
+		fmt.Println(t)
+		/*var patient		Patient
 		var school		School
 		var addressPatient	Address
 		var addressSchool	Address
@@ -151,7 +225,7 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		fmt.Println( chronics )
 		fmt.Println(r.Form["birthday"][0])
 
-								/*** Pacientes ***/
+								/*** Pacientes ***//*
 		//Insert address patient
 		err := db.QueryRow("INSERT INTO addresses (street_and_number,neighberhood,telephone) VALUES($1,$2,$3) returning id;", addressPatient.StreetAndNumber, addressPatient.Neighberhood, addressPatient.Telephone ).Scan(&patient.AddressId)
 		checkErr(err)
@@ -168,7 +242,7 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		err = db.QueryRow("INSERT INTO patients (created, updated, fullname, nickname, gender, birthdate, siblings, lives_with, address_id, school_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) returning id;", patient.Created, patient.Updated, patient.FullName, patient.NickName, patient.Gender, patient.BirthDate, patient.Sibilings, patient.LivesWith, patient.AddressId, patient.SchoolId ).Scan(&patient.Id)
 		checkErr(err)
 
-								/*** Padres/Pacientes ***/
+								/*** Padres/Pacientes ***//*
 		//Insert parent
 		err = db.QueryRow("INSERT INTO parents (fullname, ocupation, marital_status, address) VALUES($1,$2,$3,$4) returning id;", parent.FullName, parent.Ocupation, parent.MaritalStatusId, patient.AddressId ).Scan(&parent.Id)
 		checkErr(err)
@@ -177,7 +251,7 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		db.QueryRow("INSERT INTO parents_children (patient_id, parent_id) VALUES($1,$2);", patient.Id, parent.Id )
 		//checkErr(err)
 
-								/*** Historial Medico ***/
+								/*** Historial Medico ***//*
 		//Insert note sugeries
 		err = db.QueryRow("INSERT INTO notes (title, body, type) VALUES($1,$2,$3) returning id;", "Surgeries", surgeries, "surgeries").Scan(&mh.Surgeries)
 		checkErr(err)
