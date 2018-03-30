@@ -2,11 +2,14 @@ package main
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
-	_ "github.com/lib/pq"
-	"time"
-	"net/http"
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
+	"html/template"
+	"log"
+	"net/http"
+	"time"
 )
 
 const (
@@ -20,30 +23,64 @@ var db *sql.DB
 func init() {
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
 	tmpDB, err := sql.Open("postgres", dbinfo)
-	checkErr(err)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	db = tmpDB
+}
+
+func Form(w http.ResponseWriter, r *http.Request) {
+	t := template.New("historialformulario") // Create a template.
+	t, err := t.ParseFiles("public/templates/login.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+	t.Execute(w, "historialformulario")
+}
+
+func Patients(w http.ResponseWriter, r *http.Request) {
+	var err error
+
+	switch r.Method {
+	case "POST":
+		var patient Patient
+
+		w.Header().Set("Content-type", "application/json")
+
+		// Process JSON
+		decoder := json.NewDecoder(r.Body)
+		err = decoder.Decode(&patient)
+		if err != nil {
+			fmt.Fprintf(w, `{"error": "Err while parsing JSON"}`)
+			log.Println(err)
+			return
+		}
+		// Create Patient
+		//patient.Save()
+		fmt.Fprintf(w, `{"patient": "saved"}`)
+		// Print patient
+	default:
+		w.Header().Set("Content-type", "application/json")
+		http.Error(w, `{"status": "Internal Server Error"}`, http.StatusInternalServerError)
+	}
 }
 
 func main() {
 	r := mux.NewRouter().StrictSlash(false)
-	r.HandleFunc("/AddPatient", AddPatient)
+	r.HandleFunc("/", Form)
+	r.HandleFunc("/patients", Patients)
 
 	server := &http.Server{
-			Addr		: ":8080",
-			Handler		: r,
-			ReadTimeout	: 10 * time.Second,
-			WriteTimeout	: 10 * time.Second,
-			MaxHeaderBytes	: 1 << 20,
+		Addr:           ":8080",
+		Handler:        r,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
 	}
 
-	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./public/images")))
+	r.PathPrefix("/js/").Handler(http.StripPrefix("/js/", http.FileServer(http.Dir("./public/js/"))))
+	r.PathPrefix("/img/").Handler(http.StripPrefix("/img/", http.FileServer(http.Dir("./public/images/"))))
 
 	server.ListenAndServe()
-
-}
-
-func checkErr(err error) {
-    if err != nil {
-         fmt.Println(err)
-    }
 }

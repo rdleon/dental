@@ -1,27 +1,23 @@
 {{define "historialformulario"}}
 <html>
     <head>
-    <title></title>
-
-
-
+    <title>Medical history</title>
     <style>
-	
+
 	body{
-	  
 	  background-color:#f0f0f0;
 	  font-family:helvetica;
 	}
-	
+
 	a{
 	  display:block;
-	  color:#ad5482;  
+	  color:#ad5482;
 	  text-decoration:none;
 	  font-weight:bold;
 	  margin-top:40px;
 	  text-align:center;
 	}
-	
+
 	#bg{
 	  position:relative;
 	  top:20px;
@@ -31,27 +27,26 @@
 	  background:url('/3eP9Z4O.png') center no-repeat;
 	  background-size:cover;
 	  margin-left:auto;
-	  margin-right:auto; 
+	  margin-right:auto;
 	  border:#fff 15px solid;
 	  padding-top: 50px;
 	  padding-bottom: 50px;
 	  color: #777;
 	}
-	
+
 	.module{
 	  position:relative;
-	  top:15%;    
+	  top:15%;
 	  width: 70%;
 	  margin-left:auto;
 	  margin-right:auto;
 	  border-radius:5px;
 	  background:RGBA(255,255,255,1);
 	  overflow: initial;
-	  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
+	  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
 	  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
-	  
 	}
-	
+
 	.module ul{
 	  list-style-type:none;
 	  margin:0 25px;
@@ -59,47 +54,47 @@
 	  height: 60px;
 	  padding: 0 !important;
 	}
-	
+
 	.tablinks{
 	  float:left;
 	  height:60px;
 	  width:20%;
 	  padding-top:20px;
 	  box-sizing:border-box;
-	  background:#eeeeee;  
+	  background:#eeeeee;
 	  text-align:center;
 	  cursor:pointer;
 	  transition:background .4s;
 	}
-	
-	.tablinks:first-child{  
+
+	.tablinks:first-child{
 	  -webkit-border-radius: 5px 0px 0px 0px;
 	  border-radius: 5px 0px 0px 0px;
 	}
-	
-	.tablinks:last-child{  
+
+	.tablinks:last-child{
 	  -webkit-border-radius: 0px 5px 0px 0px;
 	  border-radius: 0px 5px 0px 0px;
 	}
-	
-	.tablinks:hover{  
+
+	.tablinks:hover{
 	  background-color:rgba(0,0,0,.1);
 	}
-	
+
 	.activeTab{
 	  background:#fff;
 	}
-	
+
 	.activeTab .icon{
 	  opacity:1;
 	}
-	
+
 	.icon{
 	  height:24px;
 	  width:24px;
 	  opacity:.4;
 	}
-	
+
 	.form{
 	  /*float:left;
 	  /*height:86%;*/
@@ -107,7 +102,7 @@
 	  box-sizing:border-box;
 	  padding:40px;
 	}
-	
+
 	.textbox{
 	  height:50px;
 	  width:100%;
@@ -117,7 +112,7 @@
 	  padding:10px;
 	  margin-bottom:30px;
 	}
-	
+
 	.textbox:focus{
 	  outline:none;
 	   border:rgba(24,149,215,1) 2px solid;
@@ -136,10 +131,10 @@
    	 	margin: 0 15px 15px 15px;
     	}
 
-	.textlabel{		
+	.textlabel{
 		color: #777;
 	}
-	
+
 	.button{
 	  height:50px;
 	  width:49%;
@@ -156,19 +151,18 @@
 	}
 
 	#bottomnext{
-		background: #cbcfe2; /*#90c843;*/	
+		background: #cbcfe2; /*#90c843;*/
 	}
 	#bottomsave{
 		background: #cb9fb2; /*#4958f0;*/
 
 	}
 
-	
+
 	.button:hover{
 	  background:#80b438;
-	  
 	}
-	
+
 
 /* Base for label styling */
 [type="checkbox"]:not(:checked),
@@ -188,7 +182,7 @@
 [type="checkbox"]:checked + label:before {
   content: '';
   position: absolute;
-  left: 2px; 
+  left: 2px;
   top: 0;
   width: 1.25em; height: 1.25em;
   border: 1.5px solid #ccf;
@@ -196,6 +190,7 @@
   border-radius: 6px;
 
 }
+
 /* checked mark aspect */
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
@@ -208,15 +203,18 @@
   transition: all .2s;
   font-family: Helvetica, Arial, sans-serif;
 }
+
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
 }
+
 [type="checkbox"]:checked + label:after {
   opacity: 1;
   transform: scale(1);
 }
+
 /* disabled checkbox */
 [type="checkbox"]:disabled:not(:checked) + label:before,
 [type="checkbox"]:disabled:checked + label:before {
@@ -224,12 +222,15 @@
   border-color: #bbb;
   background-color: #ddd;
 }
+
 [type="checkbox"]:disabled:checked + label:after {
   color: #999;
 }
+
 [type="checkbox"]:disabled + label {
   color: #aaa;
 }
+
 /* accessibility */
 [type="checkbox"]:checked:focus + label:before,
 [type="checkbox"]:not(:checked):focus + label:before {
@@ -241,14 +242,12 @@ label:hover:before {
   border: 1px solid #4778d9!important;
 }
 
-
-
-
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
+
 [type="radio"]:checked + label,
 [type="radio"]:not(:checked) + label
 {
@@ -259,6 +258,7 @@ label:hover:before {
     display: inline-block;
     color: #666;
 }
+
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
     content: '';
@@ -271,6 +271,7 @@ label:hover:before {
     border-radius: 100%;
     background: #fff;
 }
+
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
     content: '';
@@ -284,22 +285,24 @@ label:hover:before {
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
+
 [type="radio"]:not(:checked) + label:after {
     opacity: 0;
     -webkit-transform: scale(0);
     transform: scale(0);
 }
+
 [type="radio"]:checked + label:after {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
 }
 
-
 .tooltip{
     display: inline;
     position: relative;
 }
+
 .tooltip:hover:after{
     background: rgba(250,250,250,0.9);
     border-radius: 5px;
@@ -313,16 +316,6 @@ label:hover:before {
     z-index: 98;
     width: 220px;
 }
-/*.tooltip:hover:before{
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 0 6px 6px 6px;
-    bottom: -5px;
-    content: "";
-    left: 50%;
-    position: absolute;
-    z-index: 99;
-}*/
 
     </style>
     </head>
@@ -333,22 +326,24 @@ label:hover:before {
 <div id="bg">
   <div class="module">
     <ul class="ulmodule">
-      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información general del paciente"><img src="62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de los padres" ><img src="family.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia medica"><img src="health.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his med" class="tooltip"><img src="maletin.svg" alt="" class="icon"/></li>
+      <li class="tablinks activeTab tooltip" id="uno" onclick="activetab(event, 'sectionpatient')" titlee="Información general del paciente">
+        <img src="/img/62839.svg" alt="" class="icon"/>
+      </li>
+      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de los padres" >
+        <img src="/img/family.svg" alt="" class="icon"/>
+      </li>
+      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia medica"><img src="/img/health.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="/img/pastillas.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his med" class="tooltip"><img src="/img/maletin.svg" alt="" class="icon"/></li>
     </ul>
-    
+
    <form  class="form" >
 
 	<div id="sectionpatient" class="tabcontent">
- 
 		<input type="text" class="textbox" name="fullname" id="fullname" placeholder="Nombre completo"		><br>
 		<input type="text" class="textbox" name="nickname" id="nickname" placeholder="Nickname"			><br>
 		<input type="text" class="textbox" name="gender"   id="gender"   placeholder="Genero"			><br>
 		<input type="text" class="textbox" name="birthday" id="birthday" placeholder="Fecha de nacimiento"	><br>
-	
 	</div>
 
 	<div id="sectionparent" class="tabcontent" style="display:none;">
@@ -369,7 +364,7 @@ label:hover:before {
 		</select><br>
 
 		<div style="margin-bottom:25px;">
-			El niño vive con: 
+			El niño vive con:
 			<input type="radio" name="liveswith" value="ambos" id="viveconambos"><label for="viveconambos"> Ambos </label>
 			<input type="radio" name="liveswith" value="madre" id="viveconmadre"><label for="viveconmadre"> Madre </label>
 			<input type="radio" name="liveswith" value="padre" id="viveconpadre"><label for="viveconpadre"> Padre </label>   <br>
@@ -385,7 +380,7 @@ label:hover:before {
 
 	</div>
 
-	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">	
+	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">
 
 		<input type="text" class="textbox" name="mhdoctor" 		id="mhdoctor" placeholder="Nombre del pediatra"			><br>
 		<input type="text" class="textbox" name="mhdoctortelephone" 	id="mhdoctortelephone" placeholder="Telefono"			><br>
@@ -403,8 +398,8 @@ label:hover:before {
 		<input type="text" class="textbox" name="treatments" 		id="treatments" 	placeholder="Recibió o esta recibiendo algún tratamiento"	><br>
 
 	</div>
-   
-	<div id="sectionchronic" class="tabcontent" style="display:none;">	
+
+	<div id="sectionchronic" class="tabcontent" style="display:none;">
 
 		<h3>Enfermedades crónicas</h3>
 
@@ -441,7 +436,7 @@ label:hover:before {
 	</div>
 
 	<div id="sectionprevhm" class="tabcontent" style="display:none;">
-			
+
 			<h3>Historial medico prev</h3>
 
 		<div style="margin-bottom:25px;">
@@ -451,7 +446,7 @@ label:hover:before {
 		</div>
 
 	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" placeholder="Notas de visita"><br>
-		
+
 		<div style="margin-bottom:25px;">
 		Cooperación:
 		<input type="radio" name="cooperation" value="si" id="yescooperation"><label for="yescooperation"> Si </label>
@@ -465,7 +460,7 @@ label:hover:before {
 		</div>
 
 		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" placeholder="Notas sobre dolor dental"><br>
-				
+
 		<div style="margin-bottom:25px;">
 		Dieta alta en carbohidratos:
 		<input type="radio" name="highchdiet" value="si" id="yeshighchdiet"><label for="yeshighchdiet"> Si </label>
@@ -483,7 +478,7 @@ label:hover:before {
 		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused"   placeholder="Ultima vez uso biberon"> <br>
 
 		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"    placeholder="Liquidos de biberon">	  <br>
-		
+
 		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" placeholder="Frecuencia chupon">	  <br>
 
 
@@ -492,7 +487,7 @@ label:hover:before {
 		<input type="radio" name="floos" value="si" id="yesfloos"><label for="yesfloos"> Si </label>
 		<input type="radio" name="floos" value="no" id="nofloos"><label for="nofloos"> No </label>   <br>
 		</div>
-		
+
 
 		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" placeholder="Last flour application"><br>
 		<input type="text" class="textbox" name="flourinwater" id="flourinwater" placeholder="Flour in water"><br>
@@ -511,198 +506,9 @@ label:hover:before {
 
     </body>
 
-<script>
-function activetab(evt, idsection) {
-	// Declare all variables
-	var i, tabcontent, tablinks;
-	
-	// Get all elements with class="tabcontent" and hide them
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
-	
-	// Get all elements with class="tablinks" and remove the class "active"
-	tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		//console.log( tablinks[i].className)
-		tablinks[i].className = tablinks[i].className.replace(" activeTab", "");
-	}
-
-	// Show the current tab, and add an "active" class to the button that opened the tab
-	document.getElementById(idsection).style.display = "block";
-	evt.currentTarget.className += " activeTab";
-}
-
-function nexttab(evt){
-
-	var tabs = {
-		"uno" : "dos",
-	    	"dos" : "tres",
-	    	"tres" : "cuatro",
-	    	"cuatro" : "cinco",
-	    	"cinco" : "uno"
-	        }
-	var tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
-		if (tablinks[i].className.includes("activeTab")){
-	    		console.log(tabs[tablinks[i].id])
-	    		document.getElementById(tabs[tablinks[i].id]).click();
-	    		break;
-	    	}    
-	}
-}
-
-function valorParaNull(obj){
-	if( obj === null)
-		return 0
-}
-
-function guardar(evt){
-
-	evt.preventDefault();
-
-	var patientfullname		= document.getElementById( "fullname"		).value;
-	var patientnickname		= document.getElementById( "nickname"		).value;
-	var patientgender   		= document.getElementById( "gender"  		).value;
-	var patientbirthday		= document.getElementById( "birthday"		).value;
-
-	var fatherfullname  		= document.getElementById("fatherfullname" 	).value;
-	var fatherocupation 		= document.getElementById("fatherocupation"	).value;
-	var motherfullname  		= document.getElementById("motherfullname" 	).value;
-	var motherocupation 		= document.getElementById("motherocupation"	).value;
-	var parentmarital   		= document.getElementById("parentmarital"	).value;//select
-	var liveswith       		= document.querySelector('input[name="liveswith"]:checked');liveswith = valorParaNull(liveswith)
-	var sibilings       		= document.getElementById("sibilings"		).value;
-	var streetandnumber 		= document.getElementById("streetandnumber"	).value;
-	var neighberhood    		= document.getElementById("neighberhood"	).value;
-	var telephone       		= document.getElementById("telephone"		).value;
-	var schoolname      		= document.getElementById("schoolname"		).value;
-	var schooladdress   		= document.getElementById("schooladdress"	).value;
-
-	var mhdoctor   			= document.getElementById("mhdoctor"		).value;
-	var mhdoctortelephone   	= document.getElementById("mhdoctortelephone"	).value;
-	var gestationweeks   		= document.getElementById("gestationweeks"	).value;
-	var birthtype   		= document.getElementById("birthtype"		).value;//select
-	var birthheight   		= document.getElementById("birthheight" 	).value;
-	var birthweight   		= document.getElementById("birthweight" 	).value;
-	var currentweight   		= document.getElementById("currentweight" 	).value;
-	var surgeries   		= document.getElementById("surgeries" 		).value;
-	var bloodtransfusions  		= document.getElementById("bloodtransfusions" 	).value;
-	var treatments   		= document.getElementById("treatments" 		).value;
-
-	var chronicssel	= document.getElementsByName("chronics");
-	var chronics	= [1];
-	for( var i=0; i<chronicssel.length; i++ ){
-		if( chronicssel[i].checked){
-			chronics.append( chronicssel[i].value )
-		}	
-	}
-
-	var firsvisit   		= document.querySelector('input[name="firsvisit"]:checked'	);firsvisit = valorParaNull(firsvisit);
-	var birthtype   		= document.getElementById("visitnotes"			 	).value;
-	var cooperation 		= document.querySelector('input[name="cooperation"]:checked'	);cooperation = valorParaNull(cooperation);
-	var dentalpain 			= document.querySelector('input[name="dentalpain"]:checked'	);dentalpain = valorParaNull(dentalpain);
-	var notesdentalpain 		= document.getElementById("notesdentalpain"			).value;
-	var highchdiet 			= document.querySelector('input[name="highchdiet"]:checked'	);highchdiet = valorParaNull(highchdiet);
-	var noteshighchdiet 		= document.getElementById("noteshighchdiet"			).value;
-	var biberon 			= document.querySelector('input[name="biberon"]:checked'	);biberon = valorParaNull(biberon);
-	var biberonlastused   		= document.getElementById("biberonlastused"			).value;
-	var biberonliquids   		= document.getElementById("biberonliquids"			).value;
-	var pacifierfrecuency   	= document.getElementById("pacifierfrecuency"			).value;	
-	var floos 			= document.querySelector('input[name="floos"]:checked'		);floos = valorParaNull(floos);
-	var lastflourapp   		= document.getElementById("lastflourapp"			).value;
-	var flourinwater   		= document.getElementById("flourinwater"			).value;
-	var badhabits      		= document.getElementById("badhabits"				).value;
-
-	
-	var mimijson = '{'+
-		'"patient" 	 : {'+
-		'	"patientfullname"	: "'+'patientfullname'+'", '+
-                '        "patientnickname"	: "'+'patientnickname'+'", '+
-                '        "patientgender"	: "'+'patientgender'+'", '+
-                '        "patientbirthday"	: "'+'patientbirthday'+'"'+
-		'},'+
-		'"parent"  	 : {'+
-		'	"fatherfullname"	: "'+'fatherfullname'+'", '+
-		'	"fatherocupation" 	: "'+'fatherocupation'+'", '+
-                '        "motherfullname"	: "'+'motherfullname'+'", '+
-                '        "motherocupation" 	: "'+'motherocupation'+'", '+
-                '        "parentmarital"	: "'+'parentmarital'+'", '+
-                '        "liveswith"		: "'+'liveswith'+'", '+
-                '        "sibilings"		: "'+'sibilings'+'", '+
-                '        "streetandnumber"	: "'+'streetandnumber'+'", '+
-                '        "neighberhood"		: "'+'neighberhood'+'", '+
-                '        "telephone"		: "'+'telephone'+'", '+
-                '        "schoolname"		: "'+'schoolname'+'", '+
-                '        "schooladdress"	: "'+'schooladdress '+'"  '+
-		'},'+
-		'"history" 	 : {'+
-		'	"mhdoctor"   		: "'+'mhdoctor'+'", '+
-                '        "mhdoctortelephone"   	: "'+'mhdoctortelephone'+'", '+
-                '        "gestationweeks"   	: "'+'gestationweeks'+'", '+
-                '        "birthtype"   		: "'+'birthtype'+'", '+
-                '        "birthheight"   	: "'+'birthheight'+'", '+
-                '        "birthweight"   	: "'+'birthweight'+'", '+
-                '        "currentweight"   	: "'+'currentweight'+'", '+
-                '        "surgeries"   		: "'+'surgeries'+'", '+
-                '        "bloodtransfusions"  	: "'+'bloodtransfusions'+'", '+
-                '        "treatments"   	: "'+'treatments'+'"  '+		
-		'},'+
-		'"chronics"	 : 	[2,3,4],'+
-		'"previoushistory": {'+
-		'	"firsvisit"		: "'+'firsvisit'+'", '+
-                '        "birthtype"		: "'+'birthtype'+'", '+
-                '        "cooperation"		: "'+'cooperation'+'", '+
-                '        "dentalpain"		: "'+'dentalpain'+'", '+
-                '        "notesdentalpain"	: "'+'notesdentalpain'+'", '+
-                '        "highchdiet"		: "'+'highchdiet'+'", '+
-                '        "noteshighchdiet"	: "'+'noteshighchdiet'+'", '+
-                '        "biberon"		: "'+'biberon'+'", '+
-                '        "biberonlastused"	: "'+'biberonlastused'+'", '+
-                '        "biberonliquids"	: "'+'biberonliquids'+'", '+
-                '        "pacifierfrecuency"	: "'+'pacifierfrecuency'+'", '+
-                '        "floos"		: "'+'floos'+'", '+
-                '        "lastflourapp"		: "'+'lastflourapp'+'", '+
-                '        "flourinwater"		: "'+'flourinwater'+'", '+
-                '        "badhabits"		: "'+'badhabits'+'"'+
-		'}'+
-	'}';
-
-	jsongo = JSON.parse(mimijson);
-
-	var xhr = new XMLHttpRequest();
-	var url = "/AddPatient";
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.send( jsongo );
-	xhr.onloadend = function () {
-    		console.log( jsongo )
-  	};
-
-}
-
+<script src="/js/form.js">
 </script>
 
 </html>
-<!--
-value="Miriam Reyes"  
-value="Mimi"		
-value="1"		
-value="12/11/1988"	
-value="2"		
-value="madre"		
-value="Bosques 2505"	
-value="Pastora"	
-value="123456"	
-value="fcfm"		
-value="universidad"	
-
-value="Manuel I"	
-value="Trabajador"	
-value="1"		
-
--->
 
 {{end}}
-
