@@ -313,16 +313,24 @@ label:hover:before {
     z-index: 98;
     width: 220px;
 }
-/*.tooltip:hover:before{
+.tooltip:hover:before{
     border: solid;
-    border-color: #333 transparent;
-    border-width: 0 6px 6px 6px;
-    bottom: -5px;
+    border-color: #ddd;
+    height: 8px;
+    width: 8px;
+    border-width: 1px 0px 0px 1px;
+    background: rgba(250,250,250,0.9);
+    bottom: -10px;
     content: "";
     left: 50%;
     position: absolute;
-    z-index: 99;
-}*/
+    z-index: 100;
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Safari 3-8 */
+    transform: rotate(45deg);
+    /*border-left: solid 1px #0dd;
+    border-top: solid 1px #0dd;*/
+}
 
     </style>
     </head>
@@ -333,11 +341,11 @@ label:hover:before {
 <div id="bg">
   <div class="module">
     <ul class="ulmodule">
-      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información general del paciente"><img src="62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de los padres" ><img src="family.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia medica"><img src="health.svg" alt="" class="icon"/></li>
+      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información FEneral del paciente"><img src="62839.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de Fos padres" ><img src="family.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia mEdica"><img src="health.svg" alt="" class="icon"/></li>
       <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his med" class="tooltip"><img src="maletin.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his Ged" class="tooltip"><img src="maletin.svg" alt="" class="icon"/></li>
     </ul>
     
    <form  class="form" >
@@ -616,7 +624,7 @@ function guardar(evt){
 	var badhabits      		= document.getElementById("badhabits"				).value;
 
 	
-	var mimijson = '{'+
+	var mimijso2n = '{'+
 		'"patient" 	 : {'+
 		'	"patientfullname"	: "'+'patientfullname'+'", '+
                 '        "patientnickname"	: "'+'patientnickname'+'", '+
@@ -669,7 +677,18 @@ function guardar(evt){
 		'}'+
 	'}';
 
-	jsongo = JSON.parse(mimijson);
+
+	
+	var jsongo = {"patient" 	 : {
+			"patientfullname"	: "patientfullname",
+			"patientnickname"	: "patientnickname",
+			"patientgender"		: "patientgender",
+			"patientbirthday"	: "asdfa"
+			}
+		}
+
+
+	//jsongo = JSON.parse(mimijson);
 
 	var xhr = new XMLHttpRequest();
 	var url = "/AddPatient";

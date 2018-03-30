@@ -153,22 +153,23 @@ func AddPatient(w http.ResponseWriter, r *http.Request){
 		SqlRowsToSlice(rows)
 	} else {
 
-		decoder := json.NewDecoder(r.Body)
-		bodyBuffer, _ := ioutil.ReadAll(r.Body)
+		jsn, _ := ioutil.ReadAll(r.Body)
+		//bodyBuffer, _ := ioutil.ReadAll(r.Body)
 		//bodyString := string(bodyBuffer)
 		//bodyBuffer2, _ := ioutil.ReadAll(decoder)
 		fmt.Println("jjjjjjjjjjjjjjjjj")
-		fmt.Println( bodyBuffer )
+		//fmt.Println( bodyBuffer )
 		//fmt.Println( bodyString )
 		fmt.Println("jjjjjjjjjjjjjjjjj")
-		var t JSONCompleteHistory
-		err := decoder.Decode(&t)
+		var t JSONPatient
+		//err := decoder.Decode(&t)
 		//fmt.Println(err.Error())
+		err := json.Unmarshal(jsn, &t)
 		if err != nil {
 			 panic(err)
 		}
 		fmt.Println("MMM")
-		defer r.Body.Close()
+		//defer r.Body.Close()
 		fmt.Println(t)
 		/*var patient		Patient
 		var school		School
