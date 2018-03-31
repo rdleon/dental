@@ -24,7 +24,7 @@
 	  /*overflow: -webkit-paged-y;
 	  /*height:2000px;*/
 	  width: 80%;
-	  background:url('/3eP9Z4O.png') center no-repeat;
+	  background:url('/img/3eP9Z4O.png') center no-repeat;
 	  background-size:cover;
 	  margin-left:auto;
 	  margin-right:auto;
@@ -128,8 +128,9 @@
    	 	padding-right: 25px;
    	 	color: #555;
    	 	border-radius: 4px;
-   	 	margin: 0 15px 15px 15px;
+   	 	margin: 0 15px 30px 15px;
     	}
+	#otherparentmarital { display:none; }
 
 	.textlabel{
 		color: #777;
@@ -340,15 +341,15 @@ label:hover:before {
     <body>
 
 <h2 style="text-align: center;margin-top: 20px; color: #a8a;">Historial Clinico Dental</h2>
-<!-- <div style="text-align:center;"><img height="70" src="/kdc.png"></div>  -->
+<!-- <div style="text-align:center;"><img height="70" src="/img/kdc.png"></div>  -->
 <div id="bg">
   <div class="module">
     <ul class="ulmodule">
-      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información FEneral del paciente"><img src="62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información de Fos padres" ><img src="family.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia mEdica"><img src="health.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Prev his Ged" class="tooltip"><img src="maletin.svg" alt="" class="icon"/></li>
+      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información personal"><img src="/img/62839.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información familiar" ><img src="/img/family.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia médica"><img src="/img/health.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="/img/pastillas.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Historia dental" class="tooltip"><img src="/img/maletin.svg" alt="" class="icon"/></li>
     </ul>
 
    <form  class="form" >
@@ -364,18 +365,28 @@ label:hover:before {
 		<div style="color: blue;">Padre</div>
 		<input type="text" class="textbox" name="fatherfullname"  id="fatherfullname" 	placeholder="Nombre completo del padre"	><br>
 		<input type="text" class="textbox" name="fatherocupation" id="fatherocupation"	placeholder="Ocupation"			><br>
-		<div style="color: #d47">Madre</div>
+		<div style="color: #f87da9">Madre</div>
 		<input type="text" class="textbox" name="motherfullname"  id="motherfullname" 	placeholder="Nombre completo de la madre"><br>
 		<input type="text" class="textbox" name="motherocupation" id="motherocupation"	placeholder="Ocupation"			><br>
-
-		<span class="textlabel" >Estado matrimonial:</span>
-		<select class="selectbox" id="parentmarital" name="parentmarital">
-			<option value="1">Casados</option>
-		      	<option value="2">Viudo(a)</option>
-		      	<option value="3">Unión libre</option>
-			<option value="4">Separados</option>
-			<option value="5">Divorciados</option>
-		</select><br>
+		
+		<div style="display:inline-block;width: 100%; height: 50px; margin-bottom: 20px;" >
+			<span  style="display:inline-flex;" class="textlabel" >Estado matrimonial:</span>
+			<div style="display:inline-flex;" >
+				<select class="selectbox" id="parentmarital" onchange="inputmaritalstatus(this);" name="parentmarital">
+					<option value="1">Casados</option>
+				      	<option value="2">Viudo(a)</option>
+				      	<option value="3">Unión libre</option>
+					<option value="4">Separados</option>
+					<option value="5">Divorciados</option>
+					<option value="10">Otro</option>
+				</select>   
+			</div>
+			<div style="display:inline-flex" >
+			<input type="text" class="textbox" name="otherparentmarital"  id="otherparentmarital" placeholder="Estado matrimonial"><br>
+			</div>
+		</div>
+		
+		<br>
 
 		<div style="margin-bottom:25px;">
 			El niño vive con:

@@ -56,6 +56,10 @@ func Patients(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 			return
 		}
+
+		fmt.Println( patient.FullName )
+		fmt.Println( patient.Parent.FullName )
+		fmt.Println( "jjjjjjjjjjjjjw" )
 		// Create Patient
 		//patient.Save()
 		fmt.Fprintf(w, `{"patient": "saved"}`)

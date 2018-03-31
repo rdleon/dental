@@ -5,17 +5,18 @@ import (
 )
 
 type Patient struct {
-	Id        int       `json:id`
-	Created   time.Time `json:created`
-	Updated   time.Time `json:updated`
-	FullName  string    `json:fullname`
-	Nickname  string    `json:nickname`
-	Gender    int       `json:gender`
-	BirthDate time.Time `json:birthdate`
-	Sibilings int       `json:siblings`
-	LivesWith string    `json:liveswith`
-	Address   Address   `json:address`
-	School    School    `json:school`
+	Id		int       `json:id`
+	Created		time.Time `json:created`
+	Updated		time.Time `json:updated`
+	FullName	string    `json:fullname`
+	Nickname	string    `json:nickname`
+	Gender		int       `json:gender`
+	BirthDate	time.Time `json:birthdate`
+	Sibilings	int       `json:siblings`
+	LivesWith	string    `json:liveswith`
+	Address		Address   `json:address`
+	School		School    `json:school`
+	Parent		Parent    `json:parent`
 }
 
 type Address struct {
@@ -33,8 +34,8 @@ type School struct {
 
 type Parent struct {
 	Id              int
-	FullName        string
-	Ocupation       string
+	FullName        string	`json:fullname`
+	Ocupation       string	`json:ocupation`
 	MaritalStatusId string //Cuando cacha el id cuando se hace insert es un string
 	AddressId       string //Cuando cacha el id cuando se hace insert es un string
 }
@@ -60,7 +61,7 @@ func Load(patient_id int) (patient Patient, err error) {
 
 func (p Patient) Save() {
 }
-
+/*
 func AddPatient(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "GET" {
@@ -74,7 +75,7 @@ func AddPatient(w http.ResponseWriter, r *http.Request) {
 			san	string
 			neig	string
 			tel	string
-		}*/
+		}*//*
 		SqlRowsToSlice(rows)
 	} else {
 
@@ -194,7 +195,8 @@ func AddPatient(w http.ResponseWriter, r *http.Request) {
 			db.QueryRow("INSERT INTO medical_histories (patient_id, creation, doctor, doctor_telephone, gestation_weeks, birth_type, birth_height, birth_weight, current_weight, surgeries, blood_transfusions, treatments) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)", patient.Id, mh.Creation, mh.Doctor, mh.DoctorTelephone, mh.GestationWeeks, mh.BirthType, mh.BirthHeight, mh.BirthWeight, mh.CurrentWeight, mh.Surgeries, mh.BloodTransfusions, mh.Treatments)
 			checkErr(err)
 
-									/*** Chronics ***/
+									/*** Chronics ***/ /*
 		//db.QueryRow("INSERT INTO ")
 	}
 }
+*/

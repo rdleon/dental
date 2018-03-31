@@ -32,13 +32,28 @@ function nexttab(evt){
 	    	"cinco" : "uno"
 	        }
 	var tablinks = document.getElementsByClassName("tablinks");
-	for (i = 0; i < tablinks.length; i++) {
+	for (var i = 0; i < tablinks.length; i++) {
 		if (tablinks[i].className.includes("activeTab")){
-	    		console.log(tabs[tablinks[i].id])
-	    		document.getElementById(tabs[tablinks[i].id]).click();
+	    		//console.log(tabs[tablinks[i].id])
+			//var bgElement = document.getElementById("bg")
+			//var bgBounding = bgElement.getBoundingClientRect();
+			document.getElementById(tabs[tablinks[i].id]).click();
+			//console.log(bgElement.y)
+			scroll(0, 0)
 	    		break;
 	    	}
 	}
+}
+
+function inputmaritalstatus(selected){
+	if( selected.selectedOptions[0].value == 10 ){
+		var otherSelected = document.getElementById("otherparentmarital");
+		otherSelected.style.display = "block"
+	}else{
+		var otherSelected = document.getElementById("otherparentmarital");
+		otherSelected.style.display = "none"
+	}
+	//console.log(selected)
 }
 
 function valorParaNull(obj) {
@@ -70,7 +85,11 @@ function guardar(evt){
     var patient = {
         "fullname": document.getElementById("fullname").value,
         "nickname": document.getElementById("nickname").value,
-        "gender": parseInt(document.getElementById("gender").value)
+        "gender": parseInt(document.getElementById("gender").value),
+	"parent": {
+		"fullname": "fuuuuuuu",
+		"ocupation": "gordo"
+	}
 //        "birthdate": document.getElementById("birthday").value
     };
 
@@ -97,7 +116,8 @@ function guardar(evt){
 	var surgeries   		= document.getElementById("surgeries" 		).value;
 	var bloodtransfusions  		= document.getElementById("bloodtransfusions" 	).value;
 	var treatments   		= document.getElementById("treatments" 		).value;
-
+	
+	/*
 	var chronicssel	= document.getElementsByName("chronics");
 	var chronics	= [1];
 	for( var i=0; i<chronicssel.length; i++ ){
@@ -105,7 +125,7 @@ function guardar(evt){
 			chronics.append( chronicssel[i].value )
 		}
 	}
-
+	*/
 
 	var xhr = new XMLHttpRequest();
 	var url = "/patients";
