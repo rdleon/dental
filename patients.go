@@ -37,8 +37,8 @@ type Parent struct {
 	Id              int
 	FullName        string	`json:fullname`
 	Ocupation       string	`json:ocupation`
-	MaritalStatusId string //Cuando cacha el id cuando se hace insert es un string
-	AddressId       string //Cuando cacha el id cuando se hace insert es un string
+	MaritalStatusId string	`json:maritalstatus`
+	AddressId       string	`json:address`
 }
 
 type MedicalHistory struct {
