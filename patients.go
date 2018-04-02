@@ -16,7 +16,8 @@ type Patient struct {
 	LivesWith	string    `json:liveswith`
 	Address		Address   `json:address`
 	School		School    `json:school`
-	Parent		Parent    `json:parent`
+	Father		Parent    `json:father`
+	Mother		Parent    `json:mother`
 }
 
 type Address struct {

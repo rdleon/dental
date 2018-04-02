@@ -119,6 +119,16 @@
 	   color:rgba(24,149,215,1);
 	}
 
+	.selectandtext{
+		height:50px;
+	  	border-radius:3px;
+		border:rgba(0,0,0,.3) 2px solid;
+	  	box-sizing:border-box;
+	  	padding:10px;
+	 	margin-bottom:30px;
+		background-color: #fff;
+	}
+
 	.selectbox{
 		background-color: #fff;
    		border-color: #ddf;
@@ -152,7 +162,7 @@
 	}
 
 	#bottomnext{
-		background: #cbcfe2; /*#90c843;*/
+		background: #a7abc9; /*#90c843;*/
 	}
 	#bottomsave{
 		background: #cb9fb2; /*#4958f0;*/
@@ -335,21 +345,53 @@ label:hover:before {
     /*border-left: solid 1px #0dd;
     border-top: solid 1px #0dd;*/
 }
+#tituloHC{
+	margin-top: 20px; 
+	color: #868;/*#a8a;*/
+	text-align: center;
+	/*letter-spacing: -1px;
+    	word-spacing: 0px;
+	font-family: Pacifico;
+	text-transform: none;
+	text-shadow: rgba(0, 0, 0, 0.3) 0px 3px 5px, rgba(255, 255, 255, 0.3) 0px -5px 35px;
+	font-weight: normal;
+	font-style: normal;	opacity: 1;
+	padding: 0px;
+	background-image: none;*/
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none;  Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /*  Apparently some margin are still there even though it's hidden */
+}
+
+option{
+	padding: 50px !important;	
+}
+
+option {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
 
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     </head>
     <body>
 
-<h2 style="text-align: center;margin-top: 20px; color: #a8a;">Historial Clinico Dental</h2>
+<h2 id="tituloHC">Historial Clinico Dental</h2>
 <!-- <div style="text-align:center;"><img height="70" src="/img/kdc.png"></div>  -->
 <div id="bg">
   <div class="module">
     <ul class="ulmodule">
-      <li class="tablinks activeTab tooltip"	id="uno"	onclick="activetab(event, 'sectionpatient')" titlee="Información personal"><img src="/img/62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="dos"	onclick="activetab(event, 'sectionparent')" titlee="Información familiar" ><img src="/img/family.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tres"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia médica"><img src="/img/health.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cuatro"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="/img/pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="cinco"	onclick="activetab(event, 'sectionprevhm')" titlee="Historia dental" class="tooltip"><img src="/img/maletin.svg" alt="" class="icon"/></li>
+      <li class="tablinks activeTab tooltip"	id="tab1"	onclick="activetab(event, 'sectionpatient')" titlee="Información personal"><img src="/img/62839.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tab2"	onclick="activetab(event, 'sectionparent')" titlee="Información familiar" ><img src="/img/family.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tab3"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia médica"><img src="/img/health.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tab4"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="/img/pastillas.svg" alt="" class="icon"/></li>
+      <li class="tablinks tooltip" 		id="tab5"	onclick="activetab(event, 'sectionprevhm')" titlee="Historia dental" class="tooltip"><img src="/img/maletin.svg" alt="" class="icon"/></li>
     </ul>
 
    <form  class="form" >
@@ -357,8 +399,31 @@ label:hover:before {
 	<div id="sectionpatient" class="tabcontent">
 		<input type="text" class="textbox" name="fullname" id="fullname" placeholder="Nombre completo"		><br>
 		<input type="text" class="textbox" name="nickname" id="nickname" placeholder="Nickname"			><br>
-		<input type="text" class="textbox" name="gender"   id="gender"   placeholder="Genero"			><br>
-		<input type="text" class="textbox" name="birthday" id="birthday" placeholder="Fecha de nacimiento"	><br>
+		<span  style="display:inline-flex;" class="textlabel" >Género:</span>
+		<div style="display:inline-flex;" >
+			<select class="selectandtext" style="margin-left: 12px; width:150px;" id="gender" name="gender">
+				<option value="2">Hombre</option>
+			      	<option value="1">Mujer</option>
+			</select>   
+		</div><br>
+		<div  style="margin-bottom: -7px" class="" >Fecha de nacimiento:</div><br>
+		<input style="width:32% !important" type="number" class="textbox" name="birthdayyear" 	id="birthdayyear"  placeholder="Año"	>		
+		<select class="selectandtext" id="birthdaymonth" style="width:32% !important" name="birthdaymonth" >
+			<option value="" disabled selected>Mes</option>
+			<option value="1">Enero</option>
+		      	<option value="2">Febrero</option>
+		      	<option value="3">Marzo</option>
+		      	<option value="4">Abril</option>
+		      	<option value="5">Mayo</option>
+		      	<option value="6">Junio</option>
+		      	<option value="7">Julio</option>
+		      	<option value="8">Agosto</option>
+		      	<option value="9">Septiembre</option>
+		      	<option value="10">Octubre</option>
+		      	<option value="11">Noviembre</option>
+		      	<option value="12">Diciembre</option>
+		</select>		
+		<input style="width:32% !important" type="number" class="textbox" name="birthdayday" 	id="birthdayday"   placeholder="Día" min="0" max="31" step="1"><br>
 	</div>
 
 	<div id="sectionparent" class="tabcontent" style="display:none;">

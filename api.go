@@ -58,7 +58,7 @@ func Patients(w http.ResponseWriter, r *http.Request) {
 		}
 
 		fmt.Println( patient.FullName )
-		fmt.Println( patient.Parent.FullName )
+		fmt.Println( patient )
 		fmt.Println( "jjjjjjjjjjjjjw" )
 		// Create Patient
 		//patient.Save()

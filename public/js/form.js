@@ -25,11 +25,11 @@ function activetab(evt, idsection) {
 function nexttab(evt){
 
 	var tabs = {
-		"uno" : "dos",
-	    	"dos" : "tres",
-	    	"tres" : "cuatro",
-	    	"cuatro" : "cinco",
-	    	"cinco" : "uno"
+		"tab1" : "tab2",
+	    	"tab2" : "tab3",
+	    	"tab3" : "tab4",
+	    	"tab4" : "tab5",
+	    	"tab5" : "tab1"
 	        }
 	var tablinks = document.getElementsByClassName("tablinks");
 	for (var i = 0; i < tablinks.length; i++) {
@@ -83,22 +83,36 @@ function guardar(evt){
 
 
     var patient = {
-        "fullname": document.getElementById("fullname").value,
-        "nickname": document.getElementById("nickname").value,
-        "gender": parseInt(document.getElementById("gender").value),
-	"parent": {
-		"fullname": "fuuuuuuu",
-		"ocupation": "gordo"
+	"fullname"  : document.getElementById("fullname").value,
+        "nickname"  : document.getElementById("nickname").value,
+        "gender"    : parseInt(document.getElementById("gender").value),
+        "birthdate" : new Date( parseInt(document.getElementById("birthdayyear").value), parseInt(document.getElementById("birthdaymonth").value)-1,  parseInt(document.getElementById("birthdayday").value )).toISOString(),
+        "sibilings" : parseInt(document.getElementById("sibilings").value),
+        "liveswith" : document.querySelector('input[name="liveswith"]:checked'),
+	"father": {
+		"fullname": document.getElementById("fatherfullname").value,
+		"ocupation": document.getElementById("fatherocupation"	).value,
+		"maritalstatus": document.getElementById("parentmarital").value
+	},
+	"mother": {
+		"fullname": document.getElementById("fatherfullname").value,
+		"ocupation": document.getElementById("fatherocupation"	).value,
+		"maritalstatus": document.getElementById("parentmarital").value
+
+	},
+        "address"   : {
+		"asd": document.getElementById("fullname").value
+	},
+        "school"    : {
+		"asdf": document.getElementById("fullname").value
 	}
-//        "birthdate": document.getElementById("birthday").value
+
     };
 
-	var fatherfullname  		= document.getElementById("fatherfullname" 	).value;
-	var fatherocupation 		= document.getElementById("fatherocupation"	).value;
-	var motherfullname  		= document.getElementById("motherfullname" 	).value;
-	var motherocupation 		= document.getElementById("motherocupation"	).value;
-	var parentmarital   		= document.getElementById("parentmarital"	).value;//select
-	var liveswith       		= document.querySelector('input[name="liveswith"]:checked');liveswith = valorParaNull(liveswith)
+	//var fatherfullname  		= 
+	//var fatherocupation 		= 
+	//var parentmarital   		= document.getElementById("parentmarital").value;//select
+	//var liveswith       		= document.querySelector('input[name="liveswith"]:checked');liveswith = valorParaNull(liveswith)
 	var sibilings       		= document.getElementById("sibilings"		).value;
 	var streetandnumber 		= document.getElementById("streetandnumber"	).value;
 	var neighberhood    		= document.getElementById("neighberhood"	).value;
