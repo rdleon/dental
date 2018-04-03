@@ -5,24 +5,27 @@ import (
 )
 
 type Patient struct {
-	Id		int       `json:id`
-	Created		time.Time `json:created`
-	Updated		time.Time `json:updated`
-	FullName	string    `json:fullname`
-	Nickname	string    `json:nickname`
-	Gender		int       `json:gender`
-	BirthDate	time.Time `json:birthdate`
-	Sibilings	int       `json:siblings`
-	LivesWith	string    `json:liveswith`
-	Address		Address   `json:address`
-	School		School    `json:school`
-	Father		Parent    `json:father`
-	Mother		Parent    `json:mother`
+	Id		int		`json:id`
+	Created		time.Time	`json:created`
+	Updated		time.Time	`json:updated`
+	FullName	string		`json:fullname`
+	Nickname	string		`json:nickname`
+	Gender		int		`json:gender`
+	BirthDate	time.Time	`json:birthdate`
+	Sibilings	int		`json:siblings`
+	LivesWith	string		`json:liveswith`
+	Address		Address		`json:address`
+	School		School		`json:school`
+	Father		Parent		`json:father`
+	Mother		Parent		`json:mother`
+	MedicalHistory	MedicalHistory	`json:medicalhistory`
+	Chronics	[]int		`json:chronics`
 }
 
 type Address struct {
 	Id              int
 	StreetAndNumber string
+	City		string
 	Neighberhood    string
 	Telephone       string
 }
@@ -42,19 +45,42 @@ type Parent struct {
 }
 
 type MedicalHistory struct {
-	PatientId         string //Cuando cacha el id cuando se hace insert es un string
+	PatientId         int
 	Creation          time.Time
-	Doctor            string
-	DoctorTelephone   string
-	GestationWeeks    int
-	BirthType         int
-	BirthHeight       int
-	BirthWeight       int
-	CurrentWeight     int
-	Surgeries         []string //Cuando cacha el id cuando se hace insert es un string
-	BloodTransfusions []string //Cuando cacha el id cuando se hace insert es un string
-	Treatments        []string //Cuando cacha el id cuando se hace insert es un string
+	Doctor            string	`json:doctor`
+	DoctorTelephone   string	`json:telephone`
+	GestationWeeks    int		`json:gestationweeks`
+	BirthType         int		`json:birthtypw`
+	BirthHeight       int		`json:birthheight`
+	BirthWeight       int		`json:birthweight`
+	CurrentWeight     int		`json:currentweight`
+	CurrentHeight     int		`json:currentheight`
+	Surgeries         []string	`json:surgeries`
+	BloodTransfusions []string	`json:bloodtransfusions`
+	Treatments        []string	`json:treatments`
 }
+
+type MedicalHistoryPrev struct {
+	PatientId		int
+	FirstVisit		bool		`json:firsvisit`
+	VisitNotes		string		`json:visitnotes`
+	Cooperation		bool		`json:cooperation`
+	DentalPain		bool		`json:dentalpain`
+	DentalPainNotes		string		`json:notesdentalpain`
+	HighChDiet		bool		`json:highchdiet`
+	HighChDietNotes		string		`json:noteshighchdiet`
+	Biberon			bool		`json:biberon`
+	BiberonLastUsed		int		`json:biberonlastused`
+	BiberonLiquids		string		`json:biberonliquids`
+	PacifierFrequency	int		`json:pacifierfrecuency`
+	BreastFed		bool            `json:breastfed`
+	BrushFrequency		int             `json:brushfrequency`
+	Floss			bool            `json:floos`
+	LastFlourApplication	time.Time       `json:lastflourapp`
+	FlourInWater		string          `json:flourinwater`
+	BadHabits		string          `json:badhabits`
+}
+
 
 func Load(patient_id int) (patient Patient, err error) {
 	return

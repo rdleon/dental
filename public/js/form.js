@@ -48,7 +48,7 @@ function nexttab(evt){
 function inputmaritalstatus(selected){
 	if( selected.selectedOptions[0].value == 10 ){
 		var otherSelected = document.getElementById("otherparentmarital");
-		otherSelected.style.display = "block"
+		otherSelected.style.display = "inline-block"
 	}else{
 		var otherSelected = document.getElementById("otherparentmarital");
 		otherSelected.style.display = "none"
@@ -65,8 +65,17 @@ function guardar(evt){
 
 	evt.preventDefault();
 
+	var chronicssel	= document.getElementsByName("chronics");
+	var chronics	= [];
+	for( var i=0; i<chronicssel.length; i++ ){
+		if( chronicssel[i].checked){
+			chronics.append( chronicssel[i].value )
+		}
+	}
+
+	/*
 	var firsvisit   		= document.querySelector('input[name="firsvisit"]:checked'	);firsvisit = valorParaNull(firsvisit);
-	var birthtype   		= document.getElementById("visitnotes"			 	).value;
+	var visitnotes   		= document.getElementById("visitnotes"			 	).value;
 	var cooperation 		= document.querySelector('input[name="cooperation"]:checked'	);cooperation = valorParaNull(cooperation);
 	var dentalpain 			= document.querySelector('input[name="dentalpain"]:checked'	);dentalpain = valorParaNull(dentalpain);
 	var notesdentalpain 		= document.getElementById("notesdentalpain"			).value;
@@ -80,6 +89,7 @@ function guardar(evt){
 	var lastflourapp   		= document.getElementById("lastflourapp"			).value;
 	var flourinwater   		= document.getElementById("flourinwater"			).value;
 	var badhabits      		= document.getElementById("badhabits"				).value;
+	*/
 
 
     var patient = {
@@ -96,16 +106,51 @@ function guardar(evt){
 	},
 	"mother": {
 		"fullname": document.getElementById("fatherfullname").value,
-		"ocupation": document.getElementById("fatherocupation"	).value,
+		"ocupation": document.getElementById("fatherocupation").value,
 		"maritalstatus": document.getElementById("parentmarital").value
 
 	},
         "address"   : {
-		"asd": document.getElementById("fullname").value
+		"streetandnumber":  document.getElementById("streetandnumber").value,
+		"city":  document.getElementById("city").value,
+		"neighberhood": document.getElementById("neighberhood").value,
+		"telephone": document.getElementById("telephone").value
 	},
         "school"    : {
-		"asdf": document.getElementById("fullname").value
-	}
+		"name": document.getElementById("schoolname").value
+	},
+	"medicalhistory":{
+			"doctor"		:document.getElementById("mhdoctor"		).value,
+                        "telephone"		:document.getElementById("mhdoctortelephone"	).value,
+                        "gestationweeks"	:document.getElementById("gestationweeks"	).value,
+                        "birthtypw"		:document.getElementById("birthtype"		).value,
+                        "birthheight"		:document.getElementById("birthheight" 		).value,
+                        "birthweight"		:document.getElementById("birthweight" 		).value,
+                        "currentheight"		:document.getElementById("currentheight" 	).value,
+                        "currentweight"		:document.getElementById("currentweight" 	).value,
+                        "surgeries"		:document.getElementById("surgeries" 		).value,
+                        "bloodtransfusions"	:document.getElementById("bloodtransfusions" 	).value,
+                        "treatments"		:document.getElementById("treatments" 		).value
+
+	},
+	"chronics": chronics,
+	"historymedicalprev": {
+		"firsvisit"		: document.querySelector('input[name="firsvisit"]:checked'	),
+	        "visitnotes"		: document.getElementById("visitnotes"			 	).value,
+		"cooperation"		: document.querySelector('input[name="cooperation"]:checked'	),
+		"dentalpain"		: document.querySelector('input[name="dentalpain"]:checked'	),
+	        "notesdentalpain"	: document.getElementById("notesdentalpain"			).value,
+	        "highchdiet"		: document.querySelector('input[name="highchdiet"]:checked'	),
+	        "noteshighchdiet"	: document.getElementById("noteshighchdiet"			).value,
+	        "biberon"		: document.querySelector('input[name="biberon"]:checked'	),
+	        "biberonlastused"	: document.getElementById("biberonlastused"			).value,
+	        "biberonliquids"	: document.getElementById("biberonliquids"			).value,
+	        "pacifierfrecuency"	: document.getElementById("pacifierfrecuency"			).value,
+	        "floos"			: document.querySelector('input[name="floos"]:checked'		),
+	        "lastflourapp"		: document.getElementById("lastflourapp"			).value,
+	        "flourinwater"		: document.getElementById("flourinwater"			).value,
+	        "badhabits"		: document.getElementById("badhabits"				).value	
+	}		
 
     };
 
@@ -113,23 +158,23 @@ function guardar(evt){
 	//var fatherocupation 		= 
 	//var parentmarital   		= document.getElementById("parentmarital").value;//select
 	//var liveswith       		= document.querySelector('input[name="liveswith"]:checked');liveswith = valorParaNull(liveswith)
-	var sibilings       		= document.getElementById("sibilings"		).value;
-	var streetandnumber 		= document.getElementById("streetandnumber"	).value;
-	var neighberhood    		= document.getElementById("neighberhood"	).value;
-	var telephone       		= document.getElementById("telephone"		).value;
-	var schoolname      		= document.getElementById("schoolname"		).value;
+	//var sibilings       		= document.getElementById("sibilings"		).value;
+	//var streetandnumber 		= document.getElementById("streetandnumber"	).value;
+	//var neighberhood    		= document.getElementById("neighberhood"	).value;
+	//var telephone       		= document.getElementById("telephone"		).value;
+	//var schoolname      		= document.getElementById("schoolname"		).value;
 	var schooladdress   		= document.getElementById("schooladdress"	).value;
 
-	var mhdoctor   			= document.getElementById("mhdoctor"		).value;
-	var mhdoctortelephone   	= document.getElementById("mhdoctortelephone"	).value;
-	var gestationweeks   		= document.getElementById("gestationweeks"	).value;
-	var birthtype   		= document.getElementById("birthtype"		).value;//select
-	var birthheight   		= document.getElementById("birthheight" 	).value;
-	var birthweight   		= document.getElementById("birthweight" 	).value;
-	var currentweight   		= document.getElementById("currentweight" 	).value;
-	var surgeries   		= document.getElementById("surgeries" 		).value;
-	var bloodtransfusions  		= document.getElementById("bloodtransfusions" 	).value;
-	var treatments   		= document.getElementById("treatments" 		).value;
+	//var mhdoctor   			= document.getElementById("mhdoctor"		).value;
+	//var mhdoctortelephone   	= document.getElementById("mhdoctortelephone"	).value;
+	//var gestationweeks   		= document.getElementById("gestationweeks"	).value;
+	//var birthtype   		= document.getElementById("birthtype"		).value;//select
+	//var birthheight   		= document.getElementById("birthheight" 	).value;
+	//var birthweight   		= document.getElementById("birthweight" 	).value;
+	//var currentweight   		= document.getElementById("currentweight" 	).value;
+	//var surgeries   		= document.getElementById("surgeries" 		).value;
+	//var bloodtransfusions  		= document.getElementById("bloodtransfusions" 	).value;
+	//var treatments   		= document.getElementById("treatments" 		).value;
 	
 	/*
 	var chronicssel	= document.getElementsByName("chronics");

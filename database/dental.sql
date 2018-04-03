@@ -7,6 +7,7 @@ INSERT INTO cat_gender (gender) VALUES ('female'), ('male');
 
 CREATE TABLE addresses(
 	id 			SERIAL PRIMARY KEY,
+	city		VARCHAR(56),
 	street_and_number 	VARCHAR(56),
 	neighberhood 		VARCHAR(56),
 	telephone 		VARCHAR(16)
@@ -74,6 +75,7 @@ CREATE TABLE medical_histories(
 	birth_type 		INTEGER REFERENCES cat_birth_type (id),
 	birth_height 		INTEGER,
 	birth_weight 		INTEGER,
+	current_height 		INTEGER,
 	current_weight 		INTEGER,
 	surgeries 		INTEGER REFERENCES notes (id),
 	blood_transfusions 	INTEGER REFERENCES notes (id),

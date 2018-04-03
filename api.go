@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"reflect"
 )
 
 const (
@@ -62,7 +63,18 @@ func Patients(w http.ResponseWriter, r *http.Request) {
 		fmt.Println( "jjjjjjjjjjjjjw" )
 		// Create Patient
 		//patient.Save()
-		fmt.Fprintf(w, `{"patient": "saved"}`)
+	//x := struct{Foo string; Bar int }{"foo", 2}
+
+    v := reflect.ValueOf( patient )
+
+    values := make([]interface{}, v.NumField())
+
+    for i := 0; i < v.NumField(); i++ {
+        values[i] = v.Field(i).Interface()
+    }
+
+    fmt.Println(values)
+		//fmt.Fprintf(w, `{"patient": "saved"}`)
 		// Print patient
 	default:
 		w.Header().Set("Content-type", "application/json")
