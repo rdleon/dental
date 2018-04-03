@@ -67,17 +67,21 @@ type MedicalHistoryPrev struct {
 	Cooperation		bool		`json:cooperation`
 	DentalPain		bool		`json:dentalpain`
 	DentalPainNotes		string		`json:notesdentalpain`
+	BalancedDiet		bool		`json:balanceddiet`
 	HighChDiet		bool		`json:highchdiet`
 	HighChDietNotes		string		`json:noteshighchdiet`
 	Biberon			bool		`json:biberon`
 	BiberonLastUsed		int		`json:biberonlastused`
 	BiberonLiquids		string		`json:biberonliquids`
+	BiberonFrequency	int		`json:biberonfrequency`
 	PacifierFrequency	int		`json:pacifierfrecuency`
 	BreastFed		bool            `json:breastfed`
 	BrushFrequency		int             `json:brushfrequency`
 	Floss			bool            `json:floos`
+	FlourApplication	bool		`json:flourapp`
 	LastFlourApplication	time.Time       `json:lastflourapp`
-	FlourInWater		string          `json:flourinwater`
+	FlourInWater		bool		`json:flourinwater`
+	WhereFlourInWater	string		`json:whereflourinwater`
 	BadHabits		string          `json:badhabits`
 }
 

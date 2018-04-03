@@ -1,6 +1,7 @@
 {{define "historialformulario"}}
 <html>
     <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>Medical history</title>
     <style>
 
@@ -114,7 +115,7 @@
 	  box-shadow: 0px 2px 15px #ccc;
 	}
 
-	.inlinetextbox{
+	.birthtextbox{
 	  height:50px;
 	  width:100%;
 	  border-radius:3px;
@@ -496,7 +497,7 @@ input::-webkit-inner-spin-button {
 		<!--<div  style="margin-bottom: -7px" class="" >Fecha de nacimiento:</div><br>-->
 		<div style="width: 100%;display: flex;">
 
-			<input  type="number" class="inlinetextbox" name="birthdayyear" 	id="birthdayyear"  placeholder="Año"	>		
+			<input  type="number" class="birthtextbox" name="birthdayyear" 	id="birthdayyear"  placeholder="Año"	>		
 			<select style="width:100%;" class="selectandtext" id="birthdaymonth"  name="birthdaymonth" >
 				<option value="" disabled selected>Mes</option>
 				<option value="1">Enero</option>
@@ -512,7 +513,7 @@ input::-webkit-inner-spin-button {
 		      		<option value="11">Noviembre</option>
 		      		<option value="12">Diciembre</option>
 			</select>		
-			<input type="number" class="inlinetextbox" name="birthdayday" 	id="birthdayday"   placeholder="Día" min="0" max="31" step="1"><br>
+			<input type="number" class="birthtextbox" name="birthdayday" 	id="birthdayday"   placeholder="Día" min="0" max="31" step="1"><br>
 		</div>
 	</div>
 
@@ -521,6 +522,9 @@ input::-webkit-inner-spin-button {
 
 
 	<div id="sectionparent" class="tabcontent" style="display:none;">
+
+		<h3 class="titlesection" style="display: none;" >Información familiar</h3>
+		
 		<div class="sectiondiv2"><span>Padre</span></div>
 		<label  class="labeldental" for="fatherfullname">Nombre completo del padre:</label>
 		<input type="text" class="textbox" name="fatherfullname"  id="fatherfullname" 	><br>
@@ -582,6 +586,8 @@ input::-webkit-inner-spin-button {
 
 
 	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">
+		
+		<h3 class="titlesection" >Historia médica</h3>
 
 		<label  class="labeldental" >Nombre del pediatra:</label>
 		<input type="text" class="textbox" name="mhdoctor" 		id="mhdoctor" 		><br>
@@ -632,7 +638,7 @@ input::-webkit-inner-spin-button {
 
 	<div id="sectionchronic" class="tabcontent" style="display:none;">
 
-		<h3>Enfermedades crónicas</h3>
+		<h3 class="titlesection"> Enfermedades crónicas</h3>
 
 	  <p><input type="checkbox" name="chronics" value="1"  id="cale" class="chbx"><label for="cale">Alergias		</label></p>
 	  <p><input type="checkbox" name="chronics" value="2"  id="cane" class="chbx"><label for="cane">Anemas			</label></p>
@@ -668,15 +674,15 @@ input::-webkit-inner-spin-button {
 
 	<div id="sectionprevhm" class="tabcontent" style="display:none;">
 
-			<h3>Historial medico previa</h3>
+			<h3 class="titlesection" >Historial médico previo</h3>
 
 		<div style="margin-bottom:25px;">
-		<label  class="labeldentalinline" >Es su primiera visita:</label>				
+		<label  class="labeldentalinline" >Es su primiera visita al dentista:</label>				
 		<input type="radio" name="firsvisit" value="true"  id="yesfisrtvisit"><label for="yesfisrtvisit"> Si </label>
 		<input type="radio" name="firsvisit" value="false" id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
 		</div>
 
-		<label  class="labeldental" >Si la respuesta es NO, cuando y el motivo:</label>				
+		<label  class="labeldental" >Si la respuesta es NO, cuándo y el motivo:</label>				
 	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" ><br>
 
 		<div style="margin-bottom:25px;">		
@@ -693,6 +699,12 @@ input::-webkit-inner-spin-button {
 
 		<label  class="labeldental" >Cuándo: (notas)</label>				
 		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" ><br>
+	
+		<div style="margin-bottom:25px;">
+			<label  class="labeldentalinline" >Tiene una dieta balanceada:</label>				
+			<input type="radio" name="balanceddiet" value="true" id="yesbalanceddiet"><label for="yesbalanceddiet"> Si </label>
+			<input type="radio" name="balanceddiet" value="false" id="nobalanceddiet"><label for="nobalanceddiet"> No </label>   <br>
+		</div>
 
 		<div style="margin-bottom:25px;">
 			<label  class="labeldentalinline" >Tiene una dieta alta en hidratos de carbono:</label>				
@@ -704,34 +716,66 @@ input::-webkit-inner-spin-button {
 		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" ><br>
 
 		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Biberón:</label>				
+			<label  class="labeldentalinline" >Usa biberón:</label>				
 			<input type="radio" name="biberon" value="true" id="yesbiberon"><label for="yesbiberon"> Si </label>
 			<input type="radio" name="biberon" value="false" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
 		</div>
 
-		<label  class="labeldental" >Ultima vez uso biberon":</label>				
+		<label  class="labeldental" >¿A qué edad dejó el biberón?</label>				
 		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
 
-		<label  class="labeldental" >Liquidos de biberon":</label>				
+		<label  class="labeldental" >¿Qué líquidos usa en el biberón?</label>				
 		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
 
-		<label  class="labeldental" >Frecuencia chupon":</label>				
-		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
-
+		<label  class="labeldental" >Frecuencia del biberón:</label>				
+		<input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
 
 		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Floos:</label>				
+			<label  class="labeldentalinline" >Usa chupón:</label>				
+			<input type="radio" name="pacifier" value="true" id="yespacifier"><label for="yespacifier"> Si </label>
+			<input type="radio" name="pacifier" value="false" id="nopacifier"> <label for="nopacifier"> No </label>   <br>
+		</div>
+
+		<label  class="labeldental" >¿Con qué frecuencia usa chupón?</label>				
+		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
+
+		<div style="margin-bottom:25px;">
+			<label  class="labeldentalinline" >Es o fue alimentado con seno materno:</label>				
+			<input type="radio" name="breastfed" value="true" id="yesbreastfed"><label for="yesbreastfed"> Si </label>
+			<input type="radio" name="breastfed" value="false" id="nobreastfed"> <label for="nobreastfed"> No </label>   <br>
+		</div>
+		
+		<div id="badhabits" >
+		</div>
+		<div id="addbadhabit" onclick="addbadhabit(this)" style="margin: 10px 10px 30px 10px;font-family: helvetica;font-size:14px;color:#8bf;cursor:pointer;" >
+			+Agregar mal hábito
+		</div>
+
+
+
+		<label  class="labeldental" >¿Cuántas veces cepilla sus dientes?</label>				
+		<input type="text" class="textbox" id="brushfrecuency" name="brushfrecuency" > <br>
+		<div style="margin-bottom:25px;">
+			<label  class="labeldentalinline" >¿Usa hilo dental?:</label>				
 			<input type="radio" name="floos" value="true" id="yesfloos"><label for="yesfloos"> Si </label>
 			<input type="radio" name="floos" value="false" id="nofloos"><label for="nofloos"> No </label>   <br>
 		</div>
 
+		<div style="margin-bottom:25px;">
+			<label  class="labeldentalinline" >Residió o reside en alguna población con flúor en el agua:</label>				
+			<input type="radio" name="flourinwater" value="true" id="yesflourinwater"><label for="yesflourinwater"> Si </label>
+			<input type="radio" name="flourinwater" value="false" id="noflourinwater"><label for="noflourinwater"> No </label>   <br>
+		</div>
+		<label  class="labeldental" >¿Dónde?</label>				
+		<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
 
-		<label  class="labeldental" >Última aplicación de flour:</label>				
+		<div style="margin-bottom:25px;">
+			<label  class="labeldentalinline" >Ha recibido aplicaciones tópicas de fluoruro:</label>				
+			<input type="radio" name="flour" value="true" id="yesflour"><label for="yesflour"> Si </label>
+			<input type="radio" name="flour" value="false" id="noflour"><label for="noflour"> No </label>   <br>
+		</div>
+		<label  class="labeldental" >¿Cuándo fue la última?</label>				
 		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
-		<label  class="labeldental" >Flour en agua:</label>				
-		<input type="text" class="textbox" name="flourinwater" id="flourinwater" ><br>
-		<label  class="labeldental" >Malos hábitos:</label>				
-		<input type="text" class="textbox" name="badhabits"    id="badhabits" ><br>
 
 	</div>
 

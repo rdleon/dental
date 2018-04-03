@@ -101,18 +101,25 @@ CREATE TABLE prev_dental_history(
 	cooperation 		BOOLEAN,
 	dental_pain 		BOOLEAN,
 	dental_pain_notes 	text,
+	balanced_diet		BOOLEAN,
 	high_ch_diet		BOOLEAN,
 	high_ch_diet_notes 	text,
 	biberon 		BOOLEAN,
 	biberon_last_used 	INTEGER,
-	biberon_liquids 	text,
+	biberon_liquids 	text,	
+	biberon_frequency 	INTEGER,
+	pacifier			BOLLEAN,
 	pacifier_frequency 	INTEGER,
 	breast_fed 		BOOLEAN,
-	brush_frequency 	INTEGER,
-	floss 			BOOLEAN,
-	last_flour_application 	DATE,
-	flour_in_wather 	text,
-	bad_habits 		text
+	
+	
+	brush_frequency			INTEGER,
+	floss					BOOLEAN,
+	flour_aplication		BOOLEAN,
+	last_flour_application	DATE,
+	flour_in_wather			BOOLEAN,
+	where_flour_in_wather 	text,
+	bad_habits				text
 );
 
 CREATE TABLE vaccines(

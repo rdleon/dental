@@ -45,6 +45,37 @@ function nexttab(evt){
 	}
 }
 
+var habitos = [];
+
+function addbadhabit(){
+	
+	var badhabitsDiv =  document.getElementById("badhabits");
+	habitos.push(1);
+	var numero = habitos.length;
+	var divcontent = document.createElement('div');
+	divcontent.setAttribute("name", "badhabitscontent");
+	var divs = '<div class="sectiondiv2"><span>Hábito '+ numero +'</span></div>' +
+		   '<label  class="labeldentalinline" >¿Cuál?:</label>'+				
+		   '<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+		   '<div class="badhabitinput">' +
+			'<label  class="labeldentalinline" >Frecuencia:</label>'+				
+			'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+	           '</div>' +
+		   '<div class="badhabitinput">' +
+		   	'<label  class="labeldentalinline" >Duración:</label>'+				
+		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+	           '</div>' +
+		   '<div class="badhabitinput">' +
+		   	'<label  class="labeldentalinline" >Intensidad:</label>'+				
+		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>' +
+	           '</div>';
+	
+	divcontent.innerHTML = divs;
+
+	badhabitsDiv.appendChild(divcontent)
+
+}
+
 function inputmaritalstatus(selected){
 	if( selected.selectedOptions[0].value == 10 ){
 		var otherSelected = document.getElementById("otherparentmarital");
@@ -89,6 +120,14 @@ function guardar(evt){
 	var lastflourapp   		= document.getElementById("lastflourapp"			).value;
 	var flourinwater   		= document.getElementById("flourinwater"			).value;
 	var badhabits      		= document.getElementById("badhabits"				).value;
+
+
+chupon
+frecuencia biberon
+frecuecia cepilla  
+ha recibido aplicación flour
+motivo de la visita
+
 	*/
 
 
