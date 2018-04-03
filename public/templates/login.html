@@ -160,11 +160,17 @@
 
 	.labeldental {
 		font-size: 14px;
-	    	color: #6767fb;
+	    	color: #777;	/*#6767fb;*/
 		display: block;
 		margin-bottom: 6px;
 	}
 
+	.labeldentalinline {
+		font-size: 14px;
+	    	color: #777;	/*#6767fb;*/
+		display: inline-block;
+		margin-bottom: 6px;
+	}
 
 	#otherparentmarital { display:none; }
 
@@ -479,7 +485,7 @@ input::-webkit-inner-spin-button {
 		<input type="text" class="textbox" name="fullname" id="fullname" placeholder=""		><br>
 		<label for="fullname" class="labeldental">Sobrenombre:</label>
 		<input type="text" class="textbox" name="nickname" id="nickname" placeholder=""		><br>
-		<label class="labeldental" style="display:inline-flex;" class="textlabel" >Género:</label>
+		<label class="labeldentalinline" class="textlabel" >Género:</label>
 		<div style="display:inline-flex;" >
 			<select class="selectandtext" style="margin-left: 12px; width:150px;" id="gender" name="gender">
 				<option value="2">Hombre</option>
@@ -527,7 +533,7 @@ input::-webkit-inner-spin-button {
 		<input type="text" class="textbox" name="motherocupation" id="motherocupation"	><br>
 		
 		<div style="width: 100%; margin-bottom: 20px;" >
-			<label style="display:inline-block" class="labeldental" for="motherfullname">Estado matrimonial:</label>
+			<label  class="labeldentalinline" for="motherfullname">Estado matrimonial:</label>
 			<select style="display:inline-block" class="selectandtext" id="parentmarital" onchange="inputmaritalstatus(this);" name="parentmarital">
 				<option value="1">Casados</option>
 			      	<option value="2">Viudo(a)</option>
@@ -540,7 +546,7 @@ input::-webkit-inner-spin-button {
 		</div>		
 		
 		<div style="margin-bottom:25px;">
-			<label  class="labeldental" style="display:inline-block">El niño vive con:</label>
+			<label  class="labeldentalinline" >El niño vive con:</label>
 			<input type="radio" name="liveswith" value="ambos" id="viveconambos" checked><label for="viveconambos"> Ambos </label>
 			<input type="radio" name="liveswith" value="madre" id="viveconmadre"><label for="viveconmadre"> Madre </label>
 			<input type="radio" name="liveswith" value="padre" id="viveconpadre"><label for="viveconpadre"> Padre </label>   <br>
@@ -584,7 +590,7 @@ input::-webkit-inner-spin-button {
 		<label  class="labeldental" >Nombre de la escuela:</label>
 		<input type="text" class="textbox" name="Tiempo de gestación" 	id="gestationweeks"	><br>
 
-		<label  class="labeldental" style="display: inline-block;">Tipo de parto:</label>
+		<label  class="labeldentalinline" >Tipo de parto:</label>
 		<select class="selectandtext" id="birthtype" name="birthtype">
 			<option value="1">Natural</option>
 		      	<option value="2">C-section</option>
@@ -662,61 +668,70 @@ input::-webkit-inner-spin-button {
 
 	<div id="sectionprevhm" class="tabcontent" style="display:none;">
 
-			<h3>Historial medico prev</h3>
+			<h3>Historial medico previa</h3>
 
 		<div style="margin-bottom:25px;">
-		Es su primiera visita:
-		<input type="radio" name="firsvisit" value="si" id="yesfisrtvisit"><label for="yesfisrtvisit"> Si </label>
-		<input type="radio" name="firsvisit" value="no"	id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
+		<label  class="labeldentalinline" >Es su primiera visita:</label>				
+		<input type="radio" name="firsvisit" value="true"  id="yesfisrtvisit"><label for="yesfisrtvisit"> Si </label>
+		<input type="radio" name="firsvisit" value="false" id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
 		</div>
 
-	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" placeholder="Notas de visita"><br>
+		<label  class="labeldental" >Si la respuesta es NO, cuando y el motivo:</label>				
+	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" ><br>
+
+		<div style="margin-bottom:25px;">		
+			<label  class="labeldentalinline" >Ha cooperado el niño con otros médicos anteriormente:</label>				
+			<input type="radio" name="cooperation" value="true" id="yescooperation"><label for="yescooperation"> Si </label>
+			<input type="radio" name="cooperation" value="false" id="nocooperation"><label for="nocooperation"> No </label>   <br>
+		</div>
 
 		<div style="margin-bottom:25px;">
-		Cooperación:
-		<input type="radio" name="cooperation" value="si" id="yescooperation"><label for="yescooperation"> Si </label>
-		<input type="radio" name="cooperation" value="no" id="nocooperation"><label for="nocooperation"> No </label>   <br>
+		<label  class="labeldentalinline" >Ha sufrido dolor dental:</label>				
+			<input type="radio" name="dentalpain" value="true" id="yesdentalpain"><label for="yesdentalpain"> Si </label>
+			<input type="radio" name="dentalpain" value="false" id="nodentalpain"><label for="nodentalpain"> No </label>   <br>
 		</div>
+
+		<label  class="labeldental" >Cuándo: (notas)</label>				
+		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" ><br>
 
 		<div style="margin-bottom:25px;">
-		Dolor dental:
-		<input type="radio" name="dentalpain" value="si" id="yesdentalpain"><label for="yesdentalpain"> Si </label>
-		<input type="radio" name="dentalpain" value="no" id="nodentalpain"><label for="nodentalpain"> No </label>   <br>
+			<label  class="labeldentalinline" >Tiene una dieta alta en hidratos de carbono:</label>				
+			<input type="radio" name="highchdiet" value="true" id="yeshighchdiet"><label for="yeshighchdiet"> Si </label>
+			<input type="radio" name="highchdiet" value="false" id="nohighchdiet"><label for="nohighchdiet"> No </label>   <br>
 		</div>
 
-		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" placeholder="Notas sobre dolor dental"><br>
+		<label  class="labeldental" >En forma de:</label>				
+		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" ><br>
 
 		<div style="margin-bottom:25px;">
-		Dieta alta en carbohidratos:
-		<input type="radio" name="highchdiet" value="si" id="yeshighchdiet"><label for="yeshighchdiet"> Si </label>
-		<input type="radio" name="highchdiet" value="no" id="nohighchdiet"><label for="nohighchdiet"> No </label>   <br>
+			<label  class="labeldentalinline" >Biberón:</label>				
+			<input type="radio" name="biberon" value="true" id="yesbiberon"><label for="yesbiberon"> Si </label>
+			<input type="radio" name="biberon" value="false" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
 		</div>
 
-		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" placeholder="Notas sobre dieta alta en carbohidratos:"><br>
+		<label  class="labeldental" >Ultima vez uso biberon":</label>				
+		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
 
-		<div style="margin-bottom:25px;">
-		Biberón:
-		<input type="radio" name="biberon" value="si" id="yesbiberon"><label for="yesbiberon"> Si </label>
-		<input type="radio" name="biberon" value="no" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
-		</div>
+		<label  class="labeldental" >Liquidos de biberon":</label>				
+		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
 
-		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused"   placeholder="Ultima vez uso biberon"> <br>
-
-		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"    placeholder="Liquidos de biberon">	  <br>
-
-		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" placeholder="Frecuencia chupon">	  <br>
+		<label  class="labeldental" >Frecuencia chupon":</label>				
+		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
 
 
 		<div style="margin-bottom:25px;">
-		Floos:
-		<input type="radio" name="floos" value="si" id="yesfloos"><label for="yesfloos"> Si </label>
-		<input type="radio" name="floos" value="no" id="nofloos"><label for="nofloos"> No </label>   <br>
+			<label  class="labeldentalinline" >Floos:</label>				
+			<input type="radio" name="floos" value="true" id="yesfloos"><label for="yesfloos"> Si </label>
+			<input type="radio" name="floos" value="false" id="nofloos"><label for="nofloos"> No </label>   <br>
 		</div>
 
 
-		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" placeholder="Last flour application"><br>
-		<input type="text" class="textbox" name="flourinwater" id="flourinwater" placeholder="Flour in water"><br>
-		<input type="text" class="textbox" name="badhabits"    id="badhabits"    placeholder="Bad habits"><br>
+		<label  class="labeldental" >Última aplicación de flour:</label>				
+		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
+		<label  class="labeldental" >Flour en agua:</label>				
+		<input type="text" class="textbox" name="flourinwater" id="flourinwater" ><br>
+		<label  class="labeldental" >Malos hábitos:</label>				
+		<input type="text" class="textbox" name="badhabits"    id="badhabits" ><br>
 
 	</div>
 
