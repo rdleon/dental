@@ -29,7 +29,8 @@ function nexttab(evt){
 	    	"tab2" : "tab3",
 	    	"tab3" : "tab4",
 	    	"tab4" : "tab5",
-	    	"tab5" : "tab1"
+	    	"tab5" : "tab6",
+	    	"tab6" : "tab1"
 	        }
 	var tablinks = document.getElementsByClassName("tablinks");
 	for (var i = 0; i < tablinks.length; i++) {
@@ -45,6 +46,22 @@ function nexttab(evt){
 	}
 }
 
+function addvaccines(){
+	
+	var badhabitsDiv =  document.getElementById("extravaccines");
+	var divcontent = document.createElement('div');
+	divcontent.setAttribute("name", "extravaccinescontent");
+	var divs = '<div class="fieldcontainer">' +
+		   	'<label  class="labeldental" >Vacuna:</label>'+				
+		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+	           '</div>';
+	
+	divcontent.innerHTML = divs;
+
+	badhabitsDiv.appendChild(divcontent)
+
+}
+
 var habitos = [];
 
 function addbadhabit(){
@@ -55,18 +72,20 @@ function addbadhabit(){
 	var divcontent = document.createElement('div');
 	divcontent.setAttribute("name", "badhabitscontent");
 	var divs = '<div class="sectiondiv2"><span>Hábito '+ numero +'</span></div>' +
-		   '<label  class="labeldentalinline" >¿Cuál?:</label>'+				
-		   '<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
-		   '<div class="badhabitinput">' +
-			'<label  class="labeldentalinline" >Frecuencia:</label>'+				
-			'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
-	           '</div>' +
-		   '<div class="badhabitinput">' +
-		   	'<label  class="labeldentalinline" >Duración:</label>'+				
+		   '<div class="fieldcontainer">' +
+		   	'<label  class="labeldental" >¿Cuál?:</label>'+				
 		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
 	           '</div>' +
-		   '<div class="badhabitinput">' +
-		   	'<label  class="labeldentalinline" >Intensidad:</label>'+				
+		   '<div class="fieldcontainer">' +
+			'<label  class="labeldental" >Frecuencia:</label>'+				
+			'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+	           '</div>' +
+		   '<div class="fieldcontainer">' +
+		   	'<label  class="labeldental" >Duración:</label>'+				
+		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>'+
+	           '</div>' +
+		   '<div class="fieldcontainer">' +
+		   	'<label  class="labeldental" >Intensidad:</label>'+				
 		   	'<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>' +
 	           '</div>';
 	
@@ -76,15 +95,26 @@ function addbadhabit(){
 
 }
 
-function inputmaritalstatus(selected){
-	if( selected.selectedOptions[0].value == 10 ){
-		var otherSelected = document.getElementById("otherparentmarital");
+function selectother(selected, idElementDisplay){
+	if( selected.selectedOptions[0].value == "other" ){
+		var otherSelected = document.getElementById( idElementDisplay );
 		otherSelected.style.display = "inline-block"
+		otherSelected.focus();
 	}else{
-		var otherSelected = document.getElementById("otherparentmarital");
+		var otherSelected = document.getElementById( idElementDisplay );
 		otherSelected.style.display = "none"
 	}
-	//console.log(selected)
+}
+
+function radioandshow( display, idElementDisplay){
+	if( display == "show" ){
+		var elementDisiplay = document.getElementById( idElementDisplay );
+		elementDisiplay.style.display = "block";
+		elementDisiplay.getElementsByTagName("input")[0].focus();
+	}else{
+		var elementDisiplay = document.getElementById( idElementDisplay );
+		elementDisiplay.style.display = "none";
+	}
 }
 
 function valorParaNull(obj) {
@@ -179,15 +209,22 @@ motivo de la visita
 		"cooperation"		: document.querySelector('input[name="cooperation"]:checked'	),
 		"dentalpain"		: document.querySelector('input[name="dentalpain"]:checked'	),
 	        "notesdentalpain"	: document.getElementById("notesdentalpain"			).value,
+		"balanceddiet"		: "",
 	        "highchdiet"		: document.querySelector('input[name="highchdiet"]:checked'	),
 	        "noteshighchdiet"	: document.getElementById("noteshighchdiet"			).value,
 	        "biberon"		: document.querySelector('input[name="biberon"]:checked'	),
 	        "biberonlastused"	: document.getElementById("biberonlastused"			).value,
 	        "biberonliquids"	: document.getElementById("biberonliquids"			).value,
+		"biberonfrecuency"	: "",
+		"pacifier"		: "",
 	        "pacifierfrecuency"	: document.getElementById("pacifierfrecuency"			).value,
+		"breastfed"		: "",
+		"brushfrecuency"	: "",
 	        "floos"			: document.querySelector('input[name="floos"]:checked'		),
-	        "lastflourapp"		: document.getElementById("lastflourapp"			).value,
 	        "flourinwater"		: document.getElementById("flourinwater"			).value,
+		"whereflourinwater"	: "",
+		"flour"			: "",
+	        "lastflourapp"		: document.getElementById("lastflourapp"			).value,
 	        "badhabits"		: document.getElementById("badhabits"				).value	
 	}		
 

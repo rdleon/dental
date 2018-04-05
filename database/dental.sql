@@ -7,32 +7,23 @@ INSERT INTO cat_gender (gender) VALUES ('female'), ('male');
 
 CREATE TABLE addresses(
 	id 			SERIAL PRIMARY KEY,
-	city		VARCHAR(56),
+	city			VARCHAR(28),
 	street_and_number 	VARCHAR(56),
 	neighberhood 		VARCHAR(56),
-	telephone 		VARCHAR(16)
+	telephone 		VARCHAR(64)
 );
 
 CREATE TABLE schools(
 	id 	SERIAL PRIMARY KEY,
 	name 	VARCHAR(40),
-	address INTEGER REFERENCES addresses (id)
+	grade	VARCHAR(40),
+	turn	VARCHAR(40)
 );
 
-CREATE TABLE cat_marital_status(
-	id 		SERIAL PRIMARY KEY,
-	marital_status	VARCHAR(32)
+CREATE TABLE others(
+	id 	SERIAL PRIMARY KEY,
+	name 	text
 );
-INSERT INTO cat_marital_status (marital_status) VALUES ('Married'),('Divorced'),('Single'),('Widowed');
-
-CREATE TABLE parents(
-	id 		SERIAL PRIMARY KEY,
-	fullname	VARCHAR(64),
-	ocupation	VARCHAR(64),
-	marital_status	INTEGER REFERENCES cat_marital_status (id),
-	address		INTEGER REFERENCES addresses (id)
-);
-
 
 CREATE TABLE patients (
 	id 		SERIAL PRIMARY KEY,
@@ -43,9 +34,25 @@ CREATE TABLE patients (
 	gender 		INTEGER REFERENCES cat_gender (id),
 	birthdate	DATE,
 	siblings 	INTEGER,
+	number_child	INTEGER,
 	lives_with 	VARCHAR(40),
 	address_id 	INTEGER REFERENCES addresses (id),
 	school_id	INTEGER REFERENCES schools (id)	
+);
+
+CREATE TABLE cat_marital_status(
+	id 		SERIAL PRIMARY KEY,
+	marital_status	VARCHAR(32),
+	system		BOOLEAN
+);
+INSERT INTO cat_marital_status (marital_status, system) VALUES ('Married',True),('Divorced',True),('Single',True),('Widowed',True);
+
+CREATE TABLE parents(
+	id 		SERIAL PRIMARY KEY,
+	fullname	VARCHAR(64),
+	ocupation	VARCHAR(64),
+	marital_status	INTEGER REFERENCES cat_marital_status (id),
+	address		INTEGER REFERENCES addresses (id)
 );
 
 CREATE TABLE parents_children(
@@ -68,7 +75,6 @@ INSERT INTO cat_birth_type (type) VALUES ('Natural'), ('C-section'), ('Other');
 
 CREATE TABLE medical_histories(
 	patient_id 		INTEGER,
-	creation 		DATE,
 	doctor 			VARCHAR(56),
 	doctor_telephone 	VARCHAR(16),
 	gestation_weeks 	INTEGER,
@@ -77,22 +83,36 @@ CREATE TABLE medical_histories(
 	birth_weight 		INTEGER,
 	current_height 		INTEGER,
 	current_weight 		INTEGER,
-	surgeries 		INTEGER REFERENCES notes (id),
-	blood_transfusions 	INTEGER REFERENCES notes (id),
-	treatments 		INTEGER REFERENCES notes (id)
+	surgeries 		text,
+	blood_transfusions 	text,
+	treatments 		text
 );
 
 CREATE TABLE chronics(
 	id 	SERIAL PRIMARY KEY,
-	chronic	VARCHAR(64)
+	chronic	text
 );
-INSERT INTO chronics (chronic) VALUES ('Alergias'), ('Anemas'), ('Artitris'), ('Asma'), ('Cáncer'), ('Convulsiones'), ('Diabetes'), ('Escarlatina'), ('Enfermedades cardiacas'), ('Fibrosis Quística'), ('Fiebre reumática'), ('Hemofilia'), ('Hepatitis'), ('Hiperactividad'), ('HIV'), ('Leucemia'), ('Neumonía'), ('Parálisis cerebral'), ('Parotiditis'), ('Problemas auditibos'), ('Problemas ortopédicos'), ('Problemas renales'), ('Problema en los ojos'), ('Retraso psicomotor'), ('Sarampión'), ('Síndrome'), ('Soplo cardiaco'), ('Varicela'), ('Observaciones'), ('Paciente ASA');
+INSERT INTO chronics (chronic) VALUES ('Alergias'), ('Anemas'), ('Artitris'), ('Asma'), ('Cáncer'), ('Convulsiones'), ('Diabetes'), ('Escarlatina'), ('Enfermedades cardiacas'), ('Fibrosis Quística'), ('Fiebre reumática'), ('Hemofilia'), ('Hepatitis'), ('Hiperactividad'), ('HIV'), ('Leucemia'), ('Neumonía'), ('Parálisis cerebral'), ('Parotiditis'), ('Problemas auditibos'), ('Problemas ortopédicos'), ('Problemas renales'), ('Problema en los ojos'), ('Retraso psicomotor'), ('Sarampión'), ('Síndrome'), ('Soplo cardiaco'), ('Varicela');
 
 CREATE TABLE patient_chronics(
 	patient_id 	INTEGER REFERENCES patients (id),
 	disease_id 	INTEGER REFERENCES chronics (id),
-	notes		text
 );
+
+CREATE TABLE observations(
+	patient_id 	INTEGER REFERENCES patients (id),
+	notes	 	INTEGER REFERENCES notes (id),
+	asa_patient	VARCHAR(16)
+);
+
+CREATE TABLE bad_habits(
+	id  		SERIAL PRIMARY KEY,
+	patient_id	INTEGER REFERENCES patients (id),
+	name		text,
+	frequency	INTEGER,
+	duration	INTEGER,
+	intensity	INTEGER
+)
 
 CREATE TABLE prev_dental_history(
 	patient_id		INTEGER REFERENCES patients (id),
@@ -108,26 +128,31 @@ CREATE TABLE prev_dental_history(
 	biberon_last_used 	INTEGER,
 	biberon_liquids 	text,	
 	biberon_frequency 	INTEGER,
-	pacifier			BOLLEAN,
+	pacifier		BOLLEAN,
 	pacifier_frequency 	INTEGER,
-	breast_fed 		BOOLEAN,
-	
-	
-	brush_frequency			INTEGER,
-	floss					BOOLEAN,
-	flour_aplication		BOOLEAN,
-	last_flour_application	DATE,
-	flour_in_wather			BOOLEAN,
+	breast_fed 		BOOLEAN,	
+	brush_frequency		INTEGER,
+	floss			BOOLEAN,
+	flour_in_wather		BOOLEAN,
 	where_flour_in_wather 	text,
-	bad_habits				text
+	flour_aplication	BOOLEAN,
+	last_flour_application	DATE
 );
 
 CREATE TABLE vaccines(
 	id 	SERIAL PRIMARY KEY,
-	name 	VARCHAR(40)
+	name 	VARCHAR(40),
+	system	BOOLEAN
 );
+INSERT INTO vaccines (name, system) VALUES ('BCG', true), ('DPT', true), ('Polio', true), ('Triple', true);
 
 CREATE TABLE patient_vaccines(
 	patient_id 	INTEGER REFERENCES patients (id),
    	vaccine_id 	INTEGER REFERENCES vaccines (id)
 );
+
+CREATE TABLE consult(
+	patient_id 	INTEGER REFERENCES patients (id),
+	reason		text,
+	referred	text
+)

@@ -1,784 +1,824 @@
 {{define "historialformulario"}}
 <html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>Medical history</title>
-    <style>
-
-	body{
-	  background-color:#f0f0f0;
-	  font-family:helvetica;
-	}
-
-	a{
-	  display:block;
-	  color:#ad5482;
-	  text-decoration:none;
-	  font-weight:bold;
-	  margin-top:40px;
-	  text-align:center;
-	}
-
-	#bg{
-	  position:relative;
-	  top:20px;
-	  /*overflow: -webkit-paged-y;
-	  /*height:2000px;*/
-	  width: 80%;
-	  background:url('/img/3eP9Z4O.png') center no-repeat;
-	  background-size:cover;
-	  margin-left:auto;
-	  margin-right:auto;
-	  border:#fff 15px solid;
-	  padding-top: 50px;
-	  padding-bottom: 50px;
-	  color: #777;
-	}
-
-	.module{
-	  position:relative;
-	  top:15%;
-	  width: 70%;
-	  margin-left:auto;
-	  margin-right:auto;
-	  border-radius:5px;
-	  background:RGBA(255,255,255,1);
-	  overflow: initial;
-	  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
-	  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
-	}
-
-	.module ul{
-	  list-style-type:none;
-	  margin:0 25px;
-	  overflow: initial;
-	  height: 60px;
-	  padding: 0 !important;
-	}
-
-	.tablinks{
-	  float:left;
-	  height:60px;
-	  width:20%;
-	  padding-top:20px;
-	  box-sizing:border-box;
-	  background:#eeeeee;
-	  text-align:center;
-	  cursor:pointer;
-	  transition:background .4s;
-	}
-
-	.tablinks:first-child{
-	  -webkit-border-radius: 5px 0px 0px 0px;
-	  border-radius: 5px 0px 0px 0px;
-	}
-
-	.tablinks:last-child{
-	  -webkit-border-radius: 0px 5px 0px 0px;
-	  border-radius: 0px 5px 0px 0px;
-	}
-
-	.tablinks:hover{
-	  background-color:rgba(0,0,0,.1);
-	}
-
-	.activeTab{
-	  background:#fff;
-	}
-
-	.activeTab .icon{
-	  opacity:1;
-	}
-
-	.icon{
-	  height:24px;
-	  width:24px;
-	  opacity:.4;
-	}
-
-	.form{
-	  /*float:left;
-	  /*height:86%;*/
-	  width:100%;
-	  box-sizing:border-box;
-	  padding:40px;
-	}
-
-	.textbox{
-	  height:50px;
-	  width:100%;
-	  border-radius:3px;
-	  border:rgba(0,0,0,.3) 0px solid;
-	  box-sizing:border-box;
-	  padding:10px;
-	  margin-bottom:30px;
-	  box-shadow: 0px 2px 15px #ccc;
-	}
-
-	.birthtextbox{
-	  height:50px;
-	  width:100%;
-	  border-radius:3px;
-	  border:rgba(0,0,0,.3) 0px solid;
-	  box-sizing:border-box;
-	  padding:10px;
-	  margin-bottom:30px;
-	  margin-right: 10px;
-	  margin-left: 10px;
-	  box-shadow: 0px 2px 15px #ccc;
-	}
-
-
-	.textbox:focus{
-	  outline:none;
-	   border:rgba(24,149,215,1) 2px solid;
-	   color:rgba(24,149,215,1);
-	}
-
-	.selectandtext{
-		height:50px;
-	  	border-radius:3px;
-		border:rgba(0,0,0,.3) 0px solid;
-	  	box-sizing:border-box;
-	  	padding:10px;
-		color: #777;
-	 	margin-bottom:30px;
-		background-color: #fff;
-	  	box-shadow: 0px 2px 15px #ccc;
-	}
-
-	.selectbox{
-		background-color: #fff;
-   		border-color: #ddf;
-   	 	border-width: 2px;
-   	 	padding: 10px;
-   	 	padding-left: 10px;
-   	 	padding-right: 25px;
-   	 	color: #555;
-   	 	border-radius: 4px;
-   	 	margin: 0 15px 30px 15px;
-    	}
-
-	.labeldental {
-		font-size: 14px;
-	    	color: #777;	/*#6767fb;*/
-		display: block;
-		margin-bottom: 6px;
-	}
-
-	.labeldentalinline {
-		font-size: 14px;
-	    	color: #777;	/*#6767fb;*/
-		display: inline-block;
-		margin-bottom: 6px;
-	}
-
-	#otherparentmarital { display:none; }
-
-	.textlabel{
-		color: #777;
-	}
-
-	.button{
-	  height:50px;
-	  width:49%;
-	  border-radius:3px;
-	  border:rgba(0,0,0,.3) 0px solid;
-	  box-sizing:border-box;
-	  padding:10px;
-	  margin-bottom:30px;
-	  color:#FFF;
-	  font-weight:bold;
-	  font-size: 12pt;
-	  transition:background .4s;
-	  cursor:pointer;
-	}
-
-	#bottomnext{
-		background: #a7abc9; /*#90c843;*/
-	}
-	#bottomsave{
-		background: #cb9fb2; /*#4958f0;*/
-
-	}
-
-
-	.button:hover{
-	  background:#80b438;
-	}
-
-
-/* Base for label styling */
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: absolute;
-  left: -9999px;
-}
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 1.95em;
-  cursor: pointer;
-}
-
-/* checkbox aspect */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  content: '';
-  position: absolute;
-  left: 2px;
-  top: 0;
-  width: 1.25em; height: 1.25em;
-  border: 1.5px solid #ccf;
-  background: #fff;
-  border-radius: 6px;
-
-}
-
-/* checked mark aspect */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '🗸';
-  position: absolute;
-  top: .2em; left: .275em;
-  font-size: 1.4em;
-  line-height: 0.8;
-  color: #094dfe;
-  transition: all .2s;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-/* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
-}
-
-[type="checkbox"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* disabled checkbox */
-[type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before {
-  box-shadow: none;
-  border-color: #bbb;
-  background-color: #ddd;
-}
-
-[type="checkbox"]:disabled:checked + label:after {
-  color: #999;
-}
-
-[type="checkbox"]:disabled + label {
-  color: #aaa;
-}
-
-/* accessibility */
-[type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
-  border: 1px solid blue;
-}
-
-/* hover style just for information */
-label:hover:before {
-  border: 1px solid #4778d9!important;
-}
-
-[type="radio"]:checked,
-[type="radio"]:not(:checked) {
-    position: absolute;
-    left: -9999px;
-}
-
-[type="radio"]:checked + label,
-[type="radio"]:not(:checked) + label
-{
-    position: relative;
-    padding-left: 28px;
-    cursor: pointer;
-    line-height: 20px;
-    display: inline-block;
-    color: #666;
-}
-
-[type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 18px;
-    height: 18px;
-    border: 1px solid #aaa;
-    border-radius: 100%;
-    background: #fff;
-}
-
-[type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after {
-    content: '';
-    width: 12px;
-    height: 12px;
-    background: #F87DA9;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    border-radius: 100%;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
-}
-
-[type="radio"]:not(:checked) + label:after {
-    opacity: 0;
-    -webkit-transform: scale(0);
-    transform: scale(0);
-}
-
-[type="radio"]:checked + label:after {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1);
-}
-
-.tooltip{
-    display: inline;
-    position: relative;
-}
-
-.tooltip:hover:after{
-    background: rgba(250,250,250,0.9);
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    top: 65px;
-    color: #777;
-    content: attr(titlee);
-    left: -70px;
-    padding: 5px 15px;
-    position: absolute;
-    z-index: 98;
-    width: 220px;
-}
-.tooltip:hover:before{
-    border: solid;
-    border-color: #ddd;
-    height: 8px;
-    width: 8px;
-    border-width: 1px 0px 0px 1px;
-    background: rgba(250,250,250,0.9);
-    bottom: -10px;
-    content: "";
-    left: 50%;
-    position: absolute;
-    z-index: 100;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Safari 3-8 */
-    transform: rotate(45deg);
-    /*border-left: solid 1px #0dd;
-    border-top: solid 1px #0dd;*/
-}
-#tituloHC{
-	margin-top: 20px; 
-	color: #868;/*#a8a;*/
-	text-align: center;
-	/*letter-spacing: -1px;
-    	word-spacing: 0px;
-	font-family: Pacifico;
-	text-transform: none;
-	text-shadow: rgba(0, 0, 0, 0.3) 0px 3px 5px, rgba(255, 255, 255, 0.3) 0px -5px 35px;
-	font-weight: normal;
-	font-style: normal;	opacity: 1;
-	padding: 0px;
-	background-image: none;*/
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    /* display: none;  Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /*  Apparently some margin are still there even though it's hidden */
-}
-
-
-
-.sectiondiv2 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: #8bf;
-}
-.sectiondiv2:before {
-  border-top: 1px solid #8bf;
-  content: "";
-  margin: 0 auto;
-  /* this centers the line to the full width specified */
-  position: absolute;
-  /* positioning must be absolute here, and relative positioning must be applied to the parent */
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 95%;
-  z-index: -1;
-}
-.sectiondiv2 span {
-  /* to hide the lines from behind the text, you have to set the background color the same as the container */
-  background: #fff;
-  padding: 0 15px;
-}
-
-.sectiondiv {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: #fbb;
-}
-.sectiondiv:before {
-  border-top: 1px solid #fbb;
-  content: "";
-  margin: 0 auto;
-  /* this centers the line to the full width specified */
-  position: absolute;
-  /* positioning must be absolute here, and relative positioning must be applied to the parent */
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 95%;
-  z-index: -1;
-}
-.sectiondiv span {
-  /* to hide the lines from behind the text, you have to set the background color the same as the container */
-  background: #fff;
-  padding: 0 15px;
-}
-
-
-
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Bitter|Cookie|Courgette|Delius+Swash+Caps|IBM+Plex+Sans|Montez|Niconne|Roboto|Roboto+Condensed|Sofia|Source+Sans+Pro|Spirax|Stalemate|Vibur" rel="stylesheet">
-
-
-
-
-
+   
+    <link rel="stylesheet" type="text/css" href="/css/dental.css" >
+    <!--<link rel="stylesheet" type="text/css" media="screen and (max-width: 900px)" href="/css/dentaldevice.css" >-->
+    
     </head>
     <body>
 
-<h2 id="tituloHC">Historial Clinico Dental</h2>
-<!-- <div style="text-align:center;"><img height="70" src="/img/kdc.png"></div>  -->
+<!--<h2 id="tituloHC">Historial Clinico Dental</h2>-->
+<div style="text-align:center;"><img height="70" src="/img/kidslogo.png"></div> 
 <div id="bg">
   <div class="module">
     <ul class="ulmodule">
-      <li class="tablinks activeTab tooltip"	id="tab1"	onclick="activetab(event, 'sectionpatient')" titlee="Información personal"><img src="/img/62839.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tab2"	onclick="activetab(event, 'sectionparent')" titlee="Información familiar" ><img src="/img/family.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tab3"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia médica"><img src="/img/health.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tab4"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip"><img src="/img/pastillas.svg" alt="" class="icon"/></li>
-      <li class="tablinks tooltip" 		id="tab5"	onclick="activetab(event, 'sectionprevhm')" titlee="Historia dental" class="tooltip"><img src="/img/maletin.svg" alt="" class="icon"/></li>
-    </ul>
+      <li class="tablinks activeTab tooltip"	id="tab1"	onclick="activetab(event, 'sectionpatient')" titlee="Información personal">
+      
+      <svg class="svgicons" xmlns="http://www.w3.org/2000/svg"  width="26px" height="23px" viewBox="0 0 45 45">
+  <path id="Ruta importada"
+         stroke="none"  stroke-width="1"
+        d="M 29.27,22.75
+           C 28.03,22.75 27.03,23.75 27.03,24.99
+             27.03,26.23 28.03,27.23 29.27,27.23
+             30.51,27.23 31.52,26.23 31.52,24.99
+             31.52,23.75 30.51,22.75 29.27,22.75 Z
+           M 15.73,22.75
+           C 14.49,22.75 13.48,23.75 13.48,24.99
+             13.48,26.23 14.49,27.23 15.73,27.23
+             16.97,27.23 17.97,26.23 17.97,24.99
+             17.97,23.75 16.97,22.75 15.73,22.75 Z
+           M 43.94,28.48
+           C 43.94,31.42 42.10,33.91 39.56,34.73
+             36.31,40.97 29.78,45.00 22.53,45.00
+             15.29,45.00 8.76,40.98 5.51,34.76
+             2.94,33.95 1.06,31.45 1.06,28.48
+             1.06,26.94 1.58,25.52 2.43,24.40
+             2.43,24.40 2.43,15.85 2.43,15.85
+             2.43,11.09 4.83,8.77 8.47,7.70
+             10.40,2.79 18.52,-1.17 26.16,0.31
+             33.33,1.71 39.55,6.58 41.74,11.75
+             42.02,12.34 42.23,13.01 42.37,13.75
+             42.39,13.82 42.41,13.89 42.42,13.96
+             42.44,14.05 42.43,14.11 42.45,14.19
+             42.52,14.71 42.57,15.26 42.57,15.85
+             42.57,15.85 42.57,24.40 42.57,24.40
+             43.42,25.52 43.94,26.94 43.94,28.48 Z
+           M 39.95,28.48
+           C 39.95,27.07 38.96,25.92 37.72,25.92
+             37.71,25.92 37.71,25.92 37.71,25.92
+             37.70,24.11 37.34,21.33 36.73,19.41
+             35.42,21.18 33.57,22.78 33.47,22.87
+             33.37,22.95 33.26,22.99 33.14,22.99
+             33.06,22.99 32.97,22.97 32.89,22.93
+             32.71,22.82 32.61,22.61 32.65,22.41
+             33.06,20.18 32.18,18.95 31.69,18.45
+             28.70,21.44 24.13,21.90 21.62,21.90
+             20.14,21.90 19.15,21.75 19.11,21.74
+             18.91,21.71 18.75,21.57 18.70,21.37
+             18.65,21.18 18.72,20.97 18.88,20.85
+             21.05,19.23 20.74,16.54 20.54,15.55
+             15.76,16.04 13.94,21.12 13.92,21.17
+             13.85,21.36 13.68,21.49 13.47,21.50
+             13.37,21.51 13.27,21.51 13.17,21.51
+             13.16,21.51 13.16,21.51 13.16,21.51
+             10.98,21.51 9.50,20.24 8.53,18.89
+             7.80,20.79 7.37,23.94 7.36,25.94
+             7.33,25.94 7.31,25.93 7.29,25.93
+             6.05,25.93 5.05,27.07 5.05,28.48
+             5.05,29.90 6.05,31.04 7.29,31.04
+             7.60,31.04 7.89,30.97 8.16,30.84
+             10.19,36.75 15.85,41.01 22.53,41.01
+             29.21,41.01 34.87,36.76 36.90,30.86
+             37.15,30.97 37.43,31.04 37.71,31.04
+             38.96,31.04 39.95,29.89 39.95,28.48 Z
+           M 22.50,30.11
+           C 21.12,30.11 20.01,30.55 20.01,31.10
+             20.01,31.65 21.12,32.10 22.50,32.10
+             23.88,32.10 24.99,31.65 24.99,31.10
+             24.99,30.55 23.88,30.11 22.50,30.11 Z" />
+</svg> 
+      
+      </li>
+      <li class="tablinks tooltip" 		id="tab2"	onclick="activetab(event, 'sectionparent')" titlee="Información familiar" >
+      
+      <svg class="svgicons" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 99 99">
+  <path id="Ruta importada"
+        stroke="none" stroke-width="1"
+        d="M 99.00,62.78
+           C 99.00,62.78 99.00,80.08 99.00,80.08
+             99.00,80.08 98.96,80.35 98.96,80.35
+             98.96,80.35 97.77,80.72 97.77,80.72
+             86.75,84.16 77.16,85.35 69.21,85.39
+             69.21,85.39 69.21,78.00 69.21,78.00
+             69.21,73.92 67.62,70.07 64.72,67.17
+             62.73,65.17 60.27,63.81 57.61,63.15
+             60.25,60.86 61.94,57.49 61.94,53.74
+             61.94,49.13 59.41,45.11 55.67,42.96
+             58.10,41.99 60.74,41.44 63.52,41.44
+             63.52,41.44 77.66,41.44 77.66,41.44
+             89.43,41.44 99.00,51.02 99.00,62.78 Z
+           M 29.79,78.00
+           C 29.79,78.00 29.79,85.39 29.79,85.39
+             21.85,85.35 12.25,84.17 1.23,80.72
+             1.23,80.72 0.04,80.35 0.04,80.35
+             0.04,80.35 0.00,80.08 0.00,80.08
+             0.00,80.08 0.00,62.78 0.00,62.78
+             0.00,51.02 9.57,41.44 21.34,41.44
+             21.34,41.44 35.48,41.44 35.48,41.44
+             38.26,41.44 40.90,41.99 43.33,42.96
+             39.60,45.11 37.07,49.13 37.07,53.74
+             37.07,57.50 38.75,60.87 41.40,63.15
+             34.74,64.82 29.79,70.83 29.79,78.00 Z
+           M 53.92,23.64
+           C 53.92,14.44 61.38,6.98 70.59,6.98
+             79.79,6.98 87.25,14.44 87.25,23.64
+             87.25,32.84 79.79,40.31 70.59,40.31
+             61.38,40.31 53.92,32.84 53.92,23.64 Z
+           M 28.41,6.98
+           C 19.20,6.98 11.74,14.44 11.74,23.64
+             11.74,32.85 19.20,40.31 28.41,40.31
+             37.61,40.31 45.08,32.85 45.08,23.64
+             45.08,14.44 37.61,6.98 28.41,6.98 Z
+           M 67.10,78.00
+           C 67.10,78.00 67.10,88.73 67.10,88.73
+             67.10,88.73 67.03,88.73 67.03,88.73
+             67.03,88.73 66.34,89.08 66.34,89.08
+             65.99,89.25 60.36,92.03 50.64,92.03
+             45.66,92.03 39.61,91.30 32.65,89.12
+             32.65,89.12 31.91,88.89 31.91,88.89
+             31.91,88.89 31.89,88.73 31.89,88.73
+             31.89,88.73 31.89,78.00 31.89,78.00
+             31.89,70.71 37.82,64.77 45.12,64.77
+             45.12,64.77 53.88,64.77 53.88,64.77
+             61.18,64.77 67.11,70.71 67.10,78.00 Z
+           M 49.50,43.41
+           C 43.79,43.41 39.17,48.03 39.17,53.74
+             39.17,59.44 43.79,64.07 49.50,64.07
+             55.21,64.07 59.83,59.44 59.83,53.74
+             59.83,48.03 55.21,43.41 49.50,43.41 Z" />
+</svg>
+      
+      </li>
+      <li class="tablinks tooltip" 		id="tab3"	onclick="activetab(event, 'sectionmedicalhistory')" titlee="Historia médica">
+      
+      <svg class="svgicons" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 512 512">
+  <path id="Ruta importada"
+        stroke="none" stroke-width="1"
+        d="M 483.96,269.00
+           C 453.09,317.57 397.49,363.71 327.94,422.41
+             308.41,438.89 287.64,456.43 265.83,475.34
+             263.00,477.78 259.50,479.00 256.00,479.00
+             252.50,479.00 249.00,477.78 246.17,475.34
+             224.36,456.43 203.59,438.89 184.06,422.41
+             114.51,363.71 58.91,317.57 28.04,269.00
+             28.04,269.00 136.00,269.00 136.00,269.00
+             141.68,269.00 146.87,265.79 149.42,260.71
+             149.42,260.71 166.00,227.54 166.00,227.54
+             166.00,227.54 212.58,320.71 212.58,320.71
+             217.68,330.88 234.32,330.88 239.42,320.71
+             239.42,320.71 256.00,287.55 256.00,287.55
+             256.00,287.55 272.58,320.71 272.58,320.71
+             275.13,325.79 280.32,329.00 286.00,329.00
+             291.68,329.00 296.87,325.79 299.42,320.71
+             299.42,320.71 346.00,227.54 346.00,227.54
+             346.00,227.54 362.58,260.71 362.58,260.71
+             365.13,265.79 370.32,269.00 376.00,269.00
+             376.00,269.00 483.96,269.00 483.96,269.00 Z
+           M 512.00,178.27
+           C 512.00,199.88 507.67,219.83 499.71,239.00
+             499.71,239.00 385.27,239.00 385.27,239.00
+             385.27,239.00 359.42,187.29 359.42,187.29
+             354.32,177.13 337.68,177.13 332.58,187.29
+             332.58,187.29 286.00,280.46 286.00,280.46
+             286.00,280.46 269.42,247.29 269.42,247.29
+             264.32,237.13 247.68,237.13 242.58,247.29
+             242.58,247.29 226.00,280.46 226.00,280.46
+             226.00,280.46 179.42,187.29 179.42,187.29
+             174.32,177.12 157.68,177.12 152.58,187.29
+             152.58,187.29 126.73,239.00 126.73,239.00
+             126.73,239.00 12.29,239.00 12.29,239.00
+             4.33,219.83 0.00,199.88 0.00,178.27
+             0.00,95.45 59.04,33.00 136.00,33.00
+             196.66,33.00 235.59,75.01 256.00,112.85
+             276.40,75.01 315.34,33.00 376.00,33.00
+             452.96,33.00 512.00,95.45 512.00,178.27 Z" />
+</svg>
+      
+      </li>
+      <li class="tablinks tooltip" 		id="tab4"	onclick="activetab(event, 'sectionchronic')" titlee="Enfermedades crónicas" class="tooltip">
+      
+      <svg class="svgicons" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 84 84">
+  <path id="Ruta importada"
+        stroke="none" stroke-width="1"
+        d="M 84.00,64.34
+           C 84.00,72.96 76.98,79.98 68.36,79.98
+             68.36,79.98 27.44,79.98 27.44,79.98
+             19.69,79.98 13.24,74.31 12.01,66.90
+             13.21,67.14 14.41,67.25 15.63,67.25
+             15.77,67.25 15.91,67.25 16.05,67.24
+             17.35,72.33 21.95,76.11 27.44,76.11
+             27.44,76.11 45.47,76.11 45.47,76.11
+             45.47,76.11 45.47,52.56 45.47,52.56
+             45.47,52.56 38.07,52.56 38.07,52.56
+             38.07,52.56 41.93,48.69 41.93,48.69
+             41.93,48.69 68.36,48.69 68.36,48.69
+             76.98,48.69 84.00,55.71 84.00,64.34 Z
+           M 66.45,74.25
+           C 66.45,73.34 65.71,72.60 64.79,72.60
+             64.79,72.60 51.84,72.60 51.84,72.60
+             50.93,72.60 50.18,73.34 50.18,74.25
+             50.18,75.17 50.93,75.91 51.84,75.91
+             51.84,75.91 64.79,75.91 64.79,75.91
+             65.71,75.91 66.45,75.17 66.45,74.25 Z
+           M 73.06,74.25
+           C 73.06,73.34 72.32,72.60 71.40,72.60
+             71.40,72.60 70.76,72.60 70.76,72.60
+             69.84,72.60 69.10,73.34 69.10,74.25
+             69.10,75.17 69.84,75.91 70.76,75.91
+             70.76,75.91 71.40,75.91 71.40,75.91
+             72.32,75.91 73.06,75.17 73.06,74.25 Z
+           M 60.18,19.65
+           C 60.18,23.84 58.56,27.77 55.62,30.71
+             55.62,30.71 26.69,59.64 26.69,59.64
+             23.64,62.69 19.63,64.22 15.63,64.22
+             11.62,64.22 7.61,62.69 4.56,59.64
+             1.62,56.70 0.00,52.77 0.00,48.58
+             0.00,44.39 1.62,40.46 4.56,37.52
+             4.56,37.52 33.50,8.59 33.50,8.59
+             36.44,5.64 40.37,4.02 44.56,4.02
+             48.75,4.02 52.67,5.64 55.62,8.59
+             58.56,11.53 60.18,15.46 60.18,19.65 Z
+           M 36.70,44.16
+           C 36.70,44.16 20.04,27.51 20.04,27.51
+             20.04,27.51 7.30,40.25 7.30,40.25
+             5.09,42.47 3.87,45.42 3.87,48.58
+             3.87,51.74 5.09,54.69 7.30,56.91
+             11.89,61.50 19.36,61.50 23.95,56.91
+             23.95,56.91 36.70,44.16 36.70,44.16 Z
+           M 50.22,28.01
+           C 49.58,27.36 48.53,27.36 47.88,28.01
+             47.88,28.01 38.72,37.17 38.72,37.17
+             38.07,37.82 38.07,38.87 38.72,39.51
+             39.04,39.84 39.47,40.00 39.89,40.00
+             40.32,40.00 40.74,39.84 41.07,39.51
+             41.07,39.51 50.22,30.36 50.22,30.36
+             50.87,29.71 50.87,28.66 50.22,28.01 Z
+           M 54.90,23.34
+           C 54.25,22.69 53.20,22.69 52.55,23.34
+             52.55,23.34 52.10,23.79 52.10,23.79
+             51.45,24.44 51.45,25.49 52.10,26.14
+             52.42,26.46 52.85,26.62 53.27,26.62
+             53.69,26.62 54.12,26.46 54.44,26.14
+             54.44,26.14 54.90,25.68 54.90,25.68
+             55.54,25.04 55.54,23.99 54.90,23.34 Z" />
+</svg>
+      
+      </li>
+      <li class="tablinks tooltip" 		id="tab5"	onclick="activetab(event, 'sectionprevhm')" titlee="Historia dental" class="tooltip">
+      
+      <svg class="svgicons" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 512 512">
+  <path id="Ruta importada"
+        stroke="none" stroke-width="1"
+        d="M 512.00,173.71
+           C 512.00,173.71 512.00,411.43 512.00,411.43
+             512.00,428.95 505.71,444.00 493.15,456.57
+             480.57,469.14 465.53,475.43 448.00,475.43
+             448.00,475.43 438.86,475.43 438.86,475.43
+             438.86,475.43 438.86,109.71 438.86,109.71
+             438.86,109.71 448.00,109.71 448.00,109.71
+             465.52,109.71 480.57,116.00 493.15,128.57
+             505.71,141.14 512.00,156.19 512.00,173.71 Z
+           M 365.71,64.00
+           C 365.71,64.00 365.71,109.71 365.71,109.71
+             365.71,109.71 411.43,109.71 411.43,109.71
+             411.43,109.71 411.43,475.43 411.43,475.43
+             411.43,475.43 100.57,475.43 100.57,475.43
+             100.57,475.43 100.57,109.71 100.57,109.71
+             100.57,109.71 146.29,109.71 146.29,109.71
+             146.29,109.71 146.29,64.00 146.29,64.00
+             146.29,56.38 148.95,49.90 154.29,44.57
+             159.62,39.24 166.10,36.57 173.72,36.57
+             173.72,36.57 338.29,36.57 338.29,36.57
+             345.90,36.57 352.38,39.24 357.71,44.57
+             363.05,49.91 365.71,56.38 365.71,64.00
+             365.71,64.00 365.71,64.00 365.71,64.00 Z
+           M 182.86,109.71
+           C 182.86,109.71 329.14,109.71 329.14,109.71
+             329.14,109.71 329.14,73.14 329.14,73.14
+             329.14,73.14 182.86,73.14 182.86,73.14
+             182.86,73.14 182.86,109.71 182.86,109.71 Z
+           M 365.71,320.00
+           C 365.71,320.00 365.71,320.00 365.71,320.00
+             365.71,320.00 365.71,265.14 365.71,265.14
+             365.71,262.47 364.85,260.28 363.14,258.57
+             361.43,256.86 359.24,256.00 356.57,256.00
+             356.57,256.00 292.57,256.00 292.57,256.00
+             292.57,256.00 292.57,192.00 292.57,192.00
+             292.57,189.33 291.71,187.14 290.00,185.43
+             288.29,183.71 286.10,182.86 283.43,182.86
+             283.43,182.86 228.57,182.86 228.57,182.86
+             225.90,182.86 223.72,183.71 222.00,185.43
+             220.29,187.14 219.43,189.33 219.43,192.00
+             219.43,192.00 219.43,256.00 219.43,256.00
+             219.43,256.00 155.43,256.00 155.43,256.00
+             152.77,256.00 150.57,256.86 148.86,258.57
+             147.15,260.28 146.29,262.47 146.29,265.14
+             146.29,265.14 146.29,320.00 146.29,320.00
+             146.29,322.67 147.15,324.85 148.86,326.57
+             150.58,328.28 152.77,329.14 155.44,329.14
+             155.44,329.14 219.44,329.14 219.44,329.14
+             219.44,329.14 219.44,393.14 219.44,393.14
+             219.44,395.81 220.29,398.00 222.01,399.71
+             223.72,401.42 225.91,402.28 228.58,402.28
+             228.58,402.28 283.44,402.28 283.44,402.28
+             286.10,402.28 288.30,401.42 290.00,399.71
+             291.71,398.00 292.58,395.81 292.58,393.14
+             292.58,393.14 292.58,329.14 292.58,329.14
+             292.58,329.14 356.58,329.14 356.58,329.14
+             359.24,329.14 361.43,328.28 363.14,326.57
+             364.86,324.85 365.71,322.67 365.71,320.00
+             365.71,320.00 365.71,320.00 365.71,320.00 Z
+           M 64.00,109.71
+           C 64.00,109.71 73.14,109.71 73.14,109.71
+             73.14,109.71 73.14,475.43 73.14,475.43
+             73.14,475.43 64.00,475.43 64.00,475.43
+             46.48,475.43 31.43,469.14 18.86,456.57
+             6.28,444.00 0.00,428.95 0.00,411.43
+             0.00,411.43 0.00,173.71 0.00,173.71
+             0.00,156.19 6.28,141.14 18.86,128.57
+             31.42,116.00 46.47,109.71 64.00,109.71 Z" />
+</svg>
 
-   <form  class="form" >
+      </li>
+      
+      <li class="tablinks tooltip" 		id="tab6"	onclick="activetab(event, 'sectionvac')" titlee="Inmunizaciones" class="tooltip">
+
+	<svg class="svgicons" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 222 222">
+  <path id="Ruta importada"
+        stroke="none" stroke-width="1"
+        d="M 200.47,65.29
+           C 200.47,65.29 189.88,75.88 189.88,75.88
+             189.88,75.88 204.71,90.71 204.71,90.71
+             204.71,90.71 192.71,102.71 192.71,102.71
+             192.71,102.71 184.59,94.59 184.59,94.59
+             184.59,94.59 92.12,187.06 92.12,187.06
+             92.12,187.06 80.47,175.41 80.47,175.41
+             80.47,175.41 64.94,190.94 64.94,190.94
+             64.94,190.94 56.47,182.47 56.47,182.47
+             56.47,182.47 16.94,222.00 16.94,222.00
+             16.94,222.00 0.00,205.06 0.00,205.06
+             0.00,205.06 39.53,165.53 39.53,165.53
+             39.53,165.53 31.06,157.06 31.06,157.06
+             31.06,157.06 46.59,141.53 46.59,141.53
+             46.59,141.53 34.94,129.88 34.94,129.88
+             34.94,129.88 127.41,37.41 127.41,37.41
+             127.41,37.41 119.29,29.29 119.29,29.29
+             119.29,29.29 131.29,17.29 131.29,17.29
+             131.29,17.29 146.12,32.12 146.12,32.12
+             146.12,32.12 156.71,21.53 156.71,21.53
+             156.71,21.53 147.18,12.00 147.18,12.00
+             147.18,12.00 159.18,0.00 159.18,0.00
+             159.18,0.00 222.00,62.82 222.00,62.82
+             222.00,62.82 210.00,74.82 210.00,74.82
+             210.00,74.82 200.47,65.29 200.47,65.29 Z
+           M 119.41,143.77
+           C 119.41,143.77 103.18,127.53 103.18,127.53
+             103.18,127.53 94.71,136.00 94.71,136.00
+             94.71,136.00 110.94,152.24 110.94,152.24
+             110.94,152.24 119.41,143.77 119.41,143.77 Z
+           M 137.76,125.41
+           C 137.76,125.41 121.53,109.18 121.53,109.18
+             121.53,109.18 113.06,117.65 113.06,117.65
+             113.06,117.65 129.29,133.88 129.29,133.88
+             129.29,133.88 137.76,125.41 137.76,125.41 Z
+           M 156.82,106.35
+           C 156.82,106.35 140.59,90.12 140.59,90.12
+             140.59,90.12 132.12,98.59 132.12,98.59
+             132.12,98.59 148.35,114.82 148.35,114.82
+             148.35,114.82 156.82,106.35 156.82,106.35 Z" />
+</svg>
+
+     </li>
+    </ul>
+    
+    <form  class="form" >
 
 	<div id="sectionpatient" class="tabcontent">
-		<label for="fullname" class="labeldental" >Nombre completo:</label>
-		<input type="text" class="textbox" name="fullname" id="fullname" placeholder=""		><br>
-		<label for="fullname" class="labeldental">Sobrenombre:</label>
-		<input type="text" class="textbox" name="nickname" id="nickname" placeholder=""		><br>
-		<label class="labeldentalinline" class="textlabel" >Género:</label>
-		<div style="display:inline-flex;" >
-			<select class="selectandtext" style="margin-left: 12px; width:150px;" id="gender" name="gender">
-				<option value="2">Hombre</option>
-			      	<option value="1">Mujer</option>
-			</select>   
-		</div><br>
-		<label  class="labeldental" for="">Fecha de nacimiento:</label>
-		<!--<div  style="margin-bottom: -7px" class="" >Fecha de nacimiento:</div><br>-->
-		<div style="width: 100%;display: flex;">
-
-			<input  type="number" class="birthtextbox" name="birthdayyear" 	id="birthdayyear"  placeholder="Año"	>		
-			<select style="width:100%;" class="selectandtext" id="birthdaymonth"  name="birthdaymonth" >
-				<option value="" disabled selected>Mes</option>
-				<option value="1">Enero</option>
-		      		<option value="2">Febrero</option>
-		      		<option value="3">Marzo</option>
-		      		<option value="4">Abril</option>
-		      		<option value="5">Mayo</option>
-		      		<option value="6">Junio</option>
-		      		<option value="7">Julio</option>
-		      		<option value="8">Agosto</option>
-		      		<option value="9">Septiembre</option>
-		      		<option value="10">Octubre</option>
-		      		<option value="11">Noviembre</option>
-		      		<option value="12">Diciembre</option>
-			</select>		
-			<input type="number" class="birthtextbox" name="birthdayday" 	id="birthdayday"   placeholder="Día" min="0" max="31" step="1"><br>
+	    <div class="fieldcontainer">
+	        <label for="fullname" class="labeldental" >Nombre completo:</label>
+	        <input type="text" class="textbox" name="fullname" id="fullname" placeholder=""		><br>
+	    </div>
+	    <div class="fieldcontainer">
+	        <label for="fullname" class="labeldental">Sobrenombre:</label>
+	        <input type="text" class="textbox" name="nickname" id="nickname" placeholder=""		><br>
+	    </div>
+	    <div class="fieldcontainer">
+	        <div class="inlineelement" >
+	            <label class="labeldental" class="textlabel" >Género:</label>
+	        </div>
+	        <div class="inlineelement" >
+	    	    <select class="selectandtext" id="gender" name="gender">
+	    	        <option value="2">Masculino</option>
+	    	    	<option value="1">Femenino</option>
+	    	</select>   
+	        </div>
+	    </div>
+	    <div class="fieldcontainer">
+	        <label  class="labeldental" for="">Fecha de nacimiento:</label><br>
+	        <div class="inlineelement birthdayelements" >
+	            <input type="number" class="textbox" name="birthdayday" 	id="birthdayday"   placeholder="Día" min="0" max="31" step="1"><br>
 		</div>
+	        <div class="inlineelement birthdayelements" >
+	            <select style="width:100%;" class="selectandtext" id="birthdaymonth"  name="birthdaymonth" >
+	        	<option value="" disabled selected>Mes</option>
+	        	<option value="1">Enero</option>
+	        	<option value="2">Febrero</option>
+	        	<option value="3">Marzo</option>
+	        	<option value="4">Abril</option>
+	        	<option value="5">Mayo</option>
+	        	<option value="6">Junio</option>
+	        	<option value="7">Julio</option>
+	        	<option value="8">Agosto</option>
+	        	<option value="9">Septiembre</option>
+	        	<option value="10">Octubre</option>
+	        	<option value="11">Noviembre</option>
+	        	<option value="12">Diciembre</option>
+	            </select>		
+		</div>
+	        <div class="inlineelement birthdayelements" >
+	            <input  type="number" class="textbox" name="birthdayyear" 	id="birthdayyear"  placeholder="Año"	>		
+		</div>
+
+	    </div>
 	</div>
-
-
 
 
 
 	<div id="sectionparent" class="tabcontent" style="display:none;">
-
-		<h3 class="titlesection" style="display: none;" >Información familiar</h3>
+	    <h3 class="titlesection" style="display: none;" >Información familiar</h3>
 		
-		<div class="sectiondiv2"><span>Padre</span></div>
-		<label  class="labeldental" for="fatherfullname">Nombre completo del padre:</label>
+	    <div class="sectiondiv2"><span>Padre</span></div>
+
+	    <div class="fieldcontainer">
+		<label  class="labeldental" for="fatherfullname">Nombre del padre:</label>
 		<input type="text" class="textbox" name="fatherfullname"  id="fatherfullname" 	><br>
-		<label  class="labeldental" for="fatherocupation">Ocupación del padre:</label>
+	    </div>
+	    <div class="fieldcontainer">
+	    	<label  class="labeldental" for="fatherocupation">Ocupación del padre:</label>
 		<input type="text" class="textbox" name="fatherocupation" id="fatherocupation"	><br>
-		<div class="sectiondiv"><span>Madre</span></div>
-		<label  class="labeldental" for="motherfullname">Nombre completo de la madre:</label>
+	    </div>
+
+	    <div class="sectiondiv"><span>Madre</span></div>
+	    
+	    <div class="fieldcontainer">
+		<label  class="labeldental" for="motherfullname">Nombre de la madre:</label>
 		<input type="text" class="textbox" name="motherfullname"  id="motherfullname"	><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" for="motherocupation">Ocupación de la madre:</label>
 		<input type="text" class="textbox" name="motherocupation" id="motherocupation"	><br>
+	    </div>
 		
-		<div style="width: 100%; margin-bottom: 20px;" >
-			<label  class="labeldentalinline" for="motherfullname">Estado matrimonial:</label>
-			<select style="display:inline-block" class="selectandtext" id="parentmarital" onchange="inputmaritalstatus(this);" name="parentmarital">
-				<option value="1">Casados</option>
-			      	<option value="2">Viudo(a)</option>
-			      	<option value="3">Unión libre</option>
-				<option value="4">Separados</option>
-				<option value="5">Divorciados</option>
-				<option value="10">Otro</option>
-			</select>   			
-			<input type="text" style="display:none;width:auto !important" class="textbox" name="otherparentmarital"  id="otherparentmarital" placeholder="Estado matrimonial">			
-		</div>		
+	    <div class="fieldcontainer">
+	        <label  class="labeldental" for="parentmarital">Estado civil:</label>
+	        <select class="selectandtext" id="parentmarital" onchange="selectother(this, 'otherparentmarital');" name="parentmarital">
+	            <option value="1">Casados</option>
+	            <option value="2">Viudo(a)</option>
+	            <option value="3">Unión libre</option>
+	            <option value="4">Separados</option>
+	            <option value="5">Divorciados</option>
+	            <option value="other">Otro</option>
+	        </select>   
+	    </div>
+	    <div class="fieldcontainer" >
+	        <input type="text" style="display:none;" class="textbox" name="otherparentmarital"  id="otherparentmarital" placeholder="Estado civil">
+	    </div>
 		
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >El niño vive con:</label>
-			<input type="radio" name="liveswith" value="ambos" id="viveconambos" checked><label for="viveconambos"> Ambos </label>
-			<input type="radio" name="liveswith" value="madre" id="viveconmadre"><label for="viveconmadre"> Madre </label>
-			<input type="radio" name="liveswith" value="padre" id="viveconpadre"><label for="viveconpadre"> Padre </label>   <br>
+            <div class="fieldcontainer" >
+                <label  class="labeldental" for="liveswith">El niño vive con:</label>
+                <select class="selectandtext" id="liveswith" onchange="selectother(this, 'otherliveswith');" name="liveswith">
+                    <option value="Ambos">Ambos</option>
+                    <option value="Madre">Madre</option>
+                    <option value="Padre">Padre</option>
+                    <option value="other">Otro</option>
+                </select>   			
+            </div>	
+            <div class="fieldcontainer" >
+                <input type="text" style="display:none;" class="textbox" name="otherliveswith"  id="otherliveswith" placeholder="Vive con">			
+            </div>	
+	
+	    <div class="fieldcontainer" style="display: inline-flex;" >
+		<div>
+		    <label  class="labeldental" >No. de hijos en la familia:</label>
+		    <input type="text" class="textbox" name="sibilings" id="sibilings">
 		</div>
+		<div style="margin-left: 15px;">
+		    <label  class="labeldental"  >Lugar que ocupa:</label>
+		    <input type="text" class="textbox" name="childnumber" id="childnumber" >
+		</div>
+	    </div>
 
-		<div style="width: 100%;display: flex;">
-			<div style="width:100%;">
-				<label  class="labeldental" style="margin-left: 5px;" >No. de hermanos:</label>
-				<input type="text" class="textbox" name="sibilings" id="sibilings">
-			</div>
-			<div style="width:100%; margin-left:15px;">
-				<label  class="labeldental" style="margin-left: 5px;" >Lugar que ocupa:</label>
-				<input type="text" class="textbox" name="childnumber" id="childnumber" >
-			</div>
-		</div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Ciudad:</label>
 		<input type="text" class="textbox" name="city"		  id="city"		><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Calle y número:</label>
 		<input type="text" class="textbox" name="streetandnumber" id="streetandnumber"	><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Colonia:</label>
 		<input type="text" class="textbox" name="neighberhood" 	  id="neighberhood" 	><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Teléfono:</label>
 		<input type="text" class="textbox" name="telephone" 	  id="telephone" 	><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Nombre de la escuela:</label>
 		<input type="text" class="textbox" name="schoolname"  	  id="schoolname"  	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Año que cursa:</label>
+		<input type="text" class="textbox" name="gradeschool"  	  id="gradeschool"  	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Turno:</label>
+		<input type="text" class="textbox" name="turnschool"  	  id="turnschool"  	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Mótivo de la consulta:</label>
+		<input type="text" class="textbox" name="reasonconsult"	  id="reasonconsult"  	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Referido por:</label>
+		<input type="text" class="textbox" name="referred"  	  id="referred"  	><br>
+	    </div>
 
 	</div>
-
-
-
-
-
 
 
 	<div id="sectionmedicalhistory" class="tabcontent" style="display:none;">
 		
 		<h3 class="titlesection" >Historia médica</h3>
-
+	 
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Nombre del pediatra:</label>
 		<input type="text" class="textbox" name="mhdoctor" 		id="mhdoctor" 		><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Teléfono del pediatra:</label>
 		<input type="text" class="textbox" name="mhdoctortelephone" 	id="mhdoctortelephone"	><br>
-		<label  class="labeldental" >Nombre de la escuela:</label>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Tiempo de gestación:</label>
 		<input type="text" class="textbox" name="Tiempo de gestación" 	id="gestationweeks"	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldentalinline" for="birthtype" >Tipo de parto:</label>
+		<select class="selectandtext" id="birthtype" name="birthtype" onchange="selectother(this, 'otherbirthtype');" >
+		    <option value="1">Natural</option>
+		    <option value="2">Cesárea</option>
+		    <option value="other">Otro</option>
+		</select>
+	    </div>
+	    <div class="fieldcontainer" >
+	        <input type="text" style="display:none;" class="textbox" name="otherbirthtype"  id="otherbirthtype" placeholder="Otro tipo de parto">
+	    </div>
 
-		<label  class="labeldentalinline" >Tipo de parto:</label>
-		<select class="selectandtext" id="birthtype" name="birthtype">
-			<option value="1">Natural</option>
-		      	<option value="2">C-section</option>
-		      	<option value="3">Other</option>
-		</select><br>
-
-
+	    <div class="fieldcontainer">
 		<div style="width: 100%;display: flex;">
-			<div style="width:100%;">
-				<label  class="labeldental" style="margin-left: 5px;" >Talla al nacer:</label>				
-				<input type="text" class="textbox" name="birthheight" 	id="birthheight" >
+		    <div style="width:100%;">
+		    	<label  class="labeldental" style="margin-left: 5px;" >Talla al nacer:</label>				
+		    	<input type="text" class="textbox" name="birthheight" 	id="birthheight" >
 
-			</div>
-			<div style="width:100%; margin-left:15px;">
-				<label  class="labeldental" style="margin-left: 5px;" >Peso al nacer:</label>
-				<input type="text" class="textbox" name="birthweight" 		id="birthweight" >
-			</div>
+		    </div>
+		    <div style="width:100%; margin-left:15px;">
+		    	<label  class="labeldental" style="margin-left: 5px;" >Peso al nacer:</label>
+		    	<input type="text" class="textbox" name="birthweight" 		id="birthweight" >
+		    </div>
 		</div>
-
-		<div style="width: 100%;display: flex;">
-			<div style="width:100%;">
-				<label  class="labeldental" style="margin-left: 5px;" >Talla actual:</label>				
-				<input type="text" class="textbox" name="currentheight" 	id="currentheight">
-			</div>
-			<div style="width:100%; margin-left:15px;">
-				<label  class="labeldental" style="margin-left: 5px;" >Peso al actual:</label>
-				<input type="text" class="textbox" name="currentweight" 	id="currentweight" >
-			</div>
+	    </div>
+	    <div class="fieldcontainer">
+	        <div style="width: 100%;display: flex;">
+		    <div style="width:100%;">
+		    	<label  class="labeldental" style="margin-left: 5px;" >Talla actual:</label>				
+		    	<input type="text" class="textbox" name="currentheight" 	id="currentheight">
+		    </div>
+		    <div style="width:100%; margin-left:15px;">
+		    	<label  class="labeldental" style="margin-left: 5px;" >Peso al actual:</label>
+		    	<input type="text" class="textbox" name="currentweight" 	id="currentweight" >
+		    </div>
 		</div>
-
-		<label  class="labeldental" >Ha tenido cirugias el niño:</label>				
+	    </div>
+	    
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Ha tenido el niño(a) cirugías:</label>				
 		<input type="text" class="textbox" name="surgeries" 		id="surgeries" 		><br>
+	    </div>
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >Ha recibido transfusiones de sangre:</label>				
 		<input type="text" class="textbox" name="bloodtransfusions" 	id="bloodtransfusions" 	><br>
-		<label  class="labeldental" >Recibió o esta recibiendo algún tratamiento:</label>				
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Recibió o está recibiendo algún tratamiento:</label>				
 		<input type="text" class="textbox" name="treatments" 		id="treatments" 	><br>
+	    </div>
 
 	</div>
 
 	<div id="sectionchronic" class="tabcontent" style="display:none;">
 
-		<h3 class="titlesection"> Enfermedades crónicas</h3>
+	    <h3 class="titlesection">Su hijo ha sido diagnosticado de alguna de las siguientes:</h3>
 
-	  <p><input type="checkbox" name="chronics" value="1"  id="cale" class="chbx"><label for="cale">Alergias		</label></p>
-	  <p><input type="checkbox" name="chronics" value="2"  id="cane" class="chbx"><label for="cane">Anemas			</label></p>
-	  <p><input type="checkbox" name="chronics" value="3"  id="cart" class="chbx"><label for="cart">Artitris		</label></p>
-	  <p><input type="checkbox" name="chronics" value="4"  id="casm" class="chbx"><label for="casm">Asma			</label></p>
-	  <p><input type="checkbox" name="chronics" value="5"  id="ccan" class="chbx"><label for="ccan">Cáncer			</label></p>
-	  <p><input type="checkbox" name="chronics" value="6"  id="ccon" class="chbx"><label for="ccon">Convulsiones		</label></p>
-	  <p><input type="checkbox" name="chronics" value="7"  id="cdia" class="chbx"><label for="cdia">Diabetes		</label></p>
-	  <p><input type="checkbox" name="chronics" value="8"  id="cesc" class="chbx"><label for="cesc">Escarlatina		</label></p>
-	  <p><input type="checkbox" name="chronics" value="9"  id="cenc" class="chbx"><label for="cenc">Enfermedades cardiacas	</label></p>
-	  <p><input type="checkbox" name="chronics" value="10" id="cfiq" class="chbx"><label for="cfiq">Fibrosis Quística	</label></p>
-	  <p><input type="checkbox" name="chronics" value="11" id="cfir" class="chbx"><label for="cfir">Fiebre reumática	</label></p>
-	  <p><input type="checkbox" name="chronics" value="12" id="chem" class="chbx"><label for="chem">Hemofilia		</label></p>
-	  <p><input type="checkbox" name="chronics" value="13" id="chep" class="chbx"><label for="chep">Hepatitis		</label></p>
-	  <p><input type="checkbox" name="chronics" value="14" id="chip" class="chbx"><label for="chip">Hiperactividad		</label></p>
-	  <p><input type="checkbox" name="chronics" value="15" id="chiv" class="chbx"><label for="chiv">HIV			</label></p>
-	  <p><input type="checkbox" name="chronics" value="16" id="cleu" class="chbx"><label for="cleu">Leucemia		</label></p>
-	  <p><input type="checkbox" name="chronics" value="17" id="cneu" class="chbx"><label for="cneu">Neumonía		</label></p>
-	  <p><input type="checkbox" name="chronics" value="18" id="cpac" class="chbx"><label for="cpac">Parálisis cerebral	</label></p>
-	  <p><input type="checkbox" name="chronics" value="19" id="cpar" class="chbx"><label for="cpar">Parotiditis		</label></p>
-	  <p><input type="checkbox" name="chronics" value="20" id="cpra" class="chbx"><label for="cpra">Problemas auditibos	</label></p>
-	  <p><input type="checkbox" name="chronics" value="21" id="cpro" class="chbx"><label for="cpro">Problemas ortopédicos	</label></p>
-	  <p><input type="checkbox" name="chronics" value="22" id="cprr" class="chbx"><label for="cprr">Problemas renales	</label></p>
-	  <p><input type="checkbox" name="chronics" value="23" id="cpoj" class="chbx"><label for="cpoj">Problema en los ojos	</label></p>
-	  <p><input type="checkbox" name="chronics" value="24" id="crep" class="chbx"><label for="crep">Retraso psicomotor	</label></p>
-	  <p><input type="checkbox" name="chronics" value="25" id="csar" class="chbx"><label for="csar">Sarampión		</label></p>
-	  <p><input type="checkbox" name="chronics" value="26" id="csin" class="chbx"><label for="csin">Síndrome		</label></p>
-	  <p><input type="checkbox" name="chronics" value="27" id="csoc" class="chbx"><label for="csoc">Soplo cardiaco		</label></p>
-	  <p><input type="checkbox" name="chronics" value="28" id="cvar" class="chbx"><label for="cvar">Varicela		</label></p>
-	  <p><input type="checkbox" name="chronics" value="29" id="cobs" class="chbx"><label for="cobs">Observaciones		</label></p>
-	  <p><input type="checkbox" name="chronics" value="30" id="cpaa" class="chbx"><label for="cpaa">Paciente ASA		</label></p>
+	    <div class="fieldcontainer">
+                <div class="inlineelement" style="width:49%;">
+                    <div><input type="checkbox" name="chronics" value="1"  id="cale" class="chbx"><label for="cale">Alergias		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="2"  id="cane" class="chbx"><label for="cane">Anemas		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="3"  id="cart" class="chbx"><label for="cart">Artitris		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="4"  id="casm" class="chbx"><label for="casm">Asma		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="5"  id="ccan" class="chbx"><label for="ccan">Cáncer		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="6"  id="ccon" class="chbx"><label for="ccon">Convulsiones	   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="7"  id="cdia" class="chbx"><label for="cdia">Diabetes		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="8"  id="cesc" class="chbx"><label for="cesc">Escarlatina		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="9"  id="cenc" class="chbx"><label for="cenc">Enfermedades cardiacas </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="10" id="cfiq" class="chbx"><label for="cfiq">Fibrosis Quística	   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="11" id="cfir" class="chbx"><label for="cfir">Fiebre reumática	   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="12" id="chem" class="chbx"><label for="chem">Hemofilia		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="13" id="chep" class="chbx"><label for="chep">Hepatitis		   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="14" id="chip" class="chbx"><label for="chip">Hiperactividad	   </label></div><br>
+	        </div>
+	        <div class="inlineelement">
+                    <div><input type="checkbox" name="chronics" value="15" id="chiv" class="chbx"><label for="chiv">HIV			   </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="16" id="cleu" class="chbx"><label for="cleu">Leucemia		  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="17" id="cneu" class="chbx"><label for="cneu">Neumonía		  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="18" id="cpac" class="chbx"><label for="cpac">Parálisis cerebral	  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="19" id="cpar" class="chbx"><label for="cpar">Parotiditis		  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="20" id="cpra" class="chbx"><label for="cpra">Problemas auditibos	  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="21" id="cpro" class="chbx"><label for="cpro">Problemas ortopédicos </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="22" id="cprr" class="chbx"><label for="cprr">Problemas renales	  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="23" id="cpoj" class="chbx"><label for="cpoj">Problema en los ojos  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="24" id="crep" class="chbx"><label for="crep">Retraso psicomotor	  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="25" id="csar" class="chbx"><label for="csar">Sarampión		  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="26" id="csin" class="chbx"><label for="csin">Síndrome		  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="27" id="csoc" class="chbx"><label for="csoc">Soplo cardiaco	  </label></div><br>
+                    <div><input type="checkbox" name="chronics" value="28" id="cvar" class="chbx"><label for="cvar">Varicela		  </label></div><br>
+	        </div>
+	    </div>
+	    <!--
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Observaciones:</label>				
+		<input type="text" class="textbox" name="observations" 	id="observations" 	><br>
+	    </div>
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Paciente ASA:</label>				
+		<input type="text" class="textbox" name="asa" 	id="asa" 	><br>
+	    </div>
+	    -->
 	</div>
 
 	<div id="sectionprevhm" class="tabcontent" style="display:none;">
 
-			<h3 class="titlesection" >Historial médico previo</h3>
+	    <h3 class="titlesection" >Historial médico previo</h3>
 
-		<div style="margin-bottom:25px;">
-		<label  class="labeldentalinline" >Es su primiera visita al dentista:</label>				
-		<input type="radio" name="firsvisit" value="true"  id="yesfisrtvisit"><label for="yesfisrtvisit"> Si </label>
-		<input type="radio" name="firsvisit" value="false" id="nofisrtvisit"><label for="nofisrtvisit"> No </label>   <br>
-		</div>
-
-		<label  class="labeldental" >Si la respuesta es NO, cuándo y el motivo:</label>				
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Esta es la primera visita al dentista:</label>				
+		<input type="radio" name="firsvisit" value="true"  id="yesfisrtvisit" onchange="radioandshow('hide','evisitnotes')" ><label for="yesfisrtvisit"> Si </label>
+		<input type="radio" name="firsvisit" value="false" id="nofisrtvisit"  onchange="radioandshow('show','evisitnotes')"><label for="nofisrtvisit"> No </label>   <br>
+	    </div>
+	    <div class="fieldcontainer" id="evisitnotes" style="display:none;">
+		<label  class="labeldental" >Cuándo y el motivo:</label>				
 	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" ><br>
+	    </div>
 
-		<div style="margin-bottom:25px;">		
-			<label  class="labeldentalinline" >Ha cooperado el niño con otros médicos anteriormente:</label>				
-			<input type="radio" name="cooperation" value="true" id="yescooperation"><label for="yescooperation"> Si </label>
-			<input type="radio" name="cooperation" value="false" id="nocooperation"><label for="nocooperation"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Ha cooperado el niño con otros médicos anteriormente:</label>				
+		<input type="radio" name="cooperation" value="true" id="yescooperation" ><label for="yescooperation"> Si </label>
+		<input type="radio" name="cooperation" value="false" id="nocooperation"><label for="nocooperation"> No </label>   <br>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-		<label  class="labeldentalinline" >Ha sufrido dolor dental:</label>				
-			<input type="radio" name="dentalpain" value="true" id="yesdentalpain"><label for="yesdentalpain"> Si </label>
-			<input type="radio" name="dentalpain" value="false" id="nodentalpain"><label for="nodentalpain"> No </label>   <br>
-		</div>
-
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Ha sufrido dolor dental:</label>				
+		<input type="radio" name="dentalpain" value="true" id="yesdentalpain" onchange="radioandshow('show','enotesdentalpain')" ><label for="yesdentalpain"> Si </label>
+		<input type="radio" name="dentalpain" value="false" id="nodentalpain" onchange="radioandshow('hide','enotesdentalpain')" ><label for="nodentalpain"> No </label>   <br>
+	    </div>		
+	    <div class="fieldcontainer" id="enotesdentalpain" style="display:none;">
 		<label  class="labeldental" >Cuándo: (notas)</label>				
 		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" ><br>
-	
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Tiene una dieta balanceada:</label>				
-			<input type="radio" name="balanceddiet" value="true" id="yesbalanceddiet"><label for="yesbalanceddiet"> Si </label>
-			<input type="radio" name="balanceddiet" value="false" id="nobalanceddiet"><label for="nobalanceddiet"> No </label>   <br>
-		</div>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Tiene una dieta alta en hidratos de carbono:</label>				
-			<input type="radio" name="highchdiet" value="true" id="yeshighchdiet"><label for="yeshighchdiet"> Si </label>
-			<input type="radio" name="highchdiet" value="false" id="nohighchdiet"><label for="nohighchdiet"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Tiene una dieta balanceada:</label>				
+		<input type="radio" name="balanceddiet" value="true" id="yesbalanceddiet"><label for="yesbalanceddiet" > Si </label>
+		<input type="radio" name="balanceddiet" value="false" id="nobalanceddiet"><label for="nobalanceddiet"> No </label>   <br>
+	    </div>
 
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Tiene una dieta alta en hidratos de carbono:</label>				
+		<input type="radio" name="highchdiet" value="true" id="yeshighchdiet" onchange="radioandshow('show','enoteshighchdiet')" ><label for="yeshighchdiet"> Si </label>
+		<input type="radio" name="highchdiet" value="false" id="nohighchdiet" onchange="radioandshow('hide','enoteshighchdiet')" ><label for="nohighchdiet"> No </label>   <br>
+	    </div>
+	    <div class="fieldcontainer" id="enoteshighchdiet" style="display:none;">
 		<label  class="labeldental" >En forma de:</label>				
-		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" ><br>
+		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" ><br>		
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Usa biberón:</label>				
-			<input type="radio" name="biberon" value="true" id="yesbiberon"><label for="yesbiberon"> Si </label>
-			<input type="radio" name="biberon" value="false" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Usa biberón:</label>				
+		<input type="radio" name="biberon" value="true" id="yesbiberon"><label for="yesbiberon"> Si </label>
+		<input type="radio" name="biberon" value="false" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
+	    </div>
 
-		<label  class="labeldental" >¿A qué edad dejó el biberón?</label>				
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >¿A qué edad dejó lo dejó?</label>				
 		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
+	    </div>
 
-		<label  class="labeldental" >¿Qué líquidos usa en el biberón?</label>				
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >¿Qué tipos de líquidos toma en el?</label>				
 		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
+	    </div>
 
-		<label  class="labeldental" >Frecuencia del biberón:</label>				
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
 		<input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Usa chupón:</label>				
-			<input type="radio" name="pacifier" value="true" id="yespacifier"><label for="yespacifier"> Si </label>
-			<input type="radio" name="pacifier" value="false" id="nopacifier"> <label for="nopacifier"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Usa chupón:</label>				
+		<input type="radio" name="pacifier" value="true" id="yespacifier"><label for="yespacifier"> Si </label>
+		<input type="radio" name="pacifier" value="false" id="nopacifier"> <label for="nopacifier"> No </label>   <br>
+	    </div>
 
-		<label  class="labeldental" >¿Con qué frecuencia usa chupón?</label>				
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
 		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Es o fue alimentado con seno materno:</label>				
-			<input type="radio" name="breastfed" value="true" id="yesbreastfed"><label for="yesbreastfed"> Si </label>
-			<input type="radio" name="breastfed" value="false" id="nobreastfed"> <label for="nobreastfed"> No </label>   <br>
-		</div>
-		
-		<div id="badhabits" >
-		</div>
-		<div id="addbadhabit" onclick="addbadhabit(this)" style="margin: 10px 10px 30px 10px;font-family: helvetica;font-size:14px;color:#8bf;cursor:pointer;" >
-			+Agregar mal hábito
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Es o fue alimentado con seno materno:</label>				
+		<input type="radio" name="breastfed" value="true" id="yesbreastfed"><label for="yesbreastfed"> Si </label>
+		<input type="radio" name="breastfed" value="false" id="nobreastfed"> <label for="nobreastfed"> No </label>   <br>
+	    </div>
 
 
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Tiene algún hábito:</label>				
+		<input type="radio" name="badhabit1" value="true" id="yesbadhabit1" onchange="radioandshow('show','ebadhabits')" ><label for="yesbadhabit1"> Si </label>
+		<input type="radio" name="badhabit1" value="false" id="nobadhabit1" onchange="radioandshow('hide','ebadhabits')" ><label for="nobadhabit1"> No </label><br>
+	    </div>
+	    <div id="ebadhabits" style="display: none;">
+	        <div class="fieldcontainer">
+	            <label  class="labeldental" >¿Cuál?:</label>			
+	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	        </div>
+	        <div class="fieldcontainer">
+	            <label  class="labeldental" >Frecuencia:</label>				
+	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	        </div>
+	        <div class="fieldcontainer">
+	            <label  class="labeldental" >Duración:</label>
+	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	        </div>
+	        <div class="fieldcontainer">
+	            <label  class="labeldental" >Intensidad:</label>
+	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	        </div>
+	    </div>
+	
 
+	    <div class="fieldcontainer">
 		<label  class="labeldental" >¿Cuántas veces cepilla sus dientes?</label>				
 		<input type="text" class="textbox" id="brushfrecuency" name="brushfrecuency" > <br>
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >¿Usa hilo dental?:</label>				
-			<input type="radio" name="floos" value="true" id="yesfloos"><label for="yesfloos"> Si </label>
-			<input type="radio" name="floos" value="false" id="nofloos"><label for="nofloos"> No </label>   <br>
-		</div>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Residió o reside en alguna población con flúor en el agua:</label>				
-			<input type="radio" name="flourinwater" value="true" id="yesflourinwater"><label for="yesflourinwater"> Si </label>
-			<input type="radio" name="flourinwater" value="false" id="noflourinwater"><label for="noflourinwater"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >¿Usa hilo dental?:</label>				
+		<input type="radio" name="floos" value="true" id="yesfloos"><label for="yesfloos"> Si </label>
+		<input type="radio" name="floos" value="false" id="nofloos"><label for="nofloos"> No </label>   <br>
+	    </div>
+
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Residió o reside en alguna población con flúor en el agua:</label>				
+		<input type="radio" name="flourinwater" value="true" id="yesflourinwater" onchange="radioandshow('show','ewhereflourinwater')" ><label for="yesflourinwater"> Si </label>
+		<input type="radio" name="flourinwater" value="false" id="noflourinwater" onchange="radioandshow('hide','ewhereflourinwater')" ><label for="noflourinwater"> No </label>   <br>
+	    </div>
+	    <div class="fieldcontainer" id="ewhereflourinwater" style="display:none;">
 		<label  class="labeldental" >¿Dónde?</label>				
 		<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	    </div>
 
-		<div style="margin-bottom:25px;">
-			<label  class="labeldentalinline" >Ha recibido aplicaciones tópicas de fluoruro:</label>				
-			<input type="radio" name="flour" value="true" id="yesflour"><label for="yesflour"> Si </label>
-			<input type="radio" name="flour" value="false" id="noflour"><label for="noflour"> No </label>   <br>
-		</div>
+	    <div class="fieldcontainer">
+		<label  class="radiolabel" >Ha recibido aplicaciones tópicas de fluoruro:</label>				
+		<input type="radio" name="flour" value="true" id="yesflour" onchange="radioandshow('show','elastflourapp')" ><label for="yesflour"> Si </label>
+		<input type="radio" name="flour" value="false" id="noflour" onchange="radioandshow('hide','elastflourapp')" ><label for="noflour"> No </label>   <br>
+	    </div>
+	    <div class="fieldcontainer" id="elastflourapp" style="display:none;">
 		<label  class="labeldental" >¿Cuándo fue la última?</label>				
 		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
+	    </div>
 
 	</div>
 
+	<div id="sectionvac" class="tabcontent" style="display:none;">
+	    <h3 class="titlesection" >Inmunizaciones</h3>
+
+            <p><input type="checkbox" name="vaccines" value="1"  id="vbcg" class="chbx"><label for="vbcg">BCG		</label></p>
+            <p><input type="checkbox" name="vaccines" value="2"  id="vdpt" class="chbx"><label for="vdpt">DPT		</label></p>
+            <p><input type="checkbox" name="vaccines" value="3"  id="vpol" class="chbx"><label for="vpol">Polio		</label></p>
+            <p><input type="checkbox" name="vaccines" value="4"  id="vtri" class="chbx"><label for="vtri">Triple	</label></p>
+	    
+	    <div id="extravaccines" ></div>
+
+	    <div id="addvaccines" onclick="addvaccines(this)" style="margin: 10px 10px 30px 10px;font-family: helvetica;font-size:14px;color:#8bf;cursor:pointer;background: #55f; display: inline-block; padding: 8px; background: #757afa; color: #fff;border-radius: 3px;" >
+		 Agregar otra vacuna
+	    </div>
+
+	</div>
 
       <input type="button" onclick="nexttab(event)" value="Siguiente" class="button" id="bottomnext" />
       <input type="button" onclick="guardar(event)" value="Guardar" class="button"  id="bottomsave" />

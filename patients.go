@@ -13,6 +13,7 @@ type Patient struct {
 	Gender		int		`json:gender`
 	BirthDate	time.Time	`json:birthdate`
 	Sibilings	int		`json:siblings`
+	NumberChild	int		`json:numberchild`
 	LivesWith	string		`json:liveswith`
 	Address		Address		`json:address`
 	School		School		`json:school`
@@ -20,6 +21,7 @@ type Patient struct {
 	Mother		Parent		`json:mother`
 	MedicalHistory	MedicalHistory	`json:medicalhistory`
 	Chronics	[]int		`json:chronics`
+	Consult		Consult		`json:consult`
 }
 
 type Address struct {
@@ -33,20 +35,19 @@ type Address struct {
 type School struct {
 	Id        int
 	Name      string
-	AddressId string //Cuando cacha el id cuando se hace insert es un string
+	Grade	  string
+	Turn	  string
 }
 
 type Parent struct {
 	Id              int
 	FullName        string	`json:fullname`
 	Ocupation       string	`json:ocupation`
-	MaritalStatusId string	`json:maritalstatus`
-	AddressId       string	`json:address`
+	MaritalStatusId int	`json:maritalstatus`
 }
 
 type MedicalHistory struct {
 	PatientId         int
-	Creation          time.Time
 	Doctor            string	`json:doctor`
 	DoctorTelephone   string	`json:telephone`
 	GestationWeeks    int		`json:gestationweeks`
@@ -83,6 +84,12 @@ type MedicalHistoryPrev struct {
 	FlourInWater		bool		`json:flourinwater`
 	WhereFlourInWater	string		`json:whereflourinwater`
 	BadHabits		string          `json:badhabits`
+}
+
+type Consult struct{
+	PatientId	int
+	Reason		string
+	Referred	string
 }
 
 
