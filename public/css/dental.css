@@ -489,3 +489,7 @@ input::-webkit-inner-spin-button {
     color: #aaa;
     opacity: 1; /* Firefox */
 }
+
+.unity{
+	margin: 0 22px 0 8px;	
+}

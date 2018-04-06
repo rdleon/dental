@@ -117,6 +117,14 @@ function radioandshow( display, idElementDisplay){
 	}
 }
 
+function radiohideshow( idElementDisplay, idElementHide){
+	var elementShow = document.getElementById( idElementDisplay );
+	elementShow.style.display = "block";
+	elementShow.getElementsByTagName("input")[0].focus();
+	var elementHide = document.getElementById( idElementHide );
+	elementHide.style.display = "none";
+}
+
 function valorParaNull(obj) {
 	if( obj === null)
 		return 0
@@ -280,3 +288,4 @@ motivo de la visita
 
 }
 
+/*linear-gradient(to bottom,#563d7c 0,#6f5499 100%);*/

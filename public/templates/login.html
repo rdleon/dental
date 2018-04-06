@@ -494,11 +494,11 @@
 	    <div class="fieldcontainer" style="display: inline-flex;" >
 		<div>
 		    <label  class="labeldental" >No. de hijos en la familia:</label>
-		    <input type="text" class="textbox" name="sibilings" id="sibilings">
+		    <input type="number" class="textbox" name="sibilings" id="sibilings">
 		</div>
 		<div style="margin-left: 15px;">
 		    <label  class="labeldental"  >Lugar que ocupa:</label>
-		    <input type="text" class="textbox" name="childnumber" id="childnumber" >
+		    <input type="number" class="textbox" name="childnumber" id="childnumber" >
 		</div>
 	    </div>
 
@@ -574,12 +574,13 @@
 		<div style="width: 100%;display: flex;">
 		    <div style="width:100%;">
 		    	<label  class="labeldental" style="margin-left: 5px;" >Talla al nacer:</label>				
-		    	<input type="text" class="textbox" name="birthheight" 	id="birthheight" >
-
+		    	<input type="number" style="display:inline-block !important;width: calc(100% - 80px);" class="textbox" name="birthheight"   id="birthheight" >
+			<span class="unity">cms.</span>
 		    </div>
 		    <div style="width:100%; margin-left:15px;">
 		    	<label  class="labeldental" style="margin-left: 5px;" >Peso al nacer:</label>
-		    	<input type="text" class="textbox" name="birthweight" 		id="birthweight" >
+		    	<input type="number" style="display:inline-block !important;width: calc(100% - 80px);" class="textbox" name="birthweight" 		id="birthweight" >
+			<span class="unity">Kgs.</span>
 		    </div>
 		</div>
 	    </div>
@@ -587,11 +588,13 @@
 	        <div style="width: 100%;display: flex;">
 		    <div style="width:100%;">
 		    	<label  class="labeldental" style="margin-left: 5px;" >Talla actual:</label>				
-		    	<input type="text" class="textbox" name="currentheight" 	id="currentheight">
+		    	<input type="number" class="textbox" name="currentheight" style="display:inline-block !important;width: calc(100% - 80px);" id="currentheight">
+			<span class="unity">cms.</span>
 		    </div>
 		    <div style="width:100%; margin-left:15px;">
 		    	<label  class="labeldental" style="margin-left: 5px;" >Peso al actual:</label>
-		    	<input type="text" class="textbox" name="currentweight" 	id="currentweight" >
+		    	<input type="number" class="textbox" name="currentweight" style="display:inline-block !important;width: calc(100% - 80px);" id="currentweight" >
+			<span class="unity">Kgs.</span>
 		    </div>
 		</div>
 	    </div>
@@ -687,7 +690,7 @@
 		<input type="radio" name="dentalpain" value="false" id="nodentalpain" onchange="radioandshow('hide','enotesdentalpain')" ><label for="nodentalpain"> No </label>   <br>
 	    </div>		
 	    <div class="fieldcontainer" id="enotesdentalpain" style="display:none;">
-		<label  class="labeldental" >Cuándo: (notas)</label>				
+		<label  class="labeldental" >Cuándo:</label>				
 		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" ><br>
 	    </div>
 
@@ -709,23 +712,27 @@
 
 	    <div class="fieldcontainer">
 		<label  class="radiolabel" >Usa biberón:</label>				
-		<input type="radio" name="biberon" value="true" id="yesbiberon"><label for="yesbiberon"> Si </label>
-		<input type="radio" name="biberon" value="false" id="nobiberon"> <label for="nobiberon"> No </label>   <br>
+		<input type="radio" name="biberon" value="true" id="yesbiberon" onchange="radiohideshow('elementsusebiberon', 'elementsnousebiberon')" ><label for="yesbiberon"> Si </label>
+		<input type="radio" name="biberon" value="false" id="nobiberon" onchange="radiohideshow('elementsnousebiberon', 'elementsusebiberon')" > <label for="nobiberon"> No </label>   <br>
 	    </div>
 
-	    <div class="fieldcontainer">
-		<label  class="labeldental" >¿A qué edad dejó lo dejó?</label>				
-		<input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
+	    <div id="elementsnousebiberon" style="display:none;">
+	        <div class="fieldcontainer">
+	            <label  class="labeldental" >¿A qué edad dejó lo dejó?</label>				
+	            <input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
+	        </div>
 	    </div>
 
-	    <div class="fieldcontainer">
-		<label  class="labeldental" >¿Qué tipos de líquidos toma en el?</label>				
-		<input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
-	    </div>
+	    <div id="elementsusebiberon" style="display:none;">
+	        <div class="fieldcontainer">
+		    <label  class="labeldental" >¿Qué tipos de líquidos toma en el?</label>				
+		    <input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
+	        </div>
 
-	    <div class="fieldcontainer">
-		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
-		<input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
+	        <div class="fieldcontainer">
+		    <label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
+		    <input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
+	    	</div>
 	    </div>
 
 	    <div class="fieldcontainer">
@@ -754,19 +761,19 @@
 	    <div id="ebadhabits" style="display: none;">
 	        <div class="fieldcontainer">
 	            <label  class="labeldental" >¿Cuál?:</label>			
-	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	            <input type="text" class="textbox" name="habitname" id="habitname" ><br>
 	        </div>
 	        <div class="fieldcontainer">
 	            <label  class="labeldental" >Frecuencia:</label>				
-	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	            <input type="text" class="textbox" name="habitfrequency" id="habitfrequency" ><br>
 	        </div>
 	        <div class="fieldcontainer">
 	            <label  class="labeldental" >Duración:</label>
-	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	            <input type="text" class="textbox" name="habitduration" id="habitduration" ><br>
 	        </div>
 	        <div class="fieldcontainer">
 	            <label  class="labeldental" >Intensidad:</label>
-	            <input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
+	            <input type="text" class="textbox" name="habitintensity" id="habitintensity" ><br>
 	        </div>
 	    </div>
 	
@@ -799,7 +806,7 @@
 	    </div>
 	    <div class="fieldcontainer" id="elastflourapp" style="display:none;">
 		<label  class="labeldental" >¿Cuándo fue la última?</label>				
-		<input type="text" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
+		<input type="date" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
 	    </div>
 
 	</div>
