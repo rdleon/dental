@@ -138,11 +138,19 @@ function guardar(evt){
 	var chronics	= [];
 	for( var i=0; i<chronicssel.length; i++ ){
 		if( chronicssel[i].checked){
-			chronics.append( chronicssel[i].value )
+			chronics.push( chronicssel[i].value )
 		}
 	}
 
-	/*
+	var vaccinessel	= document.getElementsByName("vaccines");
+	var vaccines	= [];
+	for( var i=0; i<vaccinessel.length; i++ ){
+		if( vaccinessel[i].checked){
+			vaccines.push( vaccinessel[i].value )
+		}
+	}
+
+/*
 	var firsvisit   		= document.querySelector('input[name="firsvisit"]:checked'	);firsvisit = valorParaNull(firsvisit);
 	var visitnotes   		= document.getElementById("visitnotes"			 	).value;
 	var cooperation 		= document.querySelector('input[name="cooperation"]:checked'	);cooperation = valorParaNull(cooperation);
@@ -161,6 +169,7 @@ function guardar(evt){
 
 	*/
 
+    var gestationweeks = parseInt(document.getElementById("gestationweeks").value) * parseFloat(document.getElementById("weeksormonthsgestation").value);
 
     var patient = {
 	"fullname"  : document.getElementById("fullname").value,
@@ -168,16 +177,29 @@ function guardar(evt){
         "gender"    : parseInt(document.getElementById("gender").value),
         "birthdate" : new Date( parseInt(document.getElementById("birthdayyear").value), parseInt(document.getElementById("birthdaymonth").value)-1,  parseInt(document.getElementById("birthdayday").value )).toISOString(),
         "sibilings" : parseInt(document.getElementById("sibilings").value),
-        "liveswith" : document.querySelector('input[name="liveswith"]:checked'),
+	"childnumber" : parseInt(document.getElementById("childnumber").value),
+	"reasonconsult": document.getElementById("reasonconsult").value,
+	"referredby":document.getElementById("referredby").value,
+        "liveswith" : {
+		"valueid" : parseInt(document.getElementById("liveswith").value),
+		"othervalue": document.getElementById("otherliveswith").value	
+	},
 	"father": {
 		"fullname": document.getElementById("fatherfullname").value,
 		"ocupation": document.getElementById("fatherocupation"	).value,
-		"maritalstatus": document.getElementById("parentmarital").value
+		"maritalstatus":{
+			"valueid": parseInt(document.getElementById("parentmarital").value),
+			"othervalue": document.getElementById("otherparentmarital").value
+		}
+
 	},
 	"mother": {
 		"fullname": document.getElementById("fatherfullname").value,
 		"ocupation": document.getElementById("fatherocupation").value,
-		"maritalstatus": document.getElementById("parentmarital").value
+		"maritalstatus": {
+			"valueid": parseInt(document.getElementById("parentmarital").value),
+			"othervalue": document.getElementById("otherparentmarital").value
+		}
 
 	},
         "address"   : {
@@ -187,48 +209,57 @@ function guardar(evt){
 		"telephone": document.getElementById("telephone").value
 	},
         "school"    : {
-		"name": document.getElementById("schoolname").value
+		"name": document.getElementById("schoolname").value,
+		"gradeschool": document.getElementById("gradeschool").value,
+		"turnschool": document.getElementById("turnschool").value
 	},
 	"medicalhistory":{
-			"doctor"		:document.getElementById("mhdoctor"		).value,
-                        "telephone"		:document.getElementById("mhdoctortelephone"	).value,
-                        "gestationweeks"	:document.getElementById("gestationweeks"	).value,
-                        "birthtypw"		:document.getElementById("birthtype"		).value,
-                        "birthheight"		:document.getElementById("birthheight" 		).value,
-                        "birthweight"		:document.getElementById("birthweight" 		).value,
-                        "currentheight"		:document.getElementById("currentheight" 	).value,
-                        "currentweight"		:document.getElementById("currentweight" 	).value,
-                        "surgeries"		:document.getElementById("surgeries" 		).value,
-                        "bloodtransfusions"	:document.getElementById("bloodtransfusions" 	).value,
-                        "treatments"		:document.getElementById("treatments" 		).value
+		"pediatrist"		:document.getElementById("pediatrist"		).value,
+                "pediatristtelephone"	:document.getElementById("pediatristtelephone"	).value,
+                "gestationweeks"	:gestationweeks,
+                "birthtype"		:{
+			"valueid"    : parseInt(document.getElementById("birthtype").value),
+			"othervalue" : document.getElementById("otherbirthtype").value
+		},
+                "birthheight"   	:parseFloat(document.getElementById("birthheight" 	).value),
+                "birthweight"   	:parseFloat(document.getElementById("birthweight" 	).value),
+                "currentheight"		:parseFloat(document.getElementById("currentheight" 	).value),
+                "currentweight"		:parseFloat(document.getElementById("currentweight" 	).value),
+                "surgeries"		:document.getElementById("surgeries" 		).value,
+                "bloodtransfusions"	:document.getElementById("bloodtransfusions" 	).value,
+                "treatments"		:document.getElementById("treatments" 		).value
 
 	},
 	"chronics": chronics,
 	"historymedicalprev": {
-		"firsvisit"		: document.querySelector('input[name="firsvisit"]:checked'	),
+		"firsvisit"		: document.querySelector('input[name="firsvisit"]:checked'	).value == "true",
 	        "visitnotes"		: document.getElementById("visitnotes"			 	).value,
-		"cooperation"		: document.querySelector('input[name="cooperation"]:checked'	),
-		"dentalpain"		: document.querySelector('input[name="dentalpain"]:checked'	),
+		"cooperation"		: document.querySelector('input[name="cooperation"]:checked'	).value == "true",
+		"dentalpain"		: document.querySelector('input[name="dentalpain"]:checked'	).value == "true",
 	        "notesdentalpain"	: document.getElementById("notesdentalpain"			).value,
-		"balanceddiet"		: "",
-	        "highchdiet"		: document.querySelector('input[name="highchdiet"]:checked'	),
+		"balanceddiet"		: document.querySelector('input[name="balanceddiet"]:checked'	).value == "true",
+	        "highchdiet"		: document.querySelector('input[name="highchdiet"]:checked'	).value == "true",
 	        "noteshighchdiet"	: document.getElementById("noteshighchdiet"			).value,
-	        "biberon"		: document.querySelector('input[name="biberon"]:checked'	),
+	        "biberon"		: document.querySelector('input[name="biberon"]:checked'	).value == "true",
 	        "biberonlastused"	: document.getElementById("biberonlastused"			).value,
 	        "biberonliquids"	: document.getElementById("biberonliquids"			).value,
-		"biberonfrecuency"	: "",
-		"pacifier"		: "",
+		"biberonfrecuency"	: document.getElementById("biberonfrecuency"			).value,
+		"pacifier"		: document.querySelector('input[name="pacifier"]:checked'	).value == "true",
 	        "pacifierfrecuency"	: document.getElementById("pacifierfrecuency"			).value,
-		"breastfed"		: "",
-		"brushfrecuency"	: "",
-	        "floos"			: document.querySelector('input[name="floos"]:checked'		),
-	        "flourinwater"		: document.getElementById("flourinwater"			).value,
-		"whereflourinwater"	: "",
-		"flour"			: "",
+		"breastfed"		: document.querySelector('input[name="breastfed"]:checked'	).value == "true",
+		"brushfrecuency"	: document.getElementById("brushfrecuency"			).value,
+	        "floos"			: document.querySelector('input[name="floos"]:checked'		).value == "true",
+	        "flourinwater"		: document.querySelector('input[name="flourinwater"]:checked'	).value == "true",
+		"whereflourinwater"	: document.getElementById("whereflourinwater"			).value,
+		"flour"			: document.querySelector('input[name="flour"]:checked'		).value == "true",
 	        "lastflourapp"		: document.getElementById("lastflourapp"			).value,
-	        "badhabits"		: document.getElementById("badhabits"				).value	
-	}		
-
+	        "badhabits"		: document.querySelector('input[name="badhabit1"]:checked'	).value == "true",	
+	        "habitname"		: document.getElementById("habitname"				).value,
+	        "habitfrequency"	: document.getElementById("habitfrequency"			).value,
+	        "lastflourapp"		: document.getElementById("lastflourapp"			).value,
+	        "habitintensity"	: document.getElementById("habitintensity"			).value
+	},		
+	"vaccines" : vaccines
     };
 
 	//var fatherfullname  		= 
@@ -240,7 +271,7 @@ function guardar(evt){
 	//var neighberhood    		= document.getElementById("neighberhood"	).value;
 	//var telephone       		= document.getElementById("telephone"		).value;
 	//var schoolname      		= document.getElementById("schoolname"		).value;
-	var schooladdress   		= document.getElementById("schooladdress"	).value;
+	//var schooladdress   		= document.getElementById("schooladdress"	).value;
 
 	//var mhdoctor   			= document.getElementById("mhdoctor"		).value;
 	//var mhdoctortelephone   	= document.getElementById("mhdoctortelephone"	).value;
@@ -276,7 +307,14 @@ function guardar(evt){
 	kgs y cms margin
 
 
+	Evaluar cuando no se ingresa nada, por como lo recibe, si es que lo transforma con una funcion
+	Cuando es de un Si o un No y se ingresa un texto
+	Agregar otra vacuna
+
+
 	*/
+
+	console.log( JSON.stringify(patient) )
 
 	var xhr = new XMLHttpRequest();
 	var url = "/patients";

@@ -481,9 +481,9 @@
             <div class="fieldcontainer" >
                 <label  class="labeldental" for="liveswith">El niño vive con:</label>
                 <select class="selectandtext" id="liveswith" onchange="selectother(this, 'eotherliveswith');" name="liveswith">
-                    <option value="Ambos">Ambos</option>
-                    <option value="Madre">Madre</option>
-                    <option value="Padre">Padre</option>
+                    <option value="1">Ambos</option>
+                    <option value="2">Madre</option>
+                    <option value="3">Padre</option>
                     <option value="0">Otro</option>
                 </select>   			
             </div>	
@@ -536,7 +536,7 @@
 	    </div>
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Referido por:</label>
-		<input type="text" class="textbox" name="referred"  	  id="referred"  	><br>
+		<input type="text" class="textbox" name="referredby"  	  id="referredby"  	><br>
 	    </div>
 
 	</div>
@@ -548,11 +548,11 @@
 	 
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Nombre del pediatra:</label>
-		<input type="text" class="textbox" name="mhdoctor" 		id="mhdoctor" 		><br>
+		<input type="text" class="textbox" name="pediatrist" 		id="pediatrist" 		><br>
 	    </div>
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Teléfono del pediatra:</label>
-		<input type="text" class="textbox" name="mhdoctortelephone" 	id="mhdoctortelephone"	><br>
+		<input type="text" class="textbox" name="pediatristtelephone" 	id="pediatristtelephone"	><br>
 	    </div>
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Tiempo de gestación:</label>
@@ -561,7 +561,7 @@
 		        <input type="number" style="width: 100%;height: 50px;border:0;" name="gestationweeks" id="gestationweeks" >
 		    </div>
 		    <div style="display: table-cell; width: 100%;">
-		    	<select id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
+		    	<select id="weeksormonthsgestation" name="weeksormonthsgestation" >
 		            <option value="1">Semanas</option>
 		            <option value="4.34">Meses</option>
 		    	</select>
@@ -739,7 +739,7 @@
 		    <label  class="labeldental" >¿Qué tipos de líquidos toma en el?</label>				
 		    <input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
 	        </div>
-
+		<!--
 	        <div class="fieldcontainer">		
 		    <label  class="labeldental" >¿Con qué frecuencia lo usa?</label>	
 		    <div class="textboxandselect" style="width: 100%; display:block;">	
@@ -754,7 +754,11 @@
 		        </div>
 		    </div>
 	    	</div>
-
+		-->
+		 <div class="fieldcontainer">
+		    <label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
+		    <input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
+		</div>
 	    </div>
 
 	    <div class="fieldcontainer">
@@ -764,7 +768,7 @@
 	    </div>
 
 	    <div class="fieldcontainer otherelementshowhide" id="epacifierfrecuency" style="display:none;">
-
+		<!--
 		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>	
 		<div class="textboxandselect" style="width: 100%; display:block;">	
 		    <div style="display: table-cell; width: 100%;">	
@@ -778,7 +782,9 @@
 		    	</select>
 		    </div>
 		</div>
-	    
+	    	-->
+		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
+		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
 	    </div>
 
 	    <div class="fieldcontainer">
@@ -861,7 +867,7 @@
 	    </div>
 
 
-	    
+	    <!--
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Frecuencia</label>	
 		<div class="textboxandselect" style="width: 100%; display:block;">	
@@ -876,7 +882,7 @@
 		    </div>
 		</div>
 	    </div>
-
+	    -->
 
 
 	</div>

@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 )
-
+/*
 type Patient struct {
 	Id		int		`json:id`
 	Created		time.Time	`json:created`
@@ -90,6 +90,94 @@ type Consult struct{
 	PatientId	int
 	Reason		string
 	Referred	string
+}
+*/
+
+type Patient struct {
+	Fullname      string    `json:"fullname"`
+	Nickname      string    `json:"nickname"`
+	Gender        int       `json:"gender"`
+	Birthdate     time.Time `json:"birthdate"`
+	Sibilings     int       `json:"sibilings"`
+	Childnumber   int       `json:"childnumber"`
+	Reasonconsult string    `json:"reasonconsult"`
+	Referredby    string    `json:"referredby"`
+	Liveswith     struct {
+		Valueid    int    `json:"valueid"`
+		Othervalue string `json:"othervalue"`
+	} `json:"liveswith"`
+	Father struct {
+		Fullname      string `json:"fullname"`
+		Ocupation     string `json:"ocupation"`
+		Maritalstatus struct {
+			Valueid    int    `json:"valueid"`
+			Othervalue string `json:"othervalue"`
+		} `json:"maritalstatus"`
+	} `json:"father"`
+	Mother struct {
+		Fullname      string `json:"fullname"`
+		Ocupation     string `json:"ocupation"`
+		Maritalstatus struct {
+			Valueid    int    `json:"valueid"`
+			Othervalue string `json:"othervalue"`
+		} `json:"maritalstatus"`
+	} `json:"mother"`
+	Address struct {
+		Streetandnumber string `json:"streetandnumber"`
+		City            string `json:"city"`
+		Neighberhood    string `json:"neighberhood"`
+		Telephone       string `json:"telephone"`
+	} `json:"address"`
+	School struct {
+		Name        string `json:"name"`
+		Gradeschool string `json:"gradeschool"`
+		Turnschool  string `json:"turnschool"`
+	} `json:"school"`
+	Medicalhistory struct {
+		Pediatrist          string  `json:"pediatrist"`
+		Pediatristtelephone string  `json:"pediatristtelephone"`
+		Gestationweeks      float64 `json:"gestationweeks"`
+		Birthtype           struct {
+			Valueid    int	  `json:"valueid"`
+			Othervalue string `json:"othervalue"`
+		} `json:"birthtype"`
+		Birthheight       float64 `json:"birthheight"`
+		Birthweight       float64 `json:"birthweight"`
+		Currentheight     float64 `json:"currentheight"`
+		Currentweight     float64 `json:"currentweight"`
+		Surgeries         string  `json:"surgeries"`
+		Bloodtransfusions string  `json:"bloodtransfusions"`
+		Treatments        string  `json:"treatments"`
+	} `json:"medicalhistory"`
+	Chronics           []string `json:"chronics"`
+	Historymedicalprev struct {
+		Firsvisit         bool   `json:"firsvisit"`
+		Visitnotes        string `json:"visitnotes"`
+		Cooperation       bool   `json:"cooperation"`
+		Dentalpain        bool   `json:"dentalpain"`
+		Notesdentalpain   string `json:"notesdentalpain"`
+		Balanceddiet      bool   `json:"balanceddiet"`
+		Highchdiet        bool   `json:"highchdiet"`
+		Noteshighchdiet   string `json:"noteshighchdiet"`
+		Biberon           bool   `json:"biberon"`
+		Biberonlastused   string `json:"biberonlastused"`
+		Biberonliquids    string `json:"biberonliquids"`
+		Biberonfrecuency  string `json:"biberonfrecuency"`
+		Pacifier          bool   `json:"pacifier"`
+		Pacifierfrecuency string `json:"pacifierfrecuency"`
+		Breastfed         bool   `json:"breastfed"`
+		Brushfrecuency    string `json:"brushfrecuency"`
+		Floos             bool   `json:"floos"`
+		Flourinwater      bool   `json:"flourinwater"`
+		Whereflourinwater string `json:"whereflourinwater"`
+		Flour             bool   `json:"flour"`
+		Lastflourapp      string `json:"lastflourapp"`
+		Badhabits         bool   `json:"badhabits"`
+		Habitname         string `json:"habitname"`
+		Habitfrequency    string `json:"habitfrequency"`
+		Habitintensity    string `json:"habitintensity"`
+	} `json:"historymedicalprev"`
+	Vaccines []string `json:"vaccines"`
 }
 
 
