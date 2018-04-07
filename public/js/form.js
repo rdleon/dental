@@ -96,7 +96,7 @@ function addbadhabit(){
 }
 
 function selectother(selected, idElementDisplay){
-	if( selected.selectedOptions[0].value == "other" ){
+	if( selected.selectedOptions[0].value == "0" ){
 		var otherSelected = document.getElementById( idElementDisplay );
 		otherSelected.style.display = "inline-block"
 		otherSelected.focus();
@@ -158,13 +158,6 @@ function guardar(evt){
 	var lastflourapp   		= document.getElementById("lastflourapp"			).value;
 	var flourinwater   		= document.getElementById("flourinwater"			).value;
 	var badhabits      		= document.getElementById("badhabits"				).value;
-
-
-chupon
-frecuencia biberon
-frecuecia cepilla  
-ha recibido aplicación flour
-motivo de la visita
 
 	*/
 
@@ -268,6 +261,21 @@ motivo de la visita
 			chronics.append( chronicssel[i].value )
 		}
 	}
+
+
+	aparence
+	box-shadow
+	outline
+	-moz-appearance:none; /* Firefox 
+    -webkit-appearance:none; /* Safari and Chrome 
+    appearance:none;
+
+
+
+	texto y seleccion de meses
+	kgs y cms margin
+
+
 	*/
 
 	var xhr = new XMLHttpRequest();

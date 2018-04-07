@@ -138,6 +138,48 @@ body{
   box-shadow: 0px 2px 15px #ccc;
 }
 
+.textboxandselect{
+  height:50px;
+  border-radius:3px;
+  border:rgba(0,0,0,.3) 0px solid;
+  box-sizing:border-box;
+  box-shadow: 0px 2px 15px #ccc;
+  width: 50%;
+  display: table-footer-group;
+
+}
+
+.textboxandselect select{
+	height:50px;
+	border:rgba(0,0,0,.3) 0px solid;
+  	box-sizing:border-box;
+  	padding:10px;
+	color: #777;
+	background-color: #fff;
+	border-left: solid 1px #aaf !important;
+	/*-moz-appearance:none; /* Firefox *
+    -webkit-appearance:none; /* Safari and Chrome *
+    appearance:none;*/
+	outline: none;
+	padding-right: 15px;
+  	/*box-shadow: 0px 2px 15px #ccc;/*min-width:150px; max-width: 100%;*/
+}
+
+.textboxandselect input{
+	padding-left: 14px;
+	outline: none;
+}
+
+.textboxandselect input:focus{
+	color:rgba(24,149,215,1);
+}
+
+.textboxandselect:active{
+	/*border: solid 2px rgba(24,149,215,1) !important;	*/
+	outline: solid 2px rgba(24,149,215,1) !important;
+	outline: none;
+}
+
 .birthdayelements{
     width: 32%;
     min-width: 60px;
@@ -188,8 +230,6 @@ body{
 	margin-bottom: 0px;
 	margin-right: 6px;
 }
-
-#otherparentmarital { display:none; }
 
 .textlabel{
 	color: #777;
@@ -492,4 +532,8 @@ input::-webkit-inner-spin-button {
 
 .unity{
 	margin: 0 22px 0 8px;	
+}
+
+.otherelementshowhide{
+	display: block !important;
 }

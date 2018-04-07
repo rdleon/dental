@@ -465,30 +465,30 @@
 		
 	    <div class="fieldcontainer">
 	        <label  class="labeldental" for="parentmarital">Estado civil:</label>
-	        <select class="selectandtext" id="parentmarital" onchange="selectother(this, 'otherparentmarital');" name="parentmarital">
+	        <select class="selectandtext" id="parentmarital" onchange="selectother(this, 'eotherparentmarital');" name="parentmarital">
 	            <option value="1">Casados</option>
 	            <option value="2">Viudo(a)</option>
 	            <option value="3">Unión libre</option>
 	            <option value="4">Separados</option>
 	            <option value="5">Divorciados</option>
-	            <option value="other">Otro</option>
+	            <option value="0">Otro</option>
 	        </select>   
 	    </div>
-	    <div class="fieldcontainer" >
-	        <input type="text" style="display:none;" class="textbox" name="otherparentmarital"  id="otherparentmarital" placeholder="Estado civil">
+	    <div class="fieldcontainer otherelementshowhide" id="eotherparentmarital" style="display:none;">
+	        <input type="text" class="textbox" name="otherparentmarital"  id="otherparentmarital" placeholder="Estado civil">
 	    </div>
 		
             <div class="fieldcontainer" >
                 <label  class="labeldental" for="liveswith">El niño vive con:</label>
-                <select class="selectandtext" id="liveswith" onchange="selectother(this, 'otherliveswith');" name="liveswith">
+                <select class="selectandtext" id="liveswith" onchange="selectother(this, 'eotherliveswith');" name="liveswith">
                     <option value="Ambos">Ambos</option>
                     <option value="Madre">Madre</option>
                     <option value="Padre">Padre</option>
-                    <option value="other">Otro</option>
+                    <option value="0">Otro</option>
                 </select>   			
             </div>	
-            <div class="fieldcontainer" >
-                <input type="text" style="display:none;" class="textbox" name="otherliveswith"  id="otherliveswith" placeholder="Vive con">			
+            <div class="fieldcontainer otherelementshowhide" id="eotherliveswith" style="display:none;" >
+                <input type="text" class="textbox" name="otherliveswith"  id="otherliveswith" placeholder="Vive con">			
             </div>	
 	
 	    <div class="fieldcontainer" style="display: inline-flex;" >
@@ -556,18 +556,29 @@
 	    </div>
 	    <div class="fieldcontainer">
 		<label  class="labeldental" >Tiempo de gestación:</label>
-		<input type="text" class="textbox" name="Tiempo de gestación" 	id="gestationweeks"	><br>
+		<div class="textboxandselect" style="width: 100%; display:block;">	
+		    <div style="display: table-cell; width: 100%;">	
+		        <input type="number" style="width: 100%;height: 50px;border:0;" name="gestationweeks" id="gestationweeks" >
+		    </div>
+		    <div style="display: table-cell; width: 100%;">
+		    	<select id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
+		            <option value="1">Semanas</option>
+		            <option value="4.34">Meses</option>
+		    	</select>
+		    </div>
+		</div>
+
 	    </div>
 	    <div class="fieldcontainer">
 		<label  class="labeldentalinline" for="birthtype" >Tipo de parto:</label>
-		<select class="selectandtext" id="birthtype" name="birthtype" onchange="selectother(this, 'otherbirthtype');" >
+		<select class="selectandtext" id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
 		    <option value="1">Natural</option>
 		    <option value="2">Cesárea</option>
-		    <option value="other">Otro</option>
+		    <option value="0">Otro</option>
 		</select>
 	    </div>
-	    <div class="fieldcontainer" >
-	        <input type="text" style="display:none;" class="textbox" name="otherbirthtype"  id="otherbirthtype" placeholder="Otro tipo de parto">
+	    <div class="fieldcontainer otherelementshowhide" id="eotherbirthtype" style="display:none;" >
+	        <input type="text" class="textbox" name="otherbirthtype"  id="otherbirthtype" placeholder="Otro tipo de parto">
 	    </div>
 
 	    <div class="fieldcontainer">
@@ -673,7 +684,7 @@
 		<input type="radio" name="firsvisit" value="true"  id="yesfisrtvisit" onchange="radioandshow('hide','evisitnotes')" ><label for="yesfisrtvisit"> Si </label>
 		<input type="radio" name="firsvisit" value="false" id="nofisrtvisit"  onchange="radioandshow('show','evisitnotes')"><label for="nofisrtvisit"> No </label>   <br>
 	    </div>
-	    <div class="fieldcontainer" id="evisitnotes" style="display:none;">
+	    <div class="fieldcontainer otherelementshowhide" id="evisitnotes" style="display:none;">
 		<label  class="labeldental" >Cuándo y el motivo:</label>				
 	     	<input type="text" class="textbox" id="visitnotes" name="visitnotes" ><br>
 	    </div>
@@ -689,7 +700,7 @@
 		<input type="radio" name="dentalpain" value="true" id="yesdentalpain" onchange="radioandshow('show','enotesdentalpain')" ><label for="yesdentalpain"> Si </label>
 		<input type="radio" name="dentalpain" value="false" id="nodentalpain" onchange="radioandshow('hide','enotesdentalpain')" ><label for="nodentalpain"> No </label>   <br>
 	    </div>		
-	    <div class="fieldcontainer" id="enotesdentalpain" style="display:none;">
+	    <div class="fieldcontainer otherelementshowhide" id="enotesdentalpain" style="display:none;">
 		<label  class="labeldental" >Cuándo:</label>				
 		<input type="text" class="textbox" id="notesdentalpain" name="notesdentalpain" ><br>
 	    </div>
@@ -705,7 +716,7 @@
 		<input type="radio" name="highchdiet" value="true" id="yeshighchdiet" onchange="radioandshow('show','enoteshighchdiet')" ><label for="yeshighchdiet"> Si </label>
 		<input type="radio" name="highchdiet" value="false" id="nohighchdiet" onchange="radioandshow('hide','enoteshighchdiet')" ><label for="nohighchdiet"> No </label>   <br>
 	    </div>
-	    <div class="fieldcontainer" id="enoteshighchdiet" style="display:none;">
+	    <div class="fieldcontainer otherelementshowhide" id="enoteshighchdiet" style="display:none;">
 		<label  class="labeldental" >En forma de:</label>				
 		<input type="text" class="textbox" id="noteshighchdiet" name="noteshighchdiet" ><br>		
 	    </div>
@@ -716,34 +727,58 @@
 		<input type="radio" name="biberon" value="false" id="nobiberon" onchange="radiohideshow('elementsnousebiberon', 'elementsusebiberon')" > <label for="nobiberon"> No </label>   <br>
 	    </div>
 
-	    <div id="elementsnousebiberon" style="display:none;">
+	    <div id="elementsnousebiberon" class="otherelementshowhide" style="display:none;">
 	        <div class="fieldcontainer">
-	            <label  class="labeldental" >¿A qué edad dejó lo dejó?</label>				
+	            <label  class="labeldental" >¿A qué edad lo dejó?</label>				
 	            <input type="text" class="textbox" id="biberonlastused" name="biberonlastused" > <br>
 	        </div>
 	    </div>
 
-	    <div id="elementsusebiberon" style="display:none;">
+	    <div id="elementsusebiberon" class="otherelementshowhide" style="display:none;">
 	        <div class="fieldcontainer">
 		    <label  class="labeldental" >¿Qué tipos de líquidos toma en el?</label>				
 		    <input type="text" class="textbox" id="biberonliquids" name="biberonliquids"	><br>
 	        </div>
 
-	        <div class="fieldcontainer">
-		    <label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
-		    <input type="text" class="textbox" id="biberonfrecuency" name="biberonfrecuency" > <br>
+	        <div class="fieldcontainer">		
+		    <label  class="labeldental" >¿Con qué frecuencia lo usa?</label>	
+		    <div class="textboxandselect" style="width: 100%; display:block;">	
+		        <div style="display: table-cell; width: 100%;">	
+		             <input type="number" style="width: 100%;height: 50px;border:0;" name="biberonfrecuency" id="biberonfrecuency" >
+		        </div>
+		        <div style="display: table-cell; width: 100%;">
+		        	<select id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
+		                <option value="1">Veces por dia</option>
+		                <option value="2">Veces por semana</option>
+		        	</select>
+		        </div>
+		    </div>
 	    	</div>
+
 	    </div>
 
 	    <div class="fieldcontainer">
 		<label  class="radiolabel" >Usa chupón:</label>				
-		<input type="radio" name="pacifier" value="true" id="yespacifier"><label for="yespacifier"> Si </label>
-		<input type="radio" name="pacifier" value="false" id="nopacifier"> <label for="nopacifier"> No </label>   <br>
+		<input type="radio" name="pacifier" value="true" id="yespacifier" onchange="radioandshow('show','epacifierfrecuency')"><label for="yespacifier"> Si </label>
+		<input type="radio" name="pacifier" value="false" id="nopacifier" onchange="radioandshow('hide','epacifierfrecuency')"> <label for="nopacifier"> No </label>   <br>
 	    </div>
 
-	    <div class="fieldcontainer">
-		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>				
-		<input type="text" class="textbox" id="pacifierfrecuency" name="pacifierfrecuency" > <br>
+	    <div class="fieldcontainer otherelementshowhide" id="epacifierfrecuency" style="display:none;">
+
+		<label  class="labeldental" >¿Con qué frecuencia lo usa?</label>	
+		<div class="textboxandselect" style="width: 100%; display:block;">	
+		    <div style="display: table-cell; width: 100%;">	
+		         <input type="number" style="width: 100%;height: 50px;border:0;" name="pacifierfrecuency" id="pacifierfrecuency" >
+		    </div>
+		    <div style="display: table-cell; width: 100%;">
+		    	<select id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
+		            <option value="1">Veces por hora</option>
+		            <option value="1">Veces por dia</option>
+		            <option value="2">Veces por semana</option>
+		    	</select>
+		    </div>
+		</div>
+	    
 	    </div>
 
 	    <div class="fieldcontainer">
@@ -758,7 +793,7 @@
 		<input type="radio" name="badhabit1" value="true" id="yesbadhabit1" onchange="radioandshow('show','ebadhabits')" ><label for="yesbadhabit1"> Si </label>
 		<input type="radio" name="badhabit1" value="false" id="nobadhabit1" onchange="radioandshow('hide','ebadhabits')" ><label for="nobadhabit1"> No </label><br>
 	    </div>
-	    <div id="ebadhabits" style="display: none;">
+	    <div id="ebadhabits" class="otherelementshowhide" style="display: none;">
 	        <div class="fieldcontainer">
 	            <label  class="labeldental" >¿Cuál?:</label>			
 	            <input type="text" class="textbox" name="habitname" id="habitname" ><br>
@@ -794,7 +829,7 @@
 		<input type="radio" name="flourinwater" value="true" id="yesflourinwater" onchange="radioandshow('show','ewhereflourinwater')" ><label for="yesflourinwater"> Si </label>
 		<input type="radio" name="flourinwater" value="false" id="noflourinwater" onchange="radioandshow('hide','ewhereflourinwater')" ><label for="noflourinwater"> No </label>   <br>
 	    </div>
-	    <div class="fieldcontainer" id="ewhereflourinwater" style="display:none;">
+	    <div class="fieldcontainer otherelementshowhide" id="ewhereflourinwater" style="display:none;">
 		<label  class="labeldental" >¿Dónde?</label>				
 		<input type="text" class="textbox" name="whereflourinwater" id="whereflourinwater" ><br>
 	    </div>
@@ -804,7 +839,7 @@
 		<input type="radio" name="flour" value="true" id="yesflour" onchange="radioandshow('show','elastflourapp')" ><label for="yesflour"> Si </label>
 		<input type="radio" name="flour" value="false" id="noflour" onchange="radioandshow('hide','elastflourapp')" ><label for="noflour"> No </label>   <br>
 	    </div>
-	    <div class="fieldcontainer" id="elastflourapp" style="display:none;">
+	    <div class="fieldcontainer otherelementshowhide" id="elastflourapp" style="display:none;">
 		<label  class="labeldental" >¿Cuándo fue la última?</label>				
 		<input type="date" class="textbox" name="lastflourapp" id="lastflourapp" ><br>
 	    </div>
@@ -824,6 +859,25 @@
 	    <div id="addvaccines" onclick="addvaccines(this)" style="margin: 10px 10px 30px 10px;font-family: helvetica;font-size:14px;color:#8bf;cursor:pointer;background: #55f; display: inline-block; padding: 8px; background: #757afa; color: #fff;border-radius: 3px;" >
 		 Agregar otra vacuna
 	    </div>
+
+
+	    
+	    <div class="fieldcontainer">
+		<label  class="labeldental" >Frecuencia</label>	
+		<div class="textboxandselect" style="width: 100%; display:block;">	
+		    <div style="display: table-cell; width: 100%;">	
+		         <input type="number" style="width: 100%;height: 50px;border:0;" name="lastflourapp" id="lastflourapp" >
+		    </div>
+		    <div style="display: table-cell; width: 100%;">
+		    	<select id="birthtype" name="birthtype" onchange="selectother(this, 'eotherbirthtype');" >
+		            <option value="1">Semanas</option>
+		            <option value="2">Meses</option>
+		    	</select>
+		    </div>
+		</div>
+	    </div>
+
+
 
 	</div>
 
